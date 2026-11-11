@@ -1,0 +1,859 @@
+{
+  "websiteSettings": {
+    "siteName": "Orbiphera technology  ",
+    "tagline": "Engineering Digital Solutions. Building the Future.",
+    "logoUrl": "/logo.png",
+    "faviconUrl": "/favicon.ico",
+    "contactEmail": "contact@yathartitsolutions.com",
+    "contactPhone": "+91 8676875336",
+    "address": "Yathart IT Solutions, Digital Tech Hub, India",
+    "socialLinks": {
+      "twitter": "https://twitter.com/nexvora",
+      "linkedin": "https://linkedin.com/company/nexvora",
+      "github": "https://github.com/nexvora",
+      "instagram": "https://instagram.com/nexvora",
+      "facebook": "https://facebook.com/nexvora",
+      "youtube": ""
+    },
+    "defaultMetaTitle": "Yatharth IT Solutions - Software Development & IT Solutions Company",
+    "defaultMetaDescription": "We design and develop powerful software, mobile applications, websites, and scalable digital platforms that help businesses grow faster.",
+    "defaultOgImage": "",
+    "googleAnalyticsId": "",
+    "googleSearchConsoleKey": "",
+    "maintenanceMode": false,
+    "customHeaderScripts": "",
+    "customFooterScripts": "",
+    "updatedAt": "2026-11-11T09:43:48.877Z"
+  },
+  "adminUsers": [
+    {
+      "_id": "admin_1",
+      "name": "Super Admin",
+      "email": "admin@yathartitsolutions.com",
+      "password": "$2a$10$NF3cP8iSb3oaVeA3hGc.1uC0ST3hgMqweU5QdpRMBDcLCYmK2pNHG",
+      "role": "super_admin",
+      "permissions": [
+        "dashboard",
+        "pages",
+        "content",
+        "navigation",
+        "media",
+        "users",
+        "inquiries",
+        "seo",
+        "settings"
+      ],
+      "isActive": true,
+      "createdAt": "2026-11-01T10:44:47.197Z"
+    },
+    {
+      "_id": "admin_2",
+      "name": "Yatharth Admin",
+      "email": "admin@yatharth.com",
+      "password": "$2a$10$NF3cP8iSb3oaVeA3hGc.1uC0ST3hgMqweU5QdpRMBDcLCYmK2pNHG",
+      "role": "super_admin",
+      "permissions": [
+        "dashboard",
+        "pages",
+        "content",
+        "navigation",
+        "media",
+        "users",
+        "inquiries",
+        "seo",
+        "settings"
+      ],
+      "isActive": true,
+      "createdAt": "2026-11-01T10:44:47.198Z"
+    }
+  ],
+  "navigation": {
+    "header": [
+      {
+        "id": "1",
+        "label": "Discover",
+        "url": "/marketplace",
+        "sortOrder": 1
+      },
+      {
+        "id": "2",
+        "label": "Templates",
+        "url": "/templates",
+        "sortOrder": 2
+      },
+      {
+        "id": "3",
+        "label": "Software",
+        "url": "/software",
+        "sortOrder": 3
+      },
+      {
+        "id": "4",
+        "label": "Custom Solutions",
+        "url": "/custom-development",
+        "sortOrder": 4
+      },
+      {
+        "id": "5",
+        "label": "Pricing",
+        "url": "/#pricing",
+        "sortOrder": 5
+      },
+      {
+        "id": "6",
+        "label": "Contact",
+        "url": "/contact",
+        "sortOrder": 6
+      }
+    ],
+    "footer": [
+      {
+        "id": "f1",
+        "label": "Website Templates",
+        "url": "/templates",
+        "category": "products",
+        "sortOrder": 1
+      },
+      {
+        "id": "f2",
+        "label": "Software Solutions",
+        "url": "/software",
+        "category": "products",
+        "sortOrder": 2
+      },
+      {
+        "id": "f3",
+        "label": "Marketplace",
+        "url": "/marketplace",
+        "category": "products",
+        "sortOrder": 3
+      },
+      {
+        "id": "f4",
+        "label": "Categories",
+        "url": "/categories",
+        "category": "products",
+        "sortOrder": 4
+      },
+      {
+        "id": "f5",
+        "label": "About Us",
+        "url": "/about",
+        "category": "company",
+        "sortOrder": 5
+      },
+      {
+        "id": "f6",
+        "label": "Custom Development",
+        "url": "/custom-development",
+        "category": "company",
+        "sortOrder": 6
+      },
+      {
+        "id": "f7",
+        "label": "Contact",
+        "url": "/contact",
+        "category": "company",
+        "sortOrder": 7
+      },
+      {
+        "id": "f8",
+        "label": "Request Quote",
+        "url": "/request-quote",
+        "category": "company",
+        "sortOrder": 8
+      },
+      {
+        "id": "f9",
+        "label": "FAQ",
+        "url": "/#faq",
+        "category": "support",
+        "sortOrder": 9
+      },
+      {
+        "id": "f10",
+        "label": "Support Center",
+        "url": "/contact",
+        "category": "support",
+        "sortOrder": 10
+      },
+      {
+        "id": "f11",
+        "label": "Request Demo",
+        "url": "/request-demo",
+        "category": "support",
+        "sortOrder": 11
+      },
+      {
+        "id": "f12",
+        "label": "Terms of Service",
+        "url": "/terms",
+        "category": "legal",
+        "sortOrder": 12
+      },
+      {
+        "id": "f13",
+        "label": "Privacy Policy",
+        "url": "/privacy",
+        "category": "legal",
+        "sortOrder": 13
+      }
+    ]
+  },
+  "contentSections": [
+    {
+      "_id": "sec_1",
+      "sectionKey": "hero",
+      "title": "Build Something Extraordinary With Yatharth IT Solutions",
+      "subtitle": "Premium website templates, powerful business software, and custom digital solutions — everything you need to turn your next big idea into reality.",
+      "data": {
+        "badge": "Premium Digital Marketplace",
+        "primaryCtaText": "Explore Marketplace",
+        "primaryCtaLink": "/marketplace",
+        "secondaryCtaText": "Build My Solution",
+        "secondaryCtaLink": "/custom-development",
+        "features": [
+          "Ready-to-launch templates",
+          "Business-focused software",
+          "Flexible support plans"
+        ]
+      },
+      "isActive": true,
+      "sortOrder": 1
+    },
+    {
+      "_id": "sec_2",
+      "sectionKey": "why_nexvora",
+      "title": "Why Choose Yatharth IT Solutions",
+      "subtitle": "Engineered for speed, built for scale, and backed by expert engineering support.",
+      "data": {
+        "cards": [
+          {
+            "title": "Production Ready Code",
+            "description": "Clean, modern, and well-documented codebase built with React, Node.js, and best architectural practices."
+          },
+          {
+            "title": "Fully Customizable",
+            "description": "Easily adapt any template or software to your exact branding and functional requirements."
+          },
+          {
+            "title": "Lifetime Free Updates",
+            "description": "Get continuous improvements, security patches, and framework compatibility upgrades."
+          },
+          {
+            "title": "Dedicated Engineering Support",
+            "description": "Direct access to senior developers for implementation guidance, hosting, and customization."
+          }
+        ]
+      },
+      "isActive": true,
+      "sortOrder": 2
+    },
+    {
+      "_id": "sec_3",
+      "sectionKey": "faq",
+      "title": "Frequently Asked Questions",
+      "subtitle": "Find answers to common questions about our digital products and licenses.",
+      "data": {
+        "faqs": [
+          {
+            "question": "What does a template purchase include?",
+            "answer": "A template purchase includes full source code, asset files, documentation, and installation guides with your selected license."
+          },
+          {
+            "question": "Can templates be customized for my company?",
+            "answer": "Yes! The source code is 100% editable. You can customize branding, routes, and features yourself or contract our engineering team."
+          },
+          {
+            "question": "Do you offer custom web and CRM software development?",
+            "answer": "Yes, we provide end-to-end bespoke digital engineering for healthcare, education, resorts, real estate, and enterprise CRM."
+          },
+          {
+            "question": "What is the refund and support policy?",
+            "answer": "We provide technical support for all licensed products and evaluate refund requests on verified technical issues."
+          }
+        ]
+      },
+      "isActive": true,
+      "sortOrder": 3
+    }
+  ],
+  "pages": [
+    {
+      "_id": "page_1",
+      "title": "Home",
+      "slug": "home",
+      "template": "landing",
+      "status": "published",
+      "metaTitle": "Yatharth It Solutions - Digital Products. Limitless Possibilities.",
+      "metaDescription": "Premium digital marketplace where businesses purchase ready-made website templates, SaaS solutions, and custom digital development.",
+      "primaryKeyword": "digital marketplace",
+      "secondaryKeywords": [
+        "website templates",
+        "business software",
+        "saas solutions"
+      ],
+      "h1Heading": "Build Something Extraordinary With Yatharth IT Solutions",
+      "schemaType": "WebPage",
+      "content": "<h1>Build Something Extraordinary</h1><p>Welcome to Yatharth IT Solutions marketplace.</p>"
+    },
+    {
+      "_id": "page_2",
+      "title": "Marketplace",
+      "slug": "marketplace",
+      "template": "default",
+      "status": "published",
+      "metaTitle": "Explore Digital Products Marketplace | Yatharth It Solutions",
+      "metaDescription": "Browse hundreds of vetted website templates and production-ready business software applications.",
+      "primaryKeyword": "buy website templates",
+      "secondaryKeywords": [
+        "digital software store",
+        "react templates"
+      ],
+      "h1Heading": "Explore Digital Marketplace",
+      "schemaType": "WebPage",
+      "content": "<h1>Digital Products Marketplace</h1>"
+    }
+  ],
+  "products": [
+    {
+      "_id": "prod_1",
+      "name": "EduPrime",
+      "slug": "eduprime-education-institute",
+      "type": "template",
+      "category": "Education & E-learning",
+      "price": 4999,
+      "extendedPrice": 14999,
+      "description": "Modern education institute website with course management, student portal, and event calendar.",
+      "shortDescription": "Modern education institute website with student portal.",
+      "thumbnail": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=400&fit=crop",
+      "status": "published",
+      "isFeatured": true,
+      "technologies": [
+        "React",
+        "Tailwind CSS",
+        "Framer Motion"
+      ],
+      "features": [
+        "Course Catalog",
+        "Student Admission Form",
+        "Event Calendar",
+        "Faculty Directory",
+        "SEO Optimized"
+      ],
+      "metaTitle": "EduPrime - Education & Institute Website Template",
+      "metaDescription": "Modern responsive education website template with course booking and admission inquiry management."
+    },
+    {
+      "_id": "prod_2",
+      "name": "Medora",
+      "slug": "medora-hospital-clinic",
+      "type": "template",
+      "category": "Hospital & Healthcare",
+      "price": 6999,
+      "extendedPrice": 19999,
+      "description": "Professional hospital and clinic website with appointment booking, doctor profiles, and emergency services.",
+      "shortDescription": "Professional hospital and clinic website with appointment booking.",
+      "thumbnail": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&h=400&fit=crop",
+      "status": "published",
+      "isFeatured": true,
+      "technologies": [
+        "React",
+        "Node.js",
+        "Tailwind CSS"
+      ],
+      "features": [
+        "Doctor Profiles",
+        "Appointment Scheduler",
+        "Department Directory",
+        "Emergency Contact Bar"
+      ],
+      "metaTitle": "Medora - Hospital & Clinic Website Template",
+      "metaDescription": "Healthcare clinic and hospital website template with instant doctor appointment booking."
+    },
+    {
+      "_id": "prod_3",
+      "name": "StayLuxe",
+      "slug": "stayluxe-resort-hotel",
+      "type": "template",
+      "category": "Hotels & Resorts",
+      "price": 5999,
+      "extendedPrice": 17999,
+      "description": "Luxury hotel and resort website with room booking, gallery, amenities, and guest reviews.",
+      "shortDescription": "Luxury hotel and resort website with room booking.",
+      "thumbnail": "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=400&fit=crop",
+      "status": "published",
+      "isFeatured": true,
+      "technologies": [
+        "React",
+        "Framer Motion",
+        "Tailwind CSS"
+      ],
+      "features": [
+        "Room Showcase",
+        "Direct Booking Form",
+        "Virtual Photo Tour",
+        "Dining & Spa Showcase"
+      ],
+      "metaTitle": "StayLuxe - Luxury Resort & Hotel Website Template",
+      "metaDescription": "High-end hospitality website template for luxury resorts, boutique hotels, and villas."
+    },
+    {
+      "_id": "prod_4",
+      "name": "ShopSphere",
+      "slug": "shopsphere-ecommerce",
+      "type": "template",
+      "category": "E-commerce & Retail",
+      "price": 7999,
+      "extendedPrice": 24999,
+      "description": "Complete e-commerce storefront with product catalog, cart, checkout flow, and review system.",
+      "shortDescription": "Complete e-commerce storefront with cart & checkout flow.",
+      "thumbnail": "https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=800&h=400&fit=crop",
+      "status": "published",
+      "isFeatured": true,
+      "technologies": [
+        "React",
+        "Tailwind CSS",
+        "Redux"
+      ],
+      "features": [
+        "Product Filtering",
+        "Shopping Cart",
+        "Instant Checkout",
+        "Customer Reviews",
+        "Mobile First"
+      ],
+      "metaTitle": "ShopSphere - Modern E-Commerce Storefront Template",
+      "metaDescription": "Fast, responsive e-commerce storefront with cart, checkout, and inventory catalog."
+    },
+    {
+      "_id": "prod_5",
+      "name": "OmniCRM Enterprise",
+      "slug": "omnicrm-enterprise-suite",
+      "type": "software",
+      "category": "CRM & Enterprise",
+      "price": 19999,
+      "extendedPrice": 49999,
+      "description": "All-in-one Customer Relationship Management system with lead pipeline, quotation generator, and automated follow-ups.",
+      "shortDescription": "All-in-one CRM system with lead pipeline & quotation generator.",
+      "thumbnail": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop",
+      "status": "published",
+      "isFeatured": true,
+      "technologies": [
+        "Node.js",
+        "Express",
+        "React",
+        "MongoDB"
+      ],
+      "features": [
+        "Lead Scoring Pipeline",
+        "Client Activity Timeline",
+        "PDF Invoicing",
+        "Role-based Permissions",
+        "Analytics Dashboard"
+      ],
+      "metaTitle": "OmniCRM - Enterprise Lead & Sales Management Software",
+      "metaDescription": "Powerful business CRM software to track deals, automate customer communications, and increase revenue."
+    },
+    {
+      "_id": "prod_6",
+      "name": "MedFlow Clinic HMS",
+      "slug": "medflow-clinic-hms",
+      "type": "software",
+      "category": "Hospital & Healthcare",
+      "price": 24999,
+      "extendedPrice": 59999,
+      "description": "Hospital & Clinic Management Software with patient records, billing, prescription management, and appointment queues.",
+      "shortDescription": "Hospital & Clinic Management Software with billing and OPD queues.",
+      "thumbnail": "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=800&h=400&fit=crop",
+      "status": "published",
+      "isFeatured": true,
+      "technologies": [
+        "Node.js",
+        "React",
+        "MongoDB",
+        "Chart.js"
+      ],
+      "features": [
+        "OPD/IPD Management",
+        "Electronic Medical Records",
+        "Pharmacy Inventory",
+        "Doctor Fee Billing"
+      ],
+      "metaTitle": "MedFlow - Hospital & Clinic Management ERP Software",
+      "metaDescription": "Complete clinical software for patient registration, doctor schedules, and digital health records."
+    }
+  ],
+  "categories": [
+    {
+      "_id": "cat_1",
+      "name": "Education & E-learning",
+      "slug": "education-elearning",
+      "description": "Websites and software for schools and colleges"
+    },
+    {
+      "_id": "cat_2",
+      "name": "Hospital & Healthcare",
+      "slug": "hospital-healthcare",
+      "description": "Clinical booking and hospital management platforms"
+    },
+    {
+      "_id": "cat_3",
+      "name": "Hotels & Resorts",
+      "slug": "hotels-resorts",
+      "description": "Room booking and luxury hospitality digital experiences"
+    },
+    {
+      "_id": "cat_4",
+      "name": "E-commerce & Retail",
+      "slug": "ecommerce-retail",
+      "description": "High-converting storefronts and retail inventory suites"
+    },
+    {
+      "_id": "cat_5",
+      "name": "Enterprise Software & ERP",
+      "slug": "software",
+      "description": "CRM, ERP and business OS"
+    }
+  ],
+  "inquiries": [],
+  "activityLogs": [
+    {
+      "_id": "log_1794392475039",
+      "adminEmail": "admin@yathartitsolutions.com",
+      "action": "ADMIN_LOGIN",
+      "entity": "AdminUser",
+      "details": "Admin admin@yathartitsolutions.com logged in successfully.",
+      "ip": "::1",
+      "createdAt": "2026-11-11T10:21:15.040Z"
+    },
+    {
+      "_id": "log_1794390235710",
+      "adminEmail": "admin@yathartitsolutions.com",
+      "action": "ADMIN_LOGIN",
+      "entity": "AdminUser",
+      "details": "Admin admin@yathartitsolutions.com logged in successfully.",
+      "ip": "::1",
+      "createdAt": "2026-11-11T09:43:55.710Z"
+    },
+    {
+      "_id": "log_1794390232730",
+      "adminEmail": "admin@yathartitsolutions.com",
+      "action": "ADMIN_LOGOUT",
+      "entity": "AdminUser",
+      "details": "Admin admin@yathartitsolutions.com logged out.",
+      "ip": "::1",
+      "createdAt": "2026-11-11T09:43:52.730Z"
+    },
+    {
+      "_id": "log_1794390229104",
+      "adminEmail": "admin@yathartitsolutions.com",
+      "action": "UPDATE_WEBSITE_SETTINGS",
+      "entity": "WebsiteSetting",
+      "details": "Updated general website configuration: Orbiphera technology  ",
+      "ip": "::1",
+      "createdAt": "2026-11-11T09:43:49.104Z"
+    },
+    {
+      "_id": "log_1794390212633",
+      "adminEmail": "admin@yathartitsolutions.com",
+      "action": "ADMIN_LOGIN",
+      "entity": "AdminUser",
+      "details": "Admin admin@yathartitsolutions.com logged in successfully.",
+      "ip": "::1",
+      "createdAt": "2026-11-11T09:43:32.633Z"
+    },
+    {
+      "_id": "log_1794297541116",
+      "adminEmail": "admin@yathartitsolutions.com",
+      "action": "UPDATE_WEBSITE_SETTINGS",
+      "entity": "WebsiteSetting",
+      "details": "Updated general website configuration: Yatharth Technologies",
+      "ip": "::1",
+      "createdAt": "2026-11-10T07:59:01.116Z"
+    },
+    {
+      "_id": "log_1794297412518",
+      "adminEmail": "admin@yathartitsolutions.com",
+      "action": "UPDATE_WEBSITE_SETTINGS",
+      "entity": "WebsiteSetting",
+      "details": "Updated general website configuration: Yatharth IT Solutions",
+      "ip": "::1",
+      "createdAt": "2026-11-10T07:56:52.518Z"
+    },
+    {
+      "_id": "log_1794297398270",
+      "adminEmail": "admin@yathartitsolutions.com",
+      "action": "UPDATE_WEBSITE_SETTINGS",
+      "entity": "WebsiteSetting",
+      "details": "Updated general website configuration: Yatharth IT Solutions",
+      "ip": "::1",
+      "createdAt": "2026-11-10T07:56:38.270Z"
+    },
+    {
+      "_id": "log_1794297123755",
+      "adminEmail": "admin@yathartitsolutions.com",
+      "action": "RUN_MANUAL_SEO_SCAN",
+      "entity": "SeoAuditLog",
+      "details": "Triggered full manual SEO audit. Scored: 84/100.",
+      "ip": "::1",
+      "createdAt": "2026-11-10T07:52:03.756Z"
+    },
+    {
+      "_id": "log_1794297114246",
+      "adminEmail": "admin@yathartitsolutions.com",
+      "action": "ADMIN_LOGIN",
+      "entity": "AdminUser",
+      "details": "Admin admin@yathartitsolutions.com logged in successfully.",
+      "ip": "::1",
+      "createdAt": "2026-11-10T07:51:54.246Z"
+    },
+    {
+      "_id": "log_1794025676130",
+      "adminEmail": "admin@yathartitsolutions.com",
+      "action": "ADMIN_LOGIN",
+      "entity": "AdminUser",
+      "details": "Admin admin@yathartitsolutions.com logged in successfully.",
+      "ip": "::1",
+      "createdAt": "2026-11-07T04:27:56.130Z"
+    },
+    {
+      "_id": "log_1793956901557",
+      "adminEmail": "admin@yathartitsolutions.com",
+      "action": "ADMIN_LOGIN",
+      "entity": "AdminUser",
+      "details": "Admin admin@yathartitsolutions.com logged in successfully.",
+      "ip": "::1",
+      "createdAt": "2026-11-06T09:21:41.557Z"
+    },
+    {
+      "_id": "log_1793954974267",
+      "adminEmail": "admin@yathartitsolutions.com",
+      "action": "ADMIN_LOGIN",
+      "entity": "AdminUser",
+      "details": "Admin admin@yathartitsolutions.com logged in successfully.",
+      "ip": "::1",
+      "createdAt": "2026-11-06T08:49:34.267Z"
+    },
+    {
+      "_id": "log_1793612484498",
+      "adminEmail": "admin@yathartitsolutions.com",
+      "action": "UPDATE_CONTENT_SECTION",
+      "entity": "ContentSection",
+      "details": "Updated homepage content section: team_members",
+      "ip": "::1",
+      "createdAt": "2026-11-02T09:41:24.498Z"
+    },
+    {
+      "_id": "log_1793612482548",
+      "adminEmail": "admin@yathartitsolutions.com",
+      "action": "UPLOAD_MEDIA",
+      "entity": "MediaItem",
+      "details": "Uploaded media: wp9499229-islamic-baby-wallpapers.jpg (103.6 KB)",
+      "ip": "::1",
+      "createdAt": "2026-11-02T09:41:22.548Z"
+    },
+    {
+      "_id": "log_1793611994839",
+      "adminEmail": "admin@yathartitsolutions.com",
+      "action": "ADMIN_LOGIN",
+      "entity": "AdminUser",
+      "details": "Admin admin@yathartitsolutions.com logged in successfully.",
+      "ip": "::1",
+      "createdAt": "2026-11-02T09:33:14.839Z"
+    },
+    {
+      "_id": "log_1793611227137",
+      "adminEmail": "admin@yathartitsolutions.com",
+      "action": "UPDATE_CONTENT_SECTION",
+      "entity": "ContentSection",
+      "details": "Updated homepage content section: featured_projects",
+      "ip": "::1",
+      "createdAt": "2026-11-02T09:20:27.137Z"
+    },
+    {
+      "_id": "log_1793611190292",
+      "adminEmail": "admin@yathartitsolutions.com",
+      "action": "UPDATE_CONTENT_SECTION",
+      "entity": "ContentSection",
+      "details": "Updated homepage content section: featured_projects",
+      "ip": "::1",
+      "createdAt": "2026-11-02T09:19:50.292Z"
+    },
+    {
+      "_id": "log_1793610956508",
+      "adminEmail": "admin@yathartitsolutions.com",
+      "action": "ADMIN_LOGIN",
+      "entity": "AdminUser",
+      "details": "Admin admin@yathartitsolutions.com logged in successfully.",
+      "ip": "::1",
+      "createdAt": "2026-11-02T09:15:56.508Z"
+    },
+    {
+      "_id": "log_1793595448532",
+      "adminEmail": "admin@yathartitsolutions.com",
+      "action": "UPDATE_WEBSITE_SETTINGS",
+      "entity": "WebsiteSetting",
+      "details": "Updated general website configuration: Yatharth IT Solutions",
+      "ip": "::1",
+      "createdAt": "2026-11-02T04:57:28.532Z"
+    },
+    {
+      "_id": "log_1793595428431",
+      "adminEmail": "admin@yathartitsolutions.com",
+      "action": "ADMIN_LOGIN",
+      "entity": "AdminUser",
+      "details": "Admin admin@yathartitsolutions.com logged in successfully.",
+      "ip": "::1",
+      "createdAt": "2026-11-02T04:57:08.431Z"
+    },
+    {
+      "_id": "log_1793532756327",
+      "adminEmail": "admin@yathartitsolutions.com",
+      "action": "ADMIN_LOGIN",
+      "entity": "AdminUser",
+      "details": "Admin admin@yathartitsolutions.com logged in successfully.",
+      "ip": "::1",
+      "createdAt": "2026-11-01T11:32:36.328Z"
+    },
+    {
+      "_id": "log_1793532617729",
+      "adminEmail": "admin@yathartitsolutions.com",
+      "action": "UPDATE_WEBSITE_SETTINGS",
+      "entity": "WebsiteSetting",
+      "details": "Updated general website configuration: Yatharth IT Solutions",
+      "ip": "::1",
+      "createdAt": "2026-11-01T11:30:17.729Z"
+    },
+    {
+      "_id": "log_1793532617366",
+      "adminEmail": "admin@yathartitsolutions.com",
+      "action": "ADMIN_LOGIN",
+      "entity": "AdminUser",
+      "details": "Admin admin@yathartitsolutions.com logged in successfully.",
+      "ip": "::1",
+      "createdAt": "2026-11-01T11:30:17.366Z"
+    },
+    {
+      "_id": "log_1793530712523",
+      "adminEmail": "admin@yathartitsolutions.com",
+      "action": "UPDATE_WEBSITE_SETTINGS",
+      "entity": "WebsiteSetting",
+      "details": "Updated general website configuration: Yatharth It Solutions",
+      "ip": "::1",
+      "createdAt": "2026-11-01T10:58:32.523Z"
+    },
+    {
+      "_id": "log_1793530702170",
+      "adminEmail": "admin@yathartitsolutions.com",
+      "action": "UPDATE_WEBSITE_SETTINGS",
+      "entity": "WebsiteSetting",
+      "details": "Updated general website configuration: Yatharth It Solutions",
+      "ip": "::1",
+      "createdAt": "2026-11-01T10:58:22.170Z"
+    },
+    {
+      "_id": "log_1793530692807",
+      "adminEmail": "admin@yathartitsolutions.com",
+      "action": "ADMIN_LOGIN",
+      "entity": "AdminUser",
+      "details": "Admin admin@yathartitsolutions.com logged in successfully.",
+      "ip": "::1",
+      "createdAt": "2026-11-01T10:58:12.807Z"
+    },
+    {
+      "_id": "log_1793530504869",
+      "adminEmail": "admin@yathartitsolutions.com",
+      "action": "UPDATE_WEBSITE_SETTINGS",
+      "entity": "WebsiteSetting",
+      "details": "Updated general website configuration: ",
+      "ip": "::1",
+      "createdAt": "2026-11-01T10:55:04.869Z"
+    },
+    {
+      "_id": "log_1793530504518",
+      "adminEmail": "admin@yathartitsolutions.com",
+      "action": "ADMIN_LOGIN",
+      "entity": "AdminUser",
+      "details": "Admin admin@yathartitsolutions.com logged in successfully.",
+      "ip": "::1",
+      "createdAt": "2026-11-01T10:55:04.518Z"
+    },
+    {
+      "_id": "log_1793530232255",
+      "adminEmail": "admin@yathartitsolutions.com",
+      "action": "DELETE_MEDIA",
+      "entity": "MediaItem",
+      "details": "Deleted media file 1793505384047-277176260.png",
+      "ip": "::1",
+      "createdAt": "2026-11-01T10:50:32.255Z"
+    },
+    {
+      "_id": "log_1793530163945",
+      "adminEmail": "admin@yathartitsolutions.com",
+      "action": "ADMIN_LOGIN",
+      "entity": "AdminUser",
+      "details": "Admin admin@yathartitsolutions.com logged in successfully.",
+      "ip": "::1",
+      "createdAt": "2026-11-01T10:49:23.945Z"
+    },
+    {
+      "_id": "log_1793530121790",
+      "adminEmail": "admin@yathartitsolutions.com",
+      "action": "UPDATE_WEBSITE_SETTINGS",
+      "entity": "WebsiteSetting",
+      "details": "Updated general website configuration: Yatharth It Solutions",
+      "ip": "::1",
+      "createdAt": "2026-11-01T10:48:41.790Z"
+    },
+    {
+      "_id": "log_1793530121426",
+      "adminEmail": "admin@yathartitsolutions.com",
+      "action": "ADMIN_LOGIN",
+      "entity": "AdminUser",
+      "details": "Admin admin@yathartitsolutions.com logged in successfully.",
+      "ip": "::1",
+      "createdAt": "2026-11-01T10:48:41.426Z"
+    },
+    {
+      "_id": "log_1793529988296",
+      "adminEmail": "admin@yathartitsolutions.com",
+      "action": "ADMIN_LOGIN",
+      "entity": "AdminUser",
+      "details": "Admin admin@yathartitsolutions.com logged in successfully.",
+      "ip": "::1",
+      "createdAt": "2026-11-01T10:46:28.296Z"
+    },
+    {
+      "_id": "log_1793529927112",
+      "adminEmail": "admin@yathartitsolutions.com",
+      "action": "ADMIN_LOGIN",
+      "entity": "AdminUser",
+      "details": "Admin admin@yathartitsolutions.com logged in successfully.",
+      "ip": "::1",
+      "createdAt": "2026-11-01T10:45:27.112Z"
+    },
+    {
+      "_id": "log_1793529918055",
+      "adminEmail": "admin@yathartitsolutions.com",
+      "action": "ADMIN_LOGIN",
+      "entity": "AdminUser",
+      "details": "Admin admin@yathartitsolutions.com logged in successfully.",
+      "ip": "::1",
+      "createdAt": "2026-11-01T10:45:18.055Z"
+    },
+    {
+      "_id": "log_init",
+      "adminEmail": "admin@yathartitsolutions.com",
+      "action": "SYSTEM_INITIALIZATION",
+      "entity": "System",
+      "details": "High-Availability local storage initialized for Yatharth IT Solutions.",
+      "createdAt": "2026-11-01T10:44:47.198Z"
+    }
+  ],
+  "visitorMetrics": {
+    "totalVisitors": 124,
+    "todayVisitors": 28,
+    "pageViews": 412
+  }
+}

@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+  <defs>
+    <!-- Master Navy Radial Gradient -->
+    <radialGradient id="navyBg" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#1A2438" />
+      <stop offset="70%" stop-color="#0B1220" />
+      <stop offset="100%" stop-color="#050810" />
+    </radialGradient>
+
+    <!-- Master Gold Linear Gradient -->
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF7D6" />
+      <stop offset="40%" stop-color="#E8B800" />
+      <stop offset="100%" stop-color="#C99A00" />
+    </linearGradient>
+
+    <!-- Subtle Gold Edge Stroke Gradient -->
+    <linearGradient id="goldEdge" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E8B800" stop-opacity="0.8" />
+      <stop offset="50%" stop-color="#FFFFFF" stop-opacity="0.2" />
+      <stop offset="100%" stop-color="#E8B800" stop-opacity="0.4" />
+    </linearGradient>
+
+    <!-- Soft Ambient Glow -->
+    <filter id="goldGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Container Base (Navy #0B1220 with Gold border) -->
+  <rect x="10" y="10" width="180" height="180" rx="44" fill="url(#navyBg)" stroke="url(#goldEdge)" stroke-width="2.5" />
+
+  <!-- Subtle Gold Radial Core Glow -->
+  <circle cx="100" cy="100" r="45" fill="#E8B800" opacity="0.12" />
+
+  <!-- Stylized Geometric Isometric 'Y' in Gold & Navy -->
+  <g transform="translate(100, 100)">
+    <!-- Top-Left Facet -->
+    <path d="M -46 -42 L -15 -24 L -15 8 L -46 -10 Z" 
+          fill="#1A2438" 
+          stroke="#E8B800" 
+          stroke-opacity="0.4"
+          stroke-width="1.5" />
+
+    <!-- Top-Right Facet (Primary Gold) -->
+    <path d="M 46 -42 L 15 -24 L 15 8 L 46 -10 Z" 
+          fill="url(#goldGrad)" 
+          stroke="#FFFFFF" 
+          stroke-opacity="0.3"
+          stroke-width="1.5"
+          filter="url(#goldGlow)" />
+
+    <!-- Center Top Hex Cap -->
+    <path d="M 0 -52 L 30 -34 L 0 -16 L -30 -34 Z" 
+          fill="#0B1220" 
+          stroke="url(#goldGrad)" 
+          stroke-width="1.8" />
+
+    <!-- Center Jewel Node in Gold -->
+    <polygon points="0,-40 14,-31 0,-22 -14,-31" fill="#E8B800" />
+
+    <!-- Vertical Stem of 'Y' -->
+    <path d="M -15 16 L 15 16 L 15 52 L -15 52 Z" 
+          fill="#111B2E" 
+          stroke="#E8B800" 
+          stroke-opacity="0.3"
+          stroke-width="1.5" />
+
+    <!-- Vertical Stem Highlight Stripe -->
+    <path d="M 0 16 L 15 16 L 15 52 L 0 52 Z" 
+          fill="url(#goldGrad)" 
+          opacity="0.9" />
+
+    <!-- Bottom Tech Anchor Point -->
+    <circle cx="0" cy="62" r="3" fill="#E8B800" />
+  </g>
+</svg>

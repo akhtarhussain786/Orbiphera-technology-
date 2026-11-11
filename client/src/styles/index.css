@@ -1,0 +1,246 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --midnight: #0B0B0C;
+  --midnight-surface: #121214;
+  --midnight-raised: #17171A;
+  --midnight-alt: #0F0F11;
+  --crimson: #E50914;
+  --crimson-bright: #FF2A36;
+  --crimson-dark: #8B0000;
+  --lime: #E50914; /* aliased to logo crimson */
+  --text-white: #FFFFFF;
+  --text-muted: rgba(255, 255, 255, 0.62);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-alt: rgba(255, 255, 255, 0.06);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #0B0B0C;
+  color-scheme: dark;
+}
+
+body {
+  font-family: 'Inter', 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: #0B0B0C;
+  background:
+    radial-gradient(900px 500px at 50% -10%, rgba(229, 9, 20, 0.12), transparent 60%),
+    radial-gradient(700px 400px at 90% 40%, rgba(229, 9, 20, 0.05), transparent 60%),
+    #0B0B0C;
+  background-attachment: fixed;
+  color: #FFFFFF;
+  font-size: 16px;
+  line-height: 1.625;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ==========================================================================
+   SELECTION COLOR
+   Crimson Red background (#E50914), Pure White text (#FFFFFF)
+   ========================================================================== */
+::selection {
+  background-color: #E50914 !important;
+  color: #FFFFFF !important;
+}
+
+::-moz-selection {
+  background-color: #E50914 !important;
+  color: #FFFFFF !important;
+}
+
+/* Accessible focus visible with 2px border width */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid #E50914 !important;
+  outline-offset: 2px !important;
+}
+
+/* ==========================================================================
+   CUSTOM SCROLLBAR
+   track #0B0B0C, thumb #1F1F23, hover #E50914, width 8px, rounded
+   ========================================================================== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0B0B0C;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1F1F23;
+  border-radius: 9999px;
+  border: 2px solid #0B0B0C;
+  transition: background-color 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #E50914;
+  box-shadow: 0 0 10px rgba(229, 9, 20, 0.5);
+}
+
+/* ==========================================================================
+   CUSTOM CRIMSON RANGE SLIDER
+   ========================================================================== */
+input[type="range"].slider-lime,
+input[type="range"].slider-crimson {
+  -webkit-appearance: none;
+  appearance: none;
+  background: #1F1F23;
+  height: 8px;
+  border-radius: 9999px;
+  outline: none;
+  cursor: pointer;
+  width: 100%;
+}
+input[type="range"].slider-lime::-webkit-slider-thumb,
+input[type="range"].slider-crimson::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #E50914;
+  box-shadow: 0 0 16px rgba(229, 9, 20, 0.75);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+input[type="range"].slider-lime::-webkit-slider-thumb:hover,
+input[type="range"].slider-crimson::-webkit-slider-thumb:hover {
+  transform: scale(1.18);
+  box-shadow: 0 0 25px rgba(229, 9, 20, 0.95);
+}
+input[type="range"].slider-lime::-moz-range-thumb,
+input[type="range"].slider-crimson::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #E50914;
+  border: none;
+  box-shadow: 0 0 16px rgba(229, 9, 20, 0.75);
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   BACKGROUND UTILITIES
+   .bg-grid: faint 48px grid lines rgba(255,255,255,0.04) with mask-image radial fade at edges
+   .bg-noise: SVG feTurbulence noise overlay at opacity 0.03, pointer-events-none, fixed
+   ========================================================================== */
+.bg-grid {
+  background-size: 48px 48px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, #000 60%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, #000 60%, transparent 100%);
+}
+
+.bg-noise {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.03;
+  z-index: 1;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* ==========================================================================
+   ALTERNATING SECTION BACKGROUNDS
+   #0B0B0C and #0F0F11 with 1px border-top rgba(255,255,255,0.06)
+   ========================================================================== */
+.section-dark {
+  background-color: #0B0B0C;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.section-alt {
+  background-color: #0F0F11;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ==========================================================================
+   UNIFIED CARD & BUTTON SPECIFICATIONS
+   ========================================================================== */
+.card-saas {
+  background-color: #121214;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card-saas:hover {
+  border-color: rgba(229, 9, 20, 0.45);
+  transform: translateY(-4px);
+  box-shadow: 0 0 40px rgba(229, 9, 20, 0.25);
+}
+
+.btn-primary {
+  background-color: #E50914;
+  color: #FFFFFF;
+  font-weight: 700;
+  border: 1px solid #E50914;
+  border-radius: 0.75rem;
+  transition: filter 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+  filter: brightness(1.15);
+  box-shadow: 0 0 40px rgba(229, 9, 20, 0.5);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 0.75rem;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Marquee track animation */
+@keyframes landingMarquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.landing-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: landingMarquee 38s linear infinite;
+  will-change: transform;
+}
+
+.landing-marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .landing-marquee-track {
+    animation-duration: 90s;
+  }
+}

@@ -1,0 +1,14 @@
+# Robots.txt for Yatharth IT Solutions - Best Website Company in Siwan
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /admin/
+Disallow: /api/
+
+# Crawl Delay
+Crawl-delay: 1
+
+# Host & Sitemap
+Host: https://yathartitsolutions.com
+Sitemap: https://yathartitsolutions.com/sitemap.xml
+
