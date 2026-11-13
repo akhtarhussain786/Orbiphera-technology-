@@ -29,7 +29,7 @@ export default function BrandLogo({
   return (
     <div className={`inline-flex items-center space-x-3 group flex-shrink-0 whitespace-nowrap ${className}`}>
       <motion.div
-        className={`relative ${sizeConfig.box} bg-white border border-[#E50914]/40 flex items-center justify-center overflow-hidden transition-all duration-300 flex-shrink-0 shadow-[0_0_15px_rgba(229,9,20,0.25)] p-0.5`}
+        className={`relative ${sizeConfig.box} flex items-center justify-center transition-all duration-300 flex-shrink-0`}
         whileHover={disableHover ? {} : { scale: 1.05 }}
         whileTap={disableHover ? {} : { scale: 0.96 }}
       >
@@ -38,7 +38,7 @@ export default function BrandLogo({
             src={logoSrc}
             alt={brandName}
             onError={() => setImgError(true)}
-            className={`${sizeConfig.img} object-contain relative z-10 transition-transform duration-300 group-hover:scale-105`}
+            className={`${sizeConfig.img} object-contain relative z-10 transition-transform duration-300 group-hover:scale-105 filter drop-shadow-[0_0_10px_rgba(229,9,20,0.4)]`}
           />
         ) : (
           <span className="font-black text-[#E50914] text-base select-none font-mono">
