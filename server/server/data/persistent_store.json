@@ -67,26 +67,6 @@
       ],
       "isActive": true,
       "createdAt": "2026-11-01T10:44:47.198Z"
-    },
-    {
-      "id": "admin_orbiphera_1794567462932",
-      "name": "Orbiphera Admin",
-      "email": "admin@orbiphera.in",
-      "password": "$2a$10$IHxGl2yGXSR/BgkbCbk5deqmO1fyyQpU4LAnrUmPzeyj22399iEaS",
-      "role": "super_admin",
-      "permissions": [
-        "dashboard",
-        "pages",
-        "content",
-        "navigation",
-        "media",
-        "users",
-        "inquiries",
-        "seo",
-        "settings"
-      ],
-      "isActive": true,
-      "createdAt": "2026-11-13T10:57:42.932Z"
     }
   ],
   "navigation": {
@@ -540,6 +520,33 @@
   ],
   "inquiries": [],
   "activityLogs": [
+    {
+      "_id": "log_1794567924871",
+      "adminEmail": "admin@orbiphera.in",
+      "action": "ADMIN_LOGIN",
+      "entity": "AdminUser",
+      "details": "Admin admin@orbiphera.in logged in successfully.",
+      "ip": "::1",
+      "createdAt": "2026-11-13T11:05:24.871Z"
+    },
+    {
+      "_id": "log_1794567906859",
+      "adminEmail": "admin@orbiphera.in",
+      "action": "ADMIN_LOGOUT",
+      "entity": "AdminUser",
+      "details": "Admin admin@orbiphera.in logged out.",
+      "ip": "::1",
+      "createdAt": "2026-11-13T11:05:06.859Z"
+    },
+    {
+      "_id": "log_1794567742005",
+      "adminEmail": "admin@orbiphera.in",
+      "action": "ADMIN_LOGIN",
+      "entity": "AdminUser",
+      "details": "Admin admin@orbiphera.in logged in successfully.",
+      "ip": "::1",
+      "createdAt": "2026-11-13T11:02:22.005Z"
+    },
     {
       "_id": "log_1794563687467",
       "adminEmail": "admin@yathartitsolutions.com",

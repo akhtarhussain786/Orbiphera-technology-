@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+﻿import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ShoppingCart, Heart, Search, Sparkles } from 'lucide-react'
 import { motion } from 'framer-motion'
@@ -20,7 +20,7 @@ export default function Software() {
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState('')
 
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
+  const API_URL = import.meta.env.VITE_API_URL || '/api'
 
   useEffect(() => {
     fetchSoftware()

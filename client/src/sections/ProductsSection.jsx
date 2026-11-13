@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+﻿import React, { useState, useEffect, useRef } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import axios from 'axios'
 import { 
@@ -113,7 +113,7 @@ export default function ProductsSection() {
   const [exploreButtonLink, setExploreButtonLink] = useState('/software')
   const [isSectionActive, setIsSectionActive] = useState(true)
 
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
+  const API_URL = import.meta.env.VITE_API_URL || '/api'
   const SERVER_HOST = API_URL.replace('/api', '')
 
   // Fetch dynamic products from Admin / Content API

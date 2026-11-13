@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+﻿import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { 
   ShoppingCart, Trash2, ArrowRight, ShieldCheck, 
@@ -29,7 +29,7 @@ export default function Cart() {
   const [orderComplete, setOrderComplete] = useState(false)
   const [completedOrder, setCompletedOrder] = useState(null)
 
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
+  const API_URL = import.meta.env.VITE_API_URL || '/api'
 
   // Subtotal calculation
   const rawSubtotal = cartItems.reduce((acc, item) => {

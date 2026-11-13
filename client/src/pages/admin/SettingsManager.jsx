@@ -25,15 +25,15 @@ export default function SettingsManager() {
   const [savingCreds, setSavingCreds] = useState(false)
 
   const [formData, setFormData] = useState({
-    siteName: 'Yatharth It Solutions',
-    tagline: 'Digital Products. Limitless Possibilities.',
+    siteName: 'Orbiphera Technology',
+    tagline: 'Engineering Digital Solutions. Building the Future.',
     preloaderTitle: '',
     preloaderSubtitle: '',
     logoUrl: '/logo.png',
     faviconUrl: '/favicon.ico',
-    contactEmail: 'contact@yathartitsolutions.com',
+    contactEmail: 'contact@orbiphera.in',
     contactPhone: '+91 98765 43210',
-    address: 'Yathart IT Solutions, Digital Tech Hub, India',
+    address: 'Orbiphera Technology, Digital Tech Hub, India',
     socialLinks: {
       twitter: '',
       linkedin: '',
@@ -51,7 +51,7 @@ export default function SettingsManager() {
     customFooterScripts: ''
   })
 
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
+  const API_URL = import.meta.env.VITE_API_URL || '/api'
 
   useEffect(() => {
     fetchSettings()

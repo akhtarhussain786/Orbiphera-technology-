@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+﻿import React, { useState, useEffect, useRef } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import axios from 'axios'
 import { Sparkles, ShieldCheck, CheckCircle2, Award } from 'lucide-react'
@@ -61,7 +61,7 @@ export default function TeamSection() {
   const [subtitle, setSubtitle] = useState('You collaborate directly with the technical specialists building and deploying your codebase.')
   const [isSectionActive, setIsSectionActive] = useState(true)
 
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
+  const API_URL = import.meta.env.VITE_API_URL || '/api'
   const SERVER_HOST = API_URL.replace('/api', '')
 
   useEffect(() => {

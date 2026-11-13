@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+﻿import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import {
   Mail, Search, Trash2, Eye, CheckCircle2, MessageSquare,
@@ -16,7 +16,7 @@ export default function InquiriesManager() {
   const [selectedInquiry, setSelectedInquiry] = useState(null)
   const [savingNotes, setSavingNotes] = useState(false)
 
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
+  const API_URL = import.meta.env.VITE_API_URL || '/api'
 
   useEffect(() => {
     fetchInquiries()

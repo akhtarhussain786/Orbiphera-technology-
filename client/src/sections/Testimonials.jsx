@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+﻿import React, { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { Star, ChevronLeft, ChevronRight, ArrowUpRight, User, Sparkles } from 'lucide-react'
 import axios from 'axios'
@@ -76,7 +76,7 @@ export default function Testimonials() {
   const [isSectionActive, setIsSectionActive] = useState(true)
   const shouldReduceMotion = useReducedMotion()
 
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
+  const API_URL = import.meta.env.VITE_API_URL || '/api'
   const SERVER_HOST = API_URL.replace('/api', '')
 
   useEffect(() => {

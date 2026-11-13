@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+﻿import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { 
@@ -25,7 +25,7 @@ export default function SoftwareDetail() {
   const [loading, setLoading] = useState(true)
   const [activeTab, setActiveTab] = useState('modules')
 
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
+  const API_URL = import.meta.env.VITE_API_URL || '/api'
   const siteName = settings?.siteName || 'Yatharth IT Solutions'
 
   useEffect(() => {

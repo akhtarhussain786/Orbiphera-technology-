@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+﻿import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { ArrowUpRight, X, ExternalLink, Sparkles, CheckCircle2 } from 'lucide-react'
 import { Link } from 'react-router-dom'
@@ -59,7 +59,7 @@ export default function ProductShowcase() {
   const [isSectionActive, setIsSectionActive] = useState(true)
   const [activeModalProject, setActiveModalProject] = useState(null)
 
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
+  const API_URL = import.meta.env.VITE_API_URL || '/api'
   const SERVER_HOST = API_URL.replace('/api', '')
 
   useEffect(() => {

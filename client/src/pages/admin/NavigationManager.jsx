@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+﻿import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Menu, Plus, Trash2, ArrowUp, ArrowDown, Save, ExternalLink } from 'lucide-react'
 import { useAdminAuth } from '../../context/AdminAuthContext'
@@ -11,7 +11,7 @@ export default function NavigationManager() {
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
 
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
+  const API_URL = import.meta.env.VITE_API_URL || '/api'
 
   useEffect(() => {
     fetchMenus()

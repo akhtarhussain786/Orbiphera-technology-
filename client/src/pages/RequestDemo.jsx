@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+﻿import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Calendar, Clock, Video, CheckCircle2, Laptop } from 'lucide-react'
 import axios from 'axios'
@@ -24,7 +24,7 @@ export default function RequestDemo() {
   const [loading, setLoading] = useState(false)
   const [submitted, setSubmitted] = useState(false)
 
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
+  const API_URL = import.meta.env.VITE_API_URL || '/api'
   const siteName = settings?.siteName || 'Yatharth IT Solutions'
 
   const handleSubmit = async (e) => {

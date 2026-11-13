@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+﻿import React, { useState, useEffect, useRef } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import { 
   ArrowRight, 
@@ -91,7 +91,7 @@ export default function ProjectInquiryCTA() {
 
     try {
       setSubmitting(true)
-      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
+      const API_URL = import.meta.env.VITE_API_URL || '/api'
       await axios.post(`${API_URL}/inquiries`, {
         name: formData.name,
         email: formData.email,

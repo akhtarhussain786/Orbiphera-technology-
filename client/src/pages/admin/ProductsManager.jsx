@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+﻿import React, { useState, useEffect, useRef } from 'react'
 import axios from 'axios'
 import {
   Package, Plus, Save, Trash2, Edit3, ArrowUp, ArrowDown,
@@ -131,7 +131,7 @@ export default function ProductsManager() {
   const [uploadingImage, setUploadingImage] = useState(false)
   const fileInputRef = useRef(null)
 
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
+  const API_URL = import.meta.env.VITE_API_URL || '/api'
   const SERVER_HOST = API_URL.replace('/api', '')
 
   useEffect(() => {

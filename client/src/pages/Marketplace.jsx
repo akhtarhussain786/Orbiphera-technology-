@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+﻿import React, { useState, useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import {
   Search, Heart, Sparkles,
@@ -30,7 +30,7 @@ export default function Marketplace() {
   const [sortBy, setSortBy] = useState('newest')
   const [quickViewProduct, setQuickViewProduct] = useState(null)
 
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
+  const API_URL = import.meta.env.VITE_API_URL || '/api'
   const siteName = settings?.siteName || 'Yatharth IT Solutions'
 
   // Parse URL search params (e.g. ?category=...&type=...)

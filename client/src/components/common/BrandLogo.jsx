@@ -15,6 +15,7 @@ export default function BrandLogo({
   className = '', 
   showText = false, 
   textClassName = '',
+  subText = '',
   theme = 'light',
   disableHover = false 
 }) {
@@ -24,7 +25,6 @@ export default function BrandLogo({
 
   const brandName = settings?.siteName || 'Orbiphera Technology'
   const logoSrc = (!imgError && settings?.logoUrl) ? settings.logoUrl : '/logo.png'
-  const isLight = theme === 'light'
 
   return (
     <div className={`inline-flex items-center space-x-3 group flex-shrink-0 whitespace-nowrap ${className}`}>
@@ -48,10 +48,15 @@ export default function BrandLogo({
       </motion.div>
 
       {showText && (
-        <div className="flex flex-col flex-shrink-0">
-          <span className={`font-black tracking-tight transition-colors whitespace-nowrap text-white uppercase text-sm sm:text-base tracking-wider ${textClassName}`}>
+        <div className="flex flex-col flex-shrink-0 leading-tight">
+          <span className={`font-black tracking-tight transition-colors whitespace-nowrap text-white uppercase ${textClassName || 'text-sm sm:text-base tracking-wider'}`}>
             {brandName}
           </span>
+          {subText && (
+            <span className="text-[10px] text-gray-400 font-mono tracking-wider uppercase mt-0.5">
+              {subText}
+            </span>
+          )}
         </div>
       )}
     </div>

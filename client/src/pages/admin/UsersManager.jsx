@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+﻿import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import {
   Users, UserPlus, Shield, ShieldCheck, Trash2, Edit2,
@@ -33,7 +33,7 @@ export default function UsersManager() {
     phone: ''
   })
 
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
+  const API_URL = import.meta.env.VITE_API_URL || '/api'
 
   useEffect(() => {
     fetchUsers()
