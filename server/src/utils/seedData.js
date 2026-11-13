@@ -36,6 +36,28 @@ export async function seedInitialData() {
       }
     }
 
+    // Also support admin@orbiphera.in for Orbiphera platform
+    const orbipheraEmail = 'admin@orbiphera.in'
+    let existingOrbiphera = await AdminUser.findOne({ email: orbipheraEmail })
+    if (!existingOrbiphera) {
+      await AdminUser.create({
+        name: 'Orbiphera Admin',
+        email: orbipheraEmail,
+        password: hashedPassword,
+        role: 'super_admin',
+        permissions: ['dashboard', 'pages', 'content', 'navigation', 'media', 'users', 'inquiries', 'seo', 'settings'],
+        isActive: true
+      })
+      console.log(`✅ Seeded Admin: ${orbipheraEmail}`)
+    } else {
+      const validOrbiphera = await bcrypt.compare('Admin@123456', existingOrbiphera.password || '')
+      if (!validOrbiphera) {
+        existingOrbiphera.password = hashedPassword
+        await existingOrbiphera.save()
+        console.log(`✅ Fixed Admin password hash for: ${orbipheraEmail}`)
+      }
+    }
+
     // Also support admin@yatharth.com from legacy data
     const legacyEmail = 'admin@yatharth.com'
     let existingLegacy = await AdminUser.findOne({ email: legacyEmail })
