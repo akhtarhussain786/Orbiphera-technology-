@@ -8,6 +8,7 @@ import CustomCursor from '../components/common/CustomCursor'
 import ScrollProgressBar from '../components/common/ScrollProgressBar'
 import Preloader from '../components/common/Preloader'
 import PageBackground from '../components/common/PageBackground'
+import MobileBottomNav from '../components/common/MobileBottomNav'
 
 export default function MainLayout() {
   const location = useLocation()
@@ -33,11 +34,13 @@ export default function MainLayout() {
         <div>
           {!isHomePage && <AnnouncementBar />}
           <Navbar />
-          <main>
+          <main className="pb-16 md:pb-0">
             <Outlet context={{ preloaderDone }} />
           </main>
         </div>
         <Footer />
+        {/* Mobile Bottom Dock App Bar with 5 Navigation Buttons */}
+        <MobileBottomNav />
       </div>
     </SmoothScrollProvider>
   )

@@ -81,7 +81,7 @@ export default function WhyChooseUs() {
     <section 
       ref={sectionRef}
       id="why-us" 
-      className="scroll-mt-28 py-16 sm:py-24 bg-[#0F0F11] border-t border-white/[0.06] relative overflow-hidden text-white"
+      className="scroll-mt-28 py-10 sm:py-16 lg:py-24 bg-[#0F0F11] border-t border-white/[0.06] relative overflow-hidden text-white"
     >
       {/* Background Glow */}
       <div className="absolute top-1/2 left-1/3 w-[550px] h-[350px] bg-[#E50914]/5 rounded-full blur-[140px] pointer-events-none" />
@@ -89,13 +89,13 @@ export default function WhyChooseUs() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div ref={headerRef} className="max-w-3xl mb-14 sm:mb-16 space-y-4">
+        <div ref={headerRef} className="max-w-3xl mb-8 sm:mb-14 space-y-3 sm:space-y-4">
           <div className="reveal-item inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#121214] border border-[#E50914]/30 text-xs font-mono font-bold tracking-wider uppercase text-[#E50914]">
             <Sparkles className="w-3.5 h-3.5" />
             <span>OUR COMPETITIVE ADVANTAGE</span>
           </div>
 
-          <h2 className="reveal-item text-3xl sm:text-4xl lg:text-[46px] font-black text-white tracking-tight leading-[1.12]">
+          <h2 className="reveal-item text-2xl sm:text-4xl lg:text-[46px] font-black text-white tracking-tight leading-[1.12]">
             Why Businesses Choose{' '}
             <span className="text-[#E50914] relative inline-block">
               Yatharth IT Solutions.

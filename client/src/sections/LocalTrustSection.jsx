@@ -64,7 +64,7 @@ export default function LocalTrustSection() {
   return (
     <section 
       id="local-presence" 
-      className="scroll-mt-28 py-16 sm:py-24 bg-[#0F0F11] border-t border-white/[0.06] relative overflow-hidden text-white"
+      className="scroll-mt-28 py-10 sm:py-16 lg:py-24 bg-[#0F0F11] border-t border-white/[0.06] relative overflow-hidden text-white"
     >
       {/* Background Radial Glow */}
       <div 

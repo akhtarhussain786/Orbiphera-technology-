@@ -85,20 +85,20 @@ export default function FAQ() {
     <section 
       ref={sectionRef}
       id="faq" 
-      className="scroll-mt-28 py-16 sm:py-24 bg-[#0B0B0C] border-t border-white/[0.06] relative overflow-hidden text-white"
+      className="scroll-mt-28 py-10 sm:py-16 lg:py-24 bg-[#0B0B0C] border-t border-white/[0.06] relative overflow-hidden text-white"
     >
       {/* Background Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 w-[550px] h-[300px] bg-[#E50914]/5 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
-        <div ref={headerRef} className="max-w-2xl mb-12 sm:mb-14 space-y-3">
+        <div ref={headerRef} className="max-w-2xl mb-8 sm:mb-12 space-y-3">
           <div className="reveal-item inline-flex items-center space-x-2 text-xs font-mono font-bold tracking-wider uppercase text-[#E50914] bg-[#121214] px-3 py-1 rounded-full border border-[#E50914]/30">
             <Sparkles className="w-3.5 h-3.5 text-[#E50914]" />
             <span>COMMON QUESTIONS</span>
           </div>
 
-          <h2 className="reveal-item text-4xl sm:text-5xl lg:text-[48px] font-black text-white tracking-tight leading-[1.08]">
+          <h2 className="reveal-item text-3xl sm:text-5xl lg:text-[48px] font-black text-white tracking-tight leading-[1.08]">
             Frequently asked <br />
             <span className="text-[#E50914] relative inline-block">
               questions.

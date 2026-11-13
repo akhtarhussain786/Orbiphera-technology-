@@ -88,7 +88,7 @@ export default function IndustriesSection() {
     <section 
       ref={sectionRef}
       id="industries" 
-      className="scroll-mt-28 py-16 sm:py-24 bg-[#0F0F11] border-t border-white/[0.06] relative overflow-hidden text-white"
+      className="scroll-mt-28 py-10 sm:py-16 lg:py-24 bg-[#0F0F11] border-t border-white/[0.06] relative overflow-hidden text-white"
     >
       {/* Background Glow */}
       <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[300px] bg-[#E50914]/5 rounded-full blur-[130px] pointer-events-none" />

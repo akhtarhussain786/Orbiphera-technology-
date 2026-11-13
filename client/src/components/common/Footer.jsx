@@ -146,7 +146,7 @@ export default function Footer() {
       {/* Background glow */}
       <div className="absolute top-0 right-1/4 w-[500px] h-[300px] bg-[#E50914]/5 rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-16 pb-24 sm:pb-12 relative z-10">
         
         {/* Top Row: Brand Info + Compact Newsletter Subscription Box */}
         <div ref={topRowRef} className="grid grid-cols-1 lg:grid-cols-12 gap-8 pb-12 border-b border-white/10 items-start">

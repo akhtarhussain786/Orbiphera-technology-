@@ -184,7 +184,7 @@ export default function ProductsSection() {
     <section 
       ref={sectionRef}
       id="products" 
-      className="scroll-mt-28 py-16 sm:py-24 bg-[#0B0B0C] border-t border-white/[0.06] relative overflow-hidden text-white"
+      className="scroll-mt-28 py-10 sm:py-16 lg:py-24 bg-[#0B0B0C] border-t border-white/[0.06] relative overflow-hidden text-white"
     >
       {/* Background Glow */}
       <div className="absolute top-1/2 right-1/4 w-[500px] h-[300px] bg-[#E50914]/7 rounded-full blur-[140px] pointer-events-none" />
@@ -192,14 +192,14 @@ export default function ProductsSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div ref={headerRef} className="flex flex-col md:flex-row md:items-end justify-between mb-14 sm:mb-16 gap-6">
+        <div ref={headerRef} className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-14 gap-4 sm:gap-6">
           <div className="max-w-3xl space-y-3">
             <div className="reveal-item inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#121214] border border-[#E50914]/30 text-xs font-mono font-bold tracking-wider uppercase text-[#FF2A36]">
               <Sparkles className="w-3.5 h-3.5" />
               <span>{badgeText}</span>
             </div>
 
-            <h2 className="reveal-item text-3xl sm:text-4xl lg:text-[46px] font-black text-white tracking-tight leading-[1.12]">
+            <h2 className="reveal-item text-2xl sm:text-4xl lg:text-[46px] font-black text-white tracking-tight leading-[1.12]">
               {title.includes('Products &') ? (
                 <>
                   Our Products &amp;{' '}

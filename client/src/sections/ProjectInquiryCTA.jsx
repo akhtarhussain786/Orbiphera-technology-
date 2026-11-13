@@ -132,13 +132,13 @@ export default function ProjectInquiryCTA() {
     <section 
       ref={sectionRef}
       id="contact" 
-      className="scroll-mt-28 py-16 sm:py-24 bg-[#0F0F11] border-t border-white/[0.06] relative overflow-hidden text-white"
+      className="scroll-mt-28 py-10 sm:py-16 lg:py-24 bg-[#0F0F11] border-t border-white/[0.06] relative overflow-hidden text-white"
     >
       {/* Background Glow */}
       <div className="absolute top-1/4 right-1/4 w-[600px] h-[350px] bg-[#E50914]/6 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+        <div className="grid lg:grid-cols-12 gap-6 sm:gap-10 lg:gap-12 items-start">
           
           {/* Left Column: Direct Consultation & Channels (5 cols) */}
           <div ref={leftColRef} className="lg:col-span-5 space-y-6">

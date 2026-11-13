@@ -1,21 +1,21 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
-import { 
-  ArrowRight, 
-  Play, 
-  Rocket, 
-  Users, 
-  ShieldCheck, 
-  Headphones, 
+import {
+  ArrowRight,
+  Play,
+  Rocket,
+  Users,
+  ShieldCheck,
+  Headphones,
   Sparkles,
   X
 } from 'lucide-react'
-import { 
-  gsap, 
-  initMagneticHover, 
-  initCounter, 
-  initPulseGlow, 
-  prefersReducedMotion 
+import {
+  gsap,
+  initMagneticHover,
+  initCounter,
+  initPulseGlow,
+  prefersReducedMotion
 } from '../utils/motion'
 import InteractiveDotGrid from '../components/hero/InteractiveDotGrid'
 
@@ -206,7 +206,7 @@ export default function Hero() {
   return (
     <section
       ref={heroRef}
-      className="relative pt-12 sm:pt-16 lg:pt-20 pb-16 sm:pb-24 lg:pb-28 overflow-hidden bg-[#0B0B0C] text-white selection:bg-[#E50914] selection:text-white"
+      className="relative pt-6 sm:pt-14 lg:pt-20 pb-8 sm:pb-20 lg:pb-28 overflow-hidden bg-[#0B0B0C] text-white selection:bg-[#E50914] selection:text-white"
     >
       {/* =========================================================================
           HERO BACKGROUND EFFECTS: Interactive Dot-Grid Canvas + Central Pulsing Crimson Glow
@@ -224,18 +224,18 @@ export default function Hero() {
         <div className="absolute -bottom-20 inset-x-0 h-40 bg-gradient-to-t from-[#0B0B0C] via-transparent to-transparent" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10 space-y-16 sm:space-y-20">
-        
+      <div className="relative max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 w-full z-10 space-y-8 sm:space-y-16 lg:space-y-20">
+
         {/* =====================================================================
             CENTERED HERO CONTENT
             ===================================================================== */}
-        <div className="max-w-4xl mx-auto text-center space-y-7 flex flex-col items-center">
-          
+        <div className="max-w-4xl mx-auto text-center space-y-4 sm:space-y-7 flex flex-col items-center">
+
           {/* Small Badge: IT SOFTWARE DEVELOPMENT AGENCY • SIWAN, BIHAR */}
           <div ref={badgeRef} className="inline-block">
-            <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-[#121214] border border-[#E50914]/30 shadow-[0_0_20px_rgba(229,9,20,0.2)] transition-all hover:border-[#E50914]">
+            <div className="inline-flex items-center space-x-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-[#121214] border border-[#E50914]/30 shadow-[0_0_20px_rgba(229,9,20,0.2)] transition-all hover:border-[#E50914]">
               <span className="w-2 h-2 rounded-full bg-[#E50914] animate-pulse" />
-              <span className="text-[11px] sm:text-xs font-mono font-bold tracking-wider uppercase text-[#FF2A36]">
+              <span className="text-[10px] sm:text-xs font-mono font-bold tracking-wider uppercase text-[#FF2A36]">
                 #1 Website &amp; Software Company in Siwan, Bihar
               </span>
             </div>
@@ -244,7 +244,7 @@ export default function Hero() {
           {/* Main Headline with Word-by-Word Masked Reveal */}
           <h1
             ref={headlineRef}
-            className="text-4xl sm:text-6xl lg:text-[68px] xl:text-[74px] font-black text-white tracking-tight leading-[1.06] max-w-4xl mx-auto"
+            className="text-3xl sm:text-5xl lg:text-[68px] xl:text-[74px] font-black text-white tracking-tight leading-[1.08] max-w-4xl mx-auto"
           >
             <span className="inline-block overflow-hidden py-1">
               <span className="hero-word inline-block">Building&nbsp;</span>
@@ -271,20 +271,20 @@ export default function Hero() {
           {/* Description */}
           <p
             ref={descRef}
-            className="text-base sm:text-lg lg:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed"
+            className="text-sm sm:text-lg lg:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed"
           >
             We design and develop powerful websites, mobile applications, enterprise software and business management systems for businesses in Siwan, Bihar, and across India.
           </p>
 
           {/* CTA Buttons */}
-          <div ref={ctaGroupRef} className="flex flex-wrap items-center justify-center gap-4 pt-2">
+          <div ref={ctaGroupRef} className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 pt-1 sm:pt-2">
             {/* Primary: Start Your Project (Crimson Red #E50914) */}
             <div ref={primaryBtnRef} className="inline-block">
               <motion.a
                 href="#contact"
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.97 }}
-                className="px-8 py-4 rounded-full bg-[#E50914] hover:bg-[#CC0813] text-white text-base font-black transition-all duration-200 flex items-center space-x-2.5 shadow-[0_0_25px_rgba(229,9,20,0.45)] hover:shadow-[0_0_35px_rgba(229,9,20,0.65)] cursor-pointer"
+                className="px-6 sm:px-8 py-3.5 sm:py-4 rounded-full bg-[#E50914] hover:bg-[#CC0813] text-white text-sm sm:text-base font-black transition-all duration-200 flex items-center space-x-2.5 shadow-[0_0_25px_rgba(229,9,20,0.45)] hover:shadow-[0_0_35px_rgba(229,9,20,0.65)] cursor-pointer"
               >
                 <span>Start Your Project</span>
                 <ArrowRight className="w-4 h-4 stroke-[3]" />
@@ -298,7 +298,7 @@ export default function Hero() {
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.97 }}
                 onClick={() => setShowDemoModal(true)}
-                className="px-7 py-4 rounded-full bg-[#121214] text-white border border-white/20 text-base font-bold hover:bg-white/10 hover:border-[#E50914]/40 transition-all shadow-xs flex items-center space-x-2 cursor-pointer group"
+                className="px-6 sm:px-7 py-3.5 sm:py-4 rounded-full bg-[#121214] text-white border border-white/20 text-sm sm:text-base font-bold hover:bg-white/10 hover:border-[#E50914]/40 transition-all shadow-xs flex items-center space-x-2 cursor-pointer group"
               >
                 <Play className="w-4 h-4 fill-[#E50914] text-[#E50914] group-hover:scale-110 transition-transform" />
                 <span>Watch Demo</span>
@@ -307,25 +307,25 @@ export default function Hero() {
           </div>
 
           {/* Supported Technology Badges Row (Centered) */}
-          <div ref={techGroupRef} className="pt-6 space-y-3 flex flex-col items-center">
-            <div className="flex items-center space-x-2 text-[11px] font-mono uppercase tracking-wider text-slate-400 font-bold">
+          <div ref={techGroupRef} className="pt-3 sm:pt-6 space-y-2 sm:space-y-3 flex flex-col items-center">
+            <div className="flex items-center space-x-2 text-[10px] sm:text-[11px] font-mono uppercase tracking-wider text-slate-400 font-bold">
               <span>Our Technologies:</span>
             </div>
-            
-            <div className="flex flex-wrap items-center justify-center gap-2.5 max-w-2xl">
+
+            <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2.5 max-w-2xl">
               {techBadges.map((tech) => (
                 <motion.div
                   key={tech.name}
                   whileHover={{ y: -3, scale: 1.05 }}
-                  className="tech-pill flex items-center space-x-2 px-3.5 py-1.5 rounded-xl bg-[#121214] border border-white/10 hover:border-[#E50914]/50 hover:bg-[#E50914]/5 transition-colors group cursor-default"
+                  className="tech-pill flex items-center space-x-1.5 sm:space-x-2 px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-xl bg-[#121214] border border-white/10 hover:border-[#E50914]/50 hover:bg-[#E50914]/5 transition-colors group cursor-default"
                 >
                   <img 
                     src={tech.icon} 
                     alt={tech.name} 
-                    className="w-4 h-4 object-contain group-hover:scale-110 transition-transform" 
+                    className="w-3.5 h-3.5 sm:w-4 sm:h-4 object-contain group-hover:scale-110 transition-transform" 
                     loading="lazy"
                   />
-                  <span className="text-xs font-semibold text-slate-200 group-hover:text-white">
+                  <span className="text-[11px] sm:text-xs font-semibold text-slate-200 group-hover:text-white">
                     {tech.name}
                   </span>
                 </motion.div>
@@ -339,27 +339,32 @@ export default function Hero() {
             ===================================================================== */}
         <div
           ref={statsBarRef}
-          className="rounded-3xl bg-[#121214]/90 backdrop-blur-xl border border-white/10 p-5 sm:p-7 shadow-[0_20px_50px_rgba(0,0,0,0.8)]"
+          className="rounded-2xl sm:rounded-3xl bg-[#121214]/90 backdrop-blur-xl border border-white/10 p-3 sm:p-7 shadow-[0_20px_50px_rgba(0,0,0,0.8)]"
         >
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 divide-y lg:divide-y-0 lg:divide-x divide-white/10">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-6 lg:gap-8 lg:divide-x lg:divide-white/10">
             {stats.map((stat, idx) => {
               const Icon = stat.icon
               return (
-                <div key={stat.label} className={`flex items-center space-x-4 ${idx > 0 ? 'pt-4 lg:pt-0 lg:pl-8' : ''}`}>
-                  <motion.div 
+                <div 
+                  key={stat.label} 
+                  className={`flex items-center space-x-2.5 sm:space-x-4 p-2.5 sm:p-0 rounded-xl sm:rounded-2xl bg-white/[0.03] lg:bg-transparent border border-white/5 lg:border-none ${
+                    idx > 0 ? 'lg:pl-8' : ''
+                  }`}
+                >
+                  <motion.div
                     whileHover={{ rotate: 10, scale: 1.1 }}
-                    className="w-12 h-12 rounded-2xl bg-[#E50914]/10 border border-[#E50914]/30 flex items-center justify-center text-[#FF2A36] shrink-0 shadow-[0_0_15px_rgba(229,9,20,0.2)] transition-transform"
+                    className="w-9 h-9 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-[#E50914]/10 border border-[#E50914]/30 flex items-center justify-center text-[#FF2A36] shrink-0 shadow-[0_0_15px_rgba(229,9,20,0.2)] transition-transform"
                   >
-                    <Icon className="w-6 h-6 stroke-[2]" />
+                    <Icon className="w-4 h-4 sm:w-6 sm:h-6 stroke-[2]" />
                   </motion.div>
                   <div>
-                    <div className="text-2xl sm:text-3xl font-black text-white tracking-tight flex items-center space-x-1">
+                    <div className="text-lg sm:text-3xl font-black text-white tracking-tight flex items-center space-x-1">
                       <span className="stat-counter" data-target={stat.value}>{stat.value}</span>
                     </div>
-                    <span className="text-xs sm:text-sm font-bold text-white block mt-0.5">
+                    <span className="text-[10px] sm:text-sm font-bold text-white block mt-0.5">
                       {stat.label}
                     </span>
-                    <span className="text-[11px] text-slate-400 block leading-tight">
+                    <span className="text-[9px] sm:text-[11px] text-slate-400 block leading-tight">
                       {stat.desc}
                     </span>
                   </div>
@@ -373,13 +378,13 @@ export default function Hero() {
 
       {/* Watch Demo Modal with Framer Motion Backdrop */}
       {showDemoModal && (
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4"
         >
-          <motion.div 
+          <motion.div
             initial={{ scale: 0.95, opacity: 0, y: 15 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
             transition={{ duration: 0.25, ease: 'easeOut' }}

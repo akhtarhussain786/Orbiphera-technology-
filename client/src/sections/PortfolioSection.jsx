@@ -95,7 +95,7 @@ export default function PortfolioSection() {
     <section 
       ref={sectionRef}
       id="work" 
-      className="scroll-mt-28 py-16 sm:py-24 bg-[#0B0B0C] border-t border-white/[0.06] relative overflow-hidden text-white"
+      className="scroll-mt-28 py-10 sm:py-16 lg:py-24 bg-[#0B0B0C] border-t border-white/[0.06] relative overflow-hidden text-white"
     >
       {/* Background Glow */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[350px] bg-[#E50914]/6 rounded-full blur-[140px] pointer-events-none" />

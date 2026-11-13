@@ -101,7 +101,7 @@ export default function TechStackSection() {
   return (
     <section 
       id="tech-stack" 
-      className="scroll-mt-28 py-16 sm:py-24 bg-[#0B0B0C] border-t border-white/[0.06] relative overflow-hidden text-white"
+      className="scroll-mt-28 py-10 sm:py-16 lg:py-24 bg-[#0B0B0C] border-t border-white/[0.06] relative overflow-hidden text-white"
     >
       {/* Ambient Crimson Glow */}
       <div 
@@ -111,7 +111,7 @@ export default function TechStackSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14 space-y-4">
+        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-14 space-y-3 sm:space-y-4">
           <div className="inline-flex items-center space-x-1.5 sm:space-x-2 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-[#121214] border border-[#E50914]/30 text-[#FF2A36] text-[10px] sm:text-xs font-mono font-bold tracking-wider uppercase shadow-sm max-w-full">
             <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#FF2A36] shrink-0" />
             <span className="truncate">PLATFORMS &amp; STACK ARCHITECTURE</span>
@@ -125,7 +125,7 @@ export default function TechStackSection() {
             </span>
           </h2>
 
-          <p className="text-base sm:text-lg text-white/60 leading-relaxed max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base lg:text-lg text-white/60 leading-relaxed max-w-2xl mx-auto">
             Industry-standard languages, enterprise frameworks, and battle-tested cloud environments engineered for high concurrency and zero downtime.
           </p>
         </div>
@@ -135,7 +135,7 @@ export default function TechStackSection() {
             - Grayscale by default -> Full Color + Lime Glow on hover
             - Pauses on hover
             ===================================================================== */}
-        <div className="mb-14 relative overflow-hidden rounded-2xl bg-[#121214] border border-white/10 p-3 sm:p-4 shadow-2xl group">
+        <div className="mb-8 sm:mb-14 relative overflow-hidden rounded-2xl bg-[#121214] border border-white/10 p-3 sm:p-4 shadow-2xl group">
           {/* Edge Fade Gradients */}
           <div className="absolute left-0 inset-y-0 w-16 sm:w-28 bg-gradient-to-r from-[#121214] via-[#121214]/80 to-transparent z-10 pointer-events-none" />
           <div className="absolute right-0 inset-y-0 w-16 sm:w-28 bg-gradient-to-l from-[#121214] via-[#121214]/80 to-transparent z-10 pointer-events-none" />
