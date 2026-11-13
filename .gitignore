@@ -11,8 +11,10 @@ build/
 
 # Environment files
 .env
-.env.*
+.env.local
+server/.env
 !.env.example
+!client/.env.production
 
 # Logs
 *.log
