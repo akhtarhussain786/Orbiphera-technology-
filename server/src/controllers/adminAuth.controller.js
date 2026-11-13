@@ -222,4 +222,169 @@ export const adminResetPassword = async (req, res) => {
   }
 }
 
+export const updateAdminProfile = async (req, res) => {
+  try {
+    const adminId = req.admin._id
+    const { name, email, avatar, phone, newPassword, currentPassword } = req.body
+
+    let admin = null
+    const isDbConnected = mongoose.connection.readyState === 1
+
+    if (isDbConnected) {
+      try {
+        admin = await AdminUser.findById(adminId).select('+password')
+      } catch (_) {}
+    }
+
+    let localAdmin = localStore.findAdminById(adminId)
+
+    // If new password is being set, verify currentPassword first if provided
+    let hashedPassword = null
+    if (newPassword && newPassword.trim().length >= 6) {
+      if (currentPassword) {
+        const storedHash = admin?.password || localAdmin?.password
+        if (storedHash) {
+          const isMatch = await bcrypt.compare(currentPassword, storedHash)
+          if (!isMatch) {
+            return res.status(400).json({ success: false, message: 'Current password is incorrect' })
+          }
+        }
+      }
+      hashedPassword = await bcrypt.hash(newPassword.trim(), 10)
+    }
+
+    const updates = {}
+    if (name && name.trim()) updates.name = name.trim()
+    if (email && email.trim()) updates.email = email.toLowerCase().trim()
+    if (avatar !== undefined) updates.avatar = avatar
+    if (phone !== undefined) updates.phone = phone
+    if (hashedPassword) updates.password = hashedPassword
+
+    // 1. Update in MongoDB if available
+    if (admin) {
+      if (updates.name) admin.name = updates.name
+      if (updates.email) admin.email = updates.email
+      if (updates.avatar !== undefined) admin.avatar = updates.avatar
+      if (updates.phone !== undefined) admin.phone = updates.phone
+      if (hashedPassword) admin.password = hashedPassword
+      await admin.save()
+    }
+
+    // 2. Always sync to localStore so persistent store reflects changes
+    if (localAdmin) {
+      localStore.updateAdminUser(adminId, updates)
+    } else {
+      localStore.createAdminUser({
+        _id: adminId,
+        name: updates.name || req.admin.name || 'Super Admin',
+        email: updates.email || req.admin.email || 'admin@orbiphera.com',
+        password: hashedPassword || bcrypt.hashSync('Admin@123456', 10),
+        role: req.admin.role || 'super_admin'
+      })
+    }
+
+    // Log activity
+    try {
+      await logAdminActivity(req, {
+        action: 'UPDATE_ADMIN_PROFILE',
+        entity: 'AdminUser',
+        entityId: adminId,
+        details: `Admin profile updated: ${updates.name || req.admin.name} (${updates.email || req.admin.email})`
+      })
+    } catch (_) {}
+
+    const updatedAdmin = admin || localStore.findAdminById(adminId) || {
+      _id: adminId,
+      name: updates.name || req.admin.name,
+      email: updates.email || req.admin.email,
+      role: req.admin.role,
+      permissions: req.admin.permissions
+    }
+
+    const token = generateAccessToken(adminId)
+
+    return res.json({
+      success: true,
+      message: 'Admin profile and credentials updated successfully',
+      token,
+      admin: {
+        _id: updatedAdmin._id,
+        name: updatedAdmin.name,
+        email: updatedAdmin.email,
+        role: updatedAdmin.role,
+        permissions: updatedAdmin.permissions,
+        avatar: updatedAdmin.avatar || ''
+      }
+    })
+  } catch (error) {
+    console.error('updateAdminProfile error:', error)
+    res.status(500).json({ success: false, message: error.message })
+  }
+}
+
+export const changeAdminPassword = async (req, res) => {
+  try {
+    const adminId = req.admin._id
+    const { currentPassword, newPassword } = req.body
+
+    if (!newPassword || newPassword.trim().length < 6) {
+      return res.status(400).json({ success: false, message: 'New password must be at least 6 characters' })
+    }
+
+    let admin = null
+    const isDbConnected = mongoose.connection.readyState === 1
+    if (isDbConnected) {
+      try {
+        admin = await AdminUser.findById(adminId).select('+password')
+      } catch (_) {}
+    }
+
+    const localAdmin = localStore.findAdminById(adminId)
+    const storedHash = admin?.password || localAdmin?.password
+
+    if (currentPassword && storedHash) {
+      const isMatch = await bcrypt.compare(currentPassword, storedHash)
+      if (!isMatch) {
+        return res.status(400).json({ success: false, message: 'Current password does not match' })
+      }
+    }
+
+    const hashedPassword = await bcrypt.hash(newPassword.trim(), 10)
+
+    if (admin) {
+      admin.password = hashedPassword
+      await admin.save()
+    }
+
+    if (localAdmin) {
+      localStore.updateAdminUser(adminId, { password: hashedPassword })
+    } else {
+      localStore.createAdminUser({
+        _id: adminId,
+        name: req.admin.name,
+        email: req.admin.email,
+        password: hashedPassword,
+        role: req.admin.role || 'super_admin'
+      })
+    }
+
+    try {
+      await logAdminActivity(req, {
+        action: 'CHANGE_ADMIN_PASSWORD',
+        entity: 'AdminUser',
+        entityId: adminId,
+        details: `Admin ${req.admin.email} changed their password.`
+      })
+    } catch (_) {}
+
+    return res.json({
+      success: true,
+      message: 'Password changed successfully'
+    })
+  } catch (error) {
+    console.error('changeAdminPassword error:', error)
+    res.status(500).json({ success: false, message: error.message })
+  }
+}
+
 export const forgotPassword = adminForgotPassword

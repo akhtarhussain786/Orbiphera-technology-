@@ -2,17 +2,27 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import {
   Settings, Globe, Shield, Save, Code, Bell,
-  Sliders, Link2, Mail, Phone, MapPin, AlertCircle
+  Sliders, Link2, Mail, Phone, MapPin, AlertCircle, KeyRound, RefreshCw, Lock, User
 } from 'lucide-react'
 import { useAdminAuth } from '../../context/AdminAuthContext'
 import { useSettings } from '../../context/SettingsContext'
 import toast from 'react-hot-toast'
 
 export default function SettingsManager() {
-  const { getAuthHeader } = useAdminAuth()
+  const { admin: currentAdmin, updateAdmin, getAuthHeader } = useAdminAuth()
   const { refreshSettings, updateLocalSettings } = useSettings()
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
+
+  // Admin Credentials (Username & Password) State
+  const [adminCreds, setAdminCreds] = useState({
+    name: currentAdmin?.name || '',
+    email: currentAdmin?.email || '',
+    newPassword: '',
+    confirmPassword: '',
+    currentPassword: ''
+  })
+  const [savingCreds, setSavingCreds] = useState(false)
 
   const [formData, setFormData] = useState({
     siteName: 'Yatharth It Solutions',
@@ -46,6 +56,67 @@ export default function SettingsManager() {
   useEffect(() => {
     fetchSettings()
   }, [])
+
+  useEffect(() => {
+    if (currentAdmin) {
+      setAdminCreds(prev => ({
+        ...prev,
+        name: currentAdmin.name || '',
+        email: currentAdmin.email || ''
+      }))
+    }
+  }, [currentAdmin])
+
+  const handleUpdateAdminCreds = async (e) => {
+    if (e && e.preventDefault) e.preventDefault()
+
+    if (!adminCreds.name.trim() || !adminCreds.email.trim()) {
+      return toast.error('Admin name and email cannot be empty')
+    }
+
+    if (adminCreds.newPassword) {
+      if (adminCreds.newPassword.length < 6) {
+        return toast.error('New password must be at least 6 characters')
+      }
+      if (adminCreds.newPassword !== adminCreds.confirmPassword) {
+        return toast.error('New password and confirm password do not match')
+      }
+    }
+
+    try {
+      setSavingCreds(true)
+      const payload = {
+        name: adminCreds.name.trim(),
+        email: adminCreds.email.trim().toLowerCase(),
+        currentPassword: adminCreds.currentPassword || undefined,
+        newPassword: adminCreds.newPassword || undefined
+      }
+
+      const res = await axios.put(`${API_URL}/admin/auth/profile`, payload, {
+        headers: getAuthHeader()
+      })
+
+      if (res.data.success) {
+        if (res.data.token) {
+          localStorage.setItem('adminToken', res.data.token)
+        }
+        if (updateAdmin && res.data.admin) {
+          updateAdmin(res.data.admin)
+        }
+        toast.success('Admin username and password updated successfully!')
+        setAdminCreds(prev => ({
+          ...prev,
+          currentPassword: '',
+          newPassword: '',
+          confirmPassword: ''
+        }))
+      }
+    } catch (error) {
+      toast.error(error.response?.data?.message || 'Failed to update admin credentials')
+    } finally {
+      setSavingCreds(false)
+    }
+  }
 
   const fetchSettings = async () => {
     try {
@@ -405,6 +476,119 @@ export default function SettingsManager() {
                 className="w-full px-3.5 py-2 bg-[#0B0E14] border border-white/10 rounded-xl text-white text-xs font-mono focus:outline-none focus:border-[#1558C9]"
               />
             </div>
+          </div>
+        </div>
+
+        {/* Admin Credentials & Password Management Card */}
+        <div className="bg-[#10151E] border border-[#E50914]/35 rounded-2xl p-6 shadow-xl space-y-4">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-3 border-b border-white/10">
+            <div>
+              <h3 className="text-sm font-bold uppercase tracking-wider text-white flex items-center space-x-2">
+                <KeyRound className="w-4 h-4 text-[#E50914]" />
+                <span>Admin Login Credentials (Username &amp; Password)</span>
+              </h3>
+              <p className="text-xs text-gray-400 mt-0.5">
+                Change your administrative username (Name &amp; Login Email) and access password.
+              </p>
+            </div>
+            <span className="text-[11px] font-mono font-bold text-[#E50914] bg-[#E50914]/10 px-3 py-1 rounded-full border border-[#E50914]/30 self-start sm:self-auto">
+              Session: {currentAdmin?.email}
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-xs font-semibold text-gray-300 mb-1 flex items-center space-x-1.5">
+                <User className="w-3.5 h-3.5 text-[#E50914]" />
+                <span>Admin Display Name (Username)</span>
+              </label>
+              <input
+                type="text"
+                value={adminCreds.name}
+                onChange={(e) => setAdminCreds({ ...adminCreds, name: e.target.value })}
+                placeholder="e.g. Orbiphera Admin"
+                className="w-full px-3.5 py-2.5 bg-[#0B0E14] border border-white/10 rounded-xl text-white text-xs focus:outline-none focus:border-[#E50914]"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold text-gray-300 mb-1 flex items-center space-x-1.5">
+                <Mail className="w-3.5 h-3.5 text-[#E50914]" />
+                <span>Admin Login Email (Login Username)</span>
+              </label>
+              <input
+                type="email"
+                value={adminCreds.email}
+                onChange={(e) => setAdminCreds({ ...adminCreds, email: e.target.value })}
+                placeholder="admin@orbiphera.com"
+                className="w-full px-3.5 py-2.5 bg-[#0B0E14] border border-white/10 rounded-xl text-white text-xs font-mono focus:outline-none focus:border-[#E50914]"
+              />
+            </div>
+          </div>
+
+          <div className="pt-2 border-t border-white/5 grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div>
+              <label className="block text-xs font-medium text-gray-400 mb-1 flex items-center space-x-1">
+                <Lock className="w-3.5 h-3.5 text-gray-400" />
+                <span>Current Password (optional)</span>
+              </label>
+              <input
+                type="password"
+                value={adminCreds.currentPassword}
+                onChange={(e) => setAdminCreds({ ...adminCreds, currentPassword: e.target.value })}
+                placeholder="••••••••••••"
+                className="w-full px-3.5 py-2 bg-[#0B0E14] border border-white/10 rounded-xl text-white text-xs focus:outline-none focus:border-[#E50914]"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-medium text-gray-300 mb-1 flex items-center space-x-1">
+                <Lock className="w-3.5 h-3.5 text-[#E50914]" />
+                <span>New Password</span>
+              </label>
+              <input
+                type="password"
+                value={adminCreds.newPassword}
+                onChange={(e) => setAdminCreds({ ...adminCreds, newPassword: e.target.value })}
+                placeholder="Leave blank to keep current"
+                className="w-full px-3.5 py-2 bg-[#0B0E14] border border-white/10 rounded-xl text-white text-xs focus:outline-none focus:border-[#E50914]"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-medium text-gray-300 mb-1 flex items-center space-x-1">
+                <Lock className="w-3.5 h-3.5 text-[#E50914]" />
+                <span>Confirm New Password</span>
+              </label>
+              <input
+                type="password"
+                value={adminCreds.confirmPassword}
+                onChange={(e) => setAdminCreds({ ...adminCreds, confirmPassword: e.target.value })}
+                placeholder="••••••••••••"
+                className="w-full px-3.5 py-2 bg-[#0B0E14] border border-white/10 rounded-xl text-white text-xs focus:outline-none focus:border-[#E50914]"
+              />
+            </div>
+          </div>
+
+          <div className="flex justify-end pt-2">
+            <button
+              type="button"
+              onClick={handleUpdateAdminCreds}
+              disabled={savingCreds}
+              className="flex items-center space-x-2 px-5 py-2.5 bg-[#E50914] hover:bg-[#CC0813] text-white font-bold text-xs rounded-xl shadow-[0_0_15px_rgba(229,9,20,0.35)] transition-all cursor-pointer"
+            >
+              {savingCreds ? (
+                <>
+                  <RefreshCw className="w-3.5 h-3.5 animate-spin" />
+                  <span>Updating Admin Credentials...</span>
+                </>
+              ) : (
+                <>
+                  <KeyRound className="w-3.5 h-3.5" />
+                  <span>Update Admin Username &amp; Password</span>
+                </>
+              )}
+            </button>
           </div>
         </div>
       </form>

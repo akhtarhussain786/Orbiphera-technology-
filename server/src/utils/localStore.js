@@ -401,6 +401,61 @@ class LocalStore {
     return users.find(u => u._id === id || String(u._id) === String(id)) || null
   }
 
+  createAdminUser(userData) {
+    if (!this.data?.adminUsers) this.load()
+    const newAdmin = {
+      _id: userData._id || `admin_${Date.now()}`,
+      name: userData.name || 'Admin',
+      email: userData.email.toLowerCase().trim(),
+      password: userData.password, // already hashed
+      role: userData.role || 'admin',
+      permissions: userData.permissions || ['dashboard', 'pages', 'content', 'navigation', 'media', 'inquiries', 'seo'],
+      phone: userData.phone || null,
+      isActive: userData.isActive !== undefined ? userData.isActive : true,
+      createdAt: new Date().toISOString()
+    }
+    this.data.adminUsers.push(newAdmin)
+    this.save()
+    return newAdmin
+  }
+
+  updateAdminUser(id, updates) {
+    if (!this.data?.adminUsers) this.load()
+    const index = this.data.adminUsers.findIndex(u => u._id === id || String(u._id) === String(id))
+    if (index >= 0) {
+      this.data.adminUsers[index] = {
+        ...this.data.adminUsers[index],
+        ...updates,
+        updatedAt: new Date().toISOString()
+      }
+      this.save()
+      return this.data.adminUsers[index]
+    }
+    return null
+  }
+
+  deleteAdminUser(id) {
+    if (!this.data?.adminUsers) this.load()
+    const initialLen = this.data.adminUsers.length
+    this.data.adminUsers = this.data.adminUsers.filter(u => u._id !== id && String(u._id) !== String(id))
+    if (this.data.adminUsers.length !== initialLen) {
+      this.save()
+      return true
+    }
+    return false
+  }
+
+  toggleAdminUserStatus(id) {
+    if (!this.data?.adminUsers) this.load()
+    const user = this.findAdminById(id)
+    if (user) {
+      user.isActive = !user.isActive
+      this.save()
+      return user
+    }
+    return null
+  }
+
   // --- Navigation ---
   getNavigation() {
     if (!this.data?.navigation) this.load()

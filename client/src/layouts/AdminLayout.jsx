@@ -179,15 +179,19 @@ export default function AdminLayout() {
           </a>
 
           <div className="flex items-center justify-between pt-2 border-t border-white/5">
-            <div className="flex items-center space-x-2.5">
-              <div className="w-8 h-8 rounded-full bg-[#1558C9]/30 border border-[#1558C9]/50 flex items-center justify-center font-bold text-xs text-[#FFC800]">
+            <button
+              onClick={() => setActiveTab('users')}
+              className="flex items-center space-x-2.5 text-left group cursor-pointer hover:opacity-85 transition-opacity"
+              title="Change Username & Password"
+            >
+              <div className="w-8 h-8 rounded-full bg-[#E50914]/20 border border-[#E50914]/40 flex items-center justify-center font-bold text-xs text-[#FF2A36]">
                 {admin?.name?.charAt(0) || 'A'}
               </div>
               <div className="truncate max-w-[110px]">
-                <p className="text-xs font-semibold text-white truncate">{admin?.name}</p>
+                <p className="text-xs font-semibold text-white group-hover:text-[#FF2A36] transition-colors truncate">{admin?.name}</p>
                 <p className="text-[10px] text-gray-500 font-mono capitalize truncate">{admin?.role?.replace('_', ' ')}</p>
               </div>
-            </div>
+            </button>
 
             <button
               onClick={logoutAdmin}

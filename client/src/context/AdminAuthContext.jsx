@@ -89,6 +89,8 @@ export const AdminAuthProvider = ({ children }) => {
     <AdminAuthContext.Provider
       value={{
         admin,
+        setAdmin,
+        updateAdmin: (updatedAdmin) => setAdmin(updatedAdmin),
         loading,
         isAuthenticated: Boolean(admin),
         loginAdmin,
