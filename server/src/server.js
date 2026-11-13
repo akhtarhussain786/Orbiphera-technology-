@@ -144,6 +144,18 @@ app.use('/api/*', (req, res) => {
   res.status(404).json({ success: false, message: 'API Route not found' })
 })
 
+// Serve React Frontend Production Build (Single-Port Full-Stack Deployment)
+const clientDistPath = path.resolve('client/dist')
+if (fs.existsSync(clientDistPath)) {
+  app.use(express.static(clientDistPath))
+  app.get('*', (req, res, next) => {
+    if (req.originalUrl.startsWith('/api') || req.originalUrl.startsWith('/uploads')) {
+      return next()
+    }
+    res.sendFile(path.join(clientDistPath, 'index.html'))
+  })
+}
+
 app.listen(PORT, () => {
   console.log(`🚀 NEXVORA / YathartITSolutions Server running on port ${PORT}`)
   console.log(`📡 Admin API available at http://localhost:${PORT}/api/admin`)
