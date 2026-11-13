@@ -2,61 +2,60 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   
-  <!-- Homepage: Best Website Company in Siwan -->
+  <!-- Homepage: Orbiphera Technologies -->
   <url>
-    <loc>https://yathartitsolutions.com/</loc>
-    <lastmod>2026-11-10</lastmod>
+    <loc>https://orbiphera.in/</loc>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   <!-- Software Solutions -->
   <url>
-    <loc>https://yathartitsolutions.com/software</loc>
-    <lastmod>2026-11-10</lastmod>
+    <loc>https://orbiphera.in/software</loc>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <!-- Custom Software & Web Development -->
   <url>
-    <loc>https://yathartitsolutions.com/custom-development</loc>
-    <lastmod>2026-11-10</lastmod>
+    <loc>https://orbiphera.in/custom-development</loc>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <!-- Templates & Products -->
   <url>
-    <loc>https://yathartitsolutions.com/templates</loc>
-    <lastmod>2026-11-10</lastmod>
+    <loc>https://orbiphera.in/templates</loc>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- Request Demo -->
   <url>
-    <loc>https://yathartitsolutions.com/request-demo</loc>
-    <lastmod>2026-11-10</lastmod>
+    <loc>https://orbiphera.in/request-demo</loc>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- Request Quote / Cost Estimator -->
   <url>
-    <loc>https://yathartitsolutions.com/request-quote</loc>
-    <lastmod>2026-11-10</lastmod>
+    <loc>https://orbiphera.in/request-quote</loc>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- Contact Us (Siwan Office) -->
+  <!-- Contact & Location Authority -->
   <url>
-    <loc>https://yathartitsolutions.com/contact</loc>
-    <lastmod>2026-11-10</lastmod>
+    <loc>https://orbiphera.in/contact</loc>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
 </urlset>
-

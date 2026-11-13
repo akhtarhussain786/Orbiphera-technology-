@@ -49,9 +49,9 @@ export const LandingPage: React.FC = () => {
   return (
     <div className="landing-root min-h-screen selection:bg-[#FFE600] selection:text-[#0E0E10]">
       <SeoHead
-        title="We build software that scales - Yatharth IT Solutions"
+        title="We build software that scales | Orbiphera Technologies"
         description="A product team building custom websites, web and mobile apps, MVPs and AI features, from the first prototype through to production."
-        keywords="software development, react, flutter, nodejs, mvp development, web apps, enterprise software"
+        keywords="Orbiphera Technologies, software development, react, flutter, nodejs, mvp development, web apps, enterprise software"
       />
 
       {/* Custom magnetic cursor only on this landing page */}

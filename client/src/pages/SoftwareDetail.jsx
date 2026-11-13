@@ -26,7 +26,7 @@ export default function SoftwareDetail() {
   const [activeTab, setActiveTab] = useState('modules')
 
   const API_URL = import.meta.env.VITE_API_URL || '/api'
-  const siteName = settings?.siteName || 'Yatharth IT Solutions'
+  const siteName = settings?.siteName || 'Orbiphera Technologies'
 
   useEffect(() => {
     fetchSoftwareDetails()

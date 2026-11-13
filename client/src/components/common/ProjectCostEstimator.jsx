@@ -92,7 +92,7 @@ export default function ProjectCostEstimator() {
     .filter(Boolean)
     .join(', ')
 
-  const quoteMessage = `Hello Yatharth IT Solutions! 🚀
+  const quoteMessage = `Hello Orbiphera Technologies! 🚀
 I used your online Project Cost Estimator with the following scope:
 • Platform: ${selectedPlatformObj.name}
 • Estimated Scope: ~${screenCount} Screens / Workflows

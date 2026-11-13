@@ -203,7 +203,7 @@ export const TESTIMONIALS: TestimonialItem[] = [
   {
     id: 'rev-1',
     headline: 'We will surely continue working with them.',
-    body: 'We have already done two projects of different nature, ie a software adaptation and an enterprise web platform, with the team at Yatharth IT. They have always been professional and flexible in adapting to our needs and are not afraid of incorporating new knowledge to their skills if the project requires it.',
+    body: 'We have already done two projects of different nature, ie a software adaptation and an enterprise web platform, with the team at Orbiphera Technologies. They have always been professional and flexible in adapting to our needs and are not afraid of incorporating new knowledge to their skills if the project requires it.',
     clientName: 'Santiago Rossi',
     clientRole: 'Chief Executive Officer',
     company: 'BOTTEGA Hospitality',
@@ -214,7 +214,7 @@ export const TESTIMONIALS: TestimonialItem[] = [
   {
     id: 'rev-2',
     headline: 'Shipped our cross-platform Flutter app 3 weeks ahead of schedule.',
-    body: 'Their engineering precision was unmatched. From smooth 60fps animations on budget Android phones to rock-solid offline sync, Yatharth delivered an exceptional product that our clinical teams use daily without a single hitch.',
+    body: 'Their engineering precision was unmatched. From smooth 60fps animations on budget Android phones to rock-solid offline sync, Orbiphera Technologies delivered an exceptional product that our clinical teams use daily without a single hitch.',
     clientName: 'Dr. Alistair Vance',
     clientRole: 'VP of Digital Health',
     company: 'NexGen Clinical Technologies',
@@ -236,7 +236,7 @@ export const TESTIMONIALS: TestimonialItem[] = [
   {
     id: 'rev-4',
     headline: 'The code quality and test coverage gave our investors total confidence.',
-    body: 'As a seed-stage startup, we needed a team that wrote scalable, production-grade code rather than throwing quick hacky scripts together. Yatharth built clean modules and comprehensive documentation.',
+    body: 'As a seed-stage startup, we needed a team that wrote scalable, production-grade code rather than throwing quick hacky scripts together. Orbiphera Technologies built clean modules and comprehensive documentation.',
     clientName: 'Kenneth Chen',
     clientRole: 'Founder & CTO',
     company: 'Veloce Data Systems',
@@ -319,7 +319,7 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
       { name: '4-Phase Development Roadmap', href: '#process' },
       { name: 'Technology Ecosystem', href: '#tools' },
       { name: 'Verified Client Reviews', href: '#reviews' },
-      { name: 'Why Teams Choose Yatharth', href: '#recognition' },
+      { name: 'Why Teams Choose Orbiphera', href: '#recognition' },
       { name: 'Schedule Technical Demo', href: '/request-demo' }
     ]
   },

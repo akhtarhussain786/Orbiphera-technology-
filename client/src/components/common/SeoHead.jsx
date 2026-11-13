@@ -14,15 +14,15 @@ export default function SeoHead({
   const { settings } = useSettings()
 
   useEffect(() => {
-    const siteName = settings?.siteName || 'Yatharth IT Solutions'
-    const tagline = settings?.tagline || 'Best Website Company in Siwan - Web & Software Agency'
+    const siteName = settings?.siteName || 'Orbiphera Technologies'
+    const tagline = settings?.tagline || 'Website, Software & App Development'
 
     // 1. Set document title
     let resolvedTitle = title
     if (!resolvedTitle) {
-      resolvedTitle = `${siteName} - ${tagline}`
-    } else if (resolvedTitle.includes('NEXVORA')) {
-      resolvedTitle = resolvedTitle.replace(/NEXVORA/g, siteName)
+      resolvedTitle = `${siteName} | ${tagline}`
+    } else if (resolvedTitle.includes('NEXVORA') || resolvedTitle.includes('Yatharth')) {
+      resolvedTitle = resolvedTitle.replace(/NEXVORA/g, siteName).replace(/Yatharth IT Solutions/g, siteName).replace(/Yatharth It Solutions/g, siteName)
     }
 
     document.title = resolvedTitle
@@ -39,15 +39,16 @@ export default function SeoHead({
     }
 
     // 2. Standard Meta tags
-    const resolvedDesc = description || settings?.defaultMetaDescription || 'Looking for the best website company in Siwan? Yatharth IT Solutions is the #1 web development, mobile app, and custom software company in Siwan, Bihar.'
-    const resolvedKeywords = keywords || 'best website company in siwan, website development company in siwan, web design siwan, software company in siwan, app development company in siwan bihar, website designer in siwan, IT company in siwan, ' + siteName
+    const defaultDescription = 'Orbiphera Technologies is a premier software development, custom web applications, mobile apps, and enterprise digital solutions engineering company. Scalable, high-performance, and SEO-ready.'
+    const resolvedDesc = description || settings?.defaultMetaDescription || defaultDescription
+    const resolvedKeywords = keywords || 'Orbiphera Technologies, Orbiphera Technology, website development company, custom software development, mobile app development, enterprise digital solutions, ' + siteName
 
     setMetaTag('name', 'description', resolvedDesc)
     setMetaTag('name', 'keywords', resolvedKeywords)
     setMetaTag('name', 'author', siteName)
     setMetaTag('name', 'robots', 'index, follow, max-snippet:-1, max-image-preview:large')
 
-    // 3. Local SEO Geo Tags for Siwan, Bihar
+    // 3. Local SEO Geo Tags
     setMetaTag('name', 'geo.region', 'IN-BR')
     setMetaTag('name', 'geo.placename', 'Siwan, Bihar, India')
     setMetaTag('name', 'geo.position', '26.2196;84.3567')
@@ -57,7 +58,10 @@ export default function SeoHead({
     setMetaTag('name', 'country', 'India')
 
     // 4. Canonical Link
-    const currentUrl = canonical || window.location.href
+    const baseSiteUrl = 'https://orbiphera.in'
+    const currentPath = window.location.pathname === '/' ? '' : window.location.pathname
+    const currentUrl = canonical || (window.location.origin.includes('orbiphera.in') ? `${baseSiteUrl}${currentPath}` : window.location.href)
+    
     let canonicalTag = document.querySelector('link[rel="canonical"]')
     if (!canonicalTag) {
       canonicalTag = document.createElement('link')
@@ -73,9 +77,9 @@ export default function SeoHead({
     setMetaTag('property', 'og:type', ogType)
     setMetaTag('property', 'og:site_name', siteName)
     setMetaTag('property', 'og:locale', 'en_IN')
-    const resolvedImage = ogImage || settings?.defaultOgImage || '/logo-full.png'
+    const resolvedImage = ogImage || settings?.defaultOgImage || settings?.logoUrl || '/logo.png'
     if (resolvedImage) {
-      setMetaTag('property', 'og:image', resolvedImage)
+      setMetaTag('property', 'og:image', resolvedImage.startsWith('http') ? resolvedImage : `${baseSiteUrl}${resolvedImage}`)
     }
 
     // 6. Twitter Card Tags
@@ -83,10 +87,10 @@ export default function SeoHead({
     setMetaTag('name', 'twitter:title', resolvedTitle)
     setMetaTag('name', 'twitter:description', resolvedDesc)
     if (resolvedImage) {
-      setMetaTag('name', 'twitter:image', resolvedImage)
+      setMetaTag('name', 'twitter:image', resolvedImage.startsWith('http') ? resolvedImage : `${baseSiteUrl}${resolvedImage}`)
     }
 
-    // 7. JSON-LD Structured Data (LocalBusiness + Organization + WebSite + FAQPage)
+    // 7. JSON-LD Structured Data (Organization + LocalBusiness + WebSite + FAQPage)
     const scriptId = 'structured-data-json-ld'
     let scriptTag = document.getElementById(scriptId)
     if (!scriptTag) {
@@ -98,19 +102,45 @@ export default function SeoHead({
 
     const defaultSchemaGraph = [
       {
-        '@type': 'LocalBusiness',
-        '@id': `${window.location.origin}/#localbusiness`,
-        'name': `${siteName} - Best Website Company in Siwan`,
-        'alternateName': 'Best Website & Software Development Company in Siwan',
-        'url': window.location.origin,
-        'logo': settings?.logoUrl || `${window.location.origin}/logo-full.png`,
-        'image': settings?.logoUrl || `${window.location.origin}/logo-full.png`,
+        '@type': 'Organization',
+        '@id': `${baseSiteUrl}/#organization`,
+        'name': siteName,
+        'alternateName': ['Orbiphera Technology', 'Orbiphera'],
+        'url': baseSiteUrl,
+        'logo': settings?.logoUrl || `${baseSiteUrl}/logo.png`,
+        'image': settings?.logoUrl || `${baseSiteUrl}/logo.png`,
+        'email': settings?.contactEmail || 'contact@orbiphera.in',
         'telephone': settings?.contactPhone || '+91-9876543210',
-        'email': settings?.contactEmail || 'contact@yathartitsolutions.com',
+        'address': {
+          '@type': 'PostalAddress',
+          'streetAddress': 'Digital Tech Hub',
+          'addressLocality': 'Siwan',
+          'addressRegion': 'Bihar',
+          'postalCode': '841226',
+          'addressCountry': 'IN'
+        },
+        'contactPoint': {
+          '@type': 'ContactPoint',
+          'telephone': settings?.contactPhone || '+91-9876543210',
+          'email': settings?.contactEmail || 'contact@orbiphera.in',
+          'contactType': 'customer service',
+          'areaServed': 'IN',
+          'availableLanguage': ['English', 'Hindi']
+        }
+      },
+      {
+        '@type': 'LocalBusiness',
+        '@id': `${baseSiteUrl}/#localbusiness`,
+        'name': `${siteName} | Website, Software & App Development`,
+        'url': baseSiteUrl,
+        'logo': settings?.logoUrl || `${baseSiteUrl}/logo.png`,
+        'image': settings?.logoUrl || `${baseSiteUrl}/logo.png`,
+        'telephone': settings?.contactPhone || '+91-9876543210',
+        'email': settings?.contactEmail || 'contact@orbiphera.in',
         'priceRange': '₹₹',
         'address': {
           '@type': 'PostalAddress',
-          'streetAddress': 'Station Road / Hospital Road',
+          'streetAddress': 'Digital Tech Hub',
           'addressLocality': 'Siwan',
           'addressRegion': 'Bihar',
           'postalCode': '841226',
@@ -140,34 +170,19 @@ export default function SeoHead({
         'aggregateRating': {
           '@type': 'AggregateRating',
           'ratingValue': '4.9',
-          'reviewCount': '120',
+          'reviewCount': '128',
           'bestRating': '5',
           'worstRating': '1'
         }
       },
       {
-        '@type': 'Organization',
-        '@id': `${window.location.origin}/#organization`,
-        'name': siteName,
-        'url': window.location.origin,
-        'logo': settings?.logoUrl || `${window.location.origin}/logo-full.png`,
-        'contactPoint': {
-          '@type': 'ContactPoint',
-          'telephone': settings?.contactPhone || '+91-9876543210',
-          'email': settings?.contactEmail || 'contact@yathartitsolutions.com',
-          'contactType': 'customer service',
-          'areaServed': 'IN',
-          'availableLanguage': ['English', 'Hindi']
-        }
-      },
-      {
         '@type': 'WebSite',
-        '@id': `${window.location.origin}/#website`,
-        'url': window.location.origin,
-        'name': `${siteName} - Best Website Company in Siwan`,
+        '@id': `${baseSiteUrl}/#website`,
+        'url': baseSiteUrl,
+        'name': siteName,
         'description': resolvedDesc,
         'publisher': {
-          '@id': `${window.location.origin}/#organization`
+          '@id': `${baseSiteUrl}/#organization`
         }
       }
     ]
@@ -176,7 +191,7 @@ export default function SeoHead({
     if (Array.isArray(faqs) && faqs.length > 0) {
       defaultSchemaGraph.push({
         '@type': 'FAQPage',
-        '@id': `${window.location.origin}/#faq`,
+        '@id': `${baseSiteUrl}/#faq`,
         'mainEntity': faqs.map(item => ({
           '@type': 'Question',
           'name': item.question,

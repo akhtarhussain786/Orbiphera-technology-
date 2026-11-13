@@ -1,22 +1,22 @@
 {
   "websiteSettings": {
-    "siteName": "Orbiphera technology  ",
-    "tagline": "Engineering Digital Solutions. Building the Future.",
+    "siteName": "Orbiphera Technologies",
+    "tagline": "Website, Software & App Development",
     "logoUrl": "/logo.png",
     "faviconUrl": "/favicon.ico",
-    "contactEmail": "contact@yathartitsolutions.com",
+    "contactEmail": "contact@orbiphera.in",
     "contactPhone": "+91 8676875336",
-    "address": "Yathart IT Solutions, Digital Tech Hub, India",
+    "address": "Orbiphera Technologies, Digital Tech Hub, India",
     "socialLinks": {
-      "twitter": "https://twitter.com/nexvora",
-      "linkedin": "https://linkedin.com/company/nexvora",
-      "github": "https://github.com/nexvora",
-      "instagram": "https://instagram.com/nexvora",
-      "facebook": "https://facebook.com/nexvora",
+      "twitter": "https://twitter.com/orbiphera",
+      "linkedin": "https://linkedin.com/company/orbiphera",
+      "github": "https://github.com/orbiphera",
+      "instagram": "https://instagram.com/orbiphera",
+      "facebook": "https://facebook.com/orbiphera",
       "youtube": ""
     },
-    "defaultMetaTitle": "Yatharth IT Solutions - Software Development & IT Solutions Company",
-    "defaultMetaDescription": "We design and develop powerful software, mobile applications, websites, and scalable digital platforms that help businesses grow faster.",
+    "defaultMetaTitle": "Orbiphera Technologies | Website, Software & App Development",
+    "defaultMetaDescription": "Orbiphera Technologies is a premier software development, custom web applications, mobile apps, and enterprise digital solutions engineering company. Scalable, high-performance, and SEO-ready.",
     "defaultOgImage": "",
     "googleAnalyticsId": "",
     "googleSearchConsoleKey": "",
@@ -206,7 +206,7 @@
     {
       "_id": "sec_1",
       "sectionKey": "hero",
-      "title": "Build Something Extraordinary With Yatharth IT Solutions",
+      "title": "Build Something Extraordinary With Orbiphera Technologies",
       "subtitle": "Premium website templates, powerful business software, and custom digital solutions — everything you need to turn your next big idea into reality.",
       "data": {
         "badge": "Premium Digital Marketplace",
@@ -226,7 +226,7 @@
     {
       "_id": "sec_2",
       "sectionKey": "why_nexvora",
-      "title": "Why Choose Yatharth IT Solutions",
+      "title": "Why Choose Orbiphera Technologies",
       "subtitle": "Engineered for speed, built for scale, and backed by expert engineering support.",
       "data": {
         "cards": [
@@ -287,17 +287,17 @@
       "slug": "home",
       "template": "landing",
       "status": "published",
-      "metaTitle": "Yatharth It Solutions - Digital Products. Limitless Possibilities.",
-      "metaDescription": "Premium digital marketplace where businesses purchase ready-made website templates, SaaS solutions, and custom digital development.",
-      "primaryKeyword": "digital marketplace",
+      "metaTitle": "Orbiphera Technologies | Website, Software & App Development",
+      "metaDescription": "Orbiphera Technologies is a premier software development, custom web applications, mobile apps, and enterprise digital solutions engineering company. Scalable, high-performance, and SEO-ready.",
+      "primaryKeyword": "software development company",
       "secondaryKeywords": [
         "website templates",
         "business software",
         "saas solutions"
       ],
-      "h1Heading": "Build Something Extraordinary With Yatharth IT Solutions",
+      "h1Heading": "Build Something Extraordinary With Orbiphera Technologies",
       "schemaType": "WebPage",
-      "content": "<h1>Build Something Extraordinary</h1><p>Welcome to Yatharth IT Solutions marketplace.</p>"
+      "content": "<h1>Build Something Extraordinary</h1><p>Welcome to Orbiphera Technologies.</p>"
     },
     {
       "_id": "page_2",
@@ -305,7 +305,7 @@
       "slug": "marketplace",
       "template": "default",
       "status": "published",
-      "metaTitle": "Explore Digital Products Marketplace | Yatharth It Solutions",
+      "metaTitle": "Explore Digital Products Marketplace | Orbiphera Technologies",
       "metaDescription": "Browse hundreds of vetted website templates and production-ready business software applications.",
       "primaryKeyword": "buy website templates",
       "secondaryKeywords": [

@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react'
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { 
   ShoppingCart, Trash2, ArrowRight, ShieldCheck, 
@@ -43,7 +43,8 @@ export default function Cart() {
 
   const handleApplyCoupon = (e) => {
     e.preventDefault()
-    if (couponCode.trim().toUpperCase() === 'YATHARTH10' || couponCode.trim().toUpperCase() === 'LAUNCH500') {
+    const upper = couponCode.trim().toUpperCase()
+    if (upper === 'ORBIPHERA10' || upper === 'YATHARTH10' || upper === 'LAUNCH500') {
       const discount = Math.round(rawSubtotal * 0.1)
       setDiscountAmount(discount)
       setCouponApplied(true)
@@ -116,7 +117,7 @@ export default function Cart() {
     }
   }
 
-  const siteName = settings?.siteName || 'Yatharth IT Solutions'
+  const siteName = settings?.siteName || 'Orbiphera Technologies'
 
   // Order Complete Screen
   if (orderComplete && completedOrder) {
@@ -312,7 +313,7 @@ export default function Cart() {
                     type="text"
                     value={couponCode}
                     onChange={(e) => setCouponCode(e.target.value)}
-                    placeholder="Coupon (e.g. YATHARTH10)"
+                    placeholder="Coupon (e.g. ORBIPHERA10)"
                     disabled={couponApplied}
                     className="w-full pl-10 pr-3 py-2.5 bg-[#F3F4F6] border border-[#E5E7EB] rounded-xl text-[#111827] text-xs uppercase placeholder:normal-case placeholder:text-gray-400 focus:outline-none focus:border-[#111827] focus:bg-white transition-colors"
                   />

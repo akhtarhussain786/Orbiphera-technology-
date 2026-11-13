@@ -1,4 +1,4 @@
-import React from 'react'
+﻿import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { 
   GraduationCap, 
@@ -37,7 +37,7 @@ const allCategories = [
 export default function Categories() {
   const navigate = useNavigate()
   const { settings } = useSettings()
-  const siteName = settings?.siteName || 'Yatharth IT Solutions'
+  const siteName = settings?.siteName || 'Orbiphera Technologies'
 
   return (
     <div className="min-h-screen bg-[#F8F7F4] text-[#111827] pt-24 pb-24 relative overflow-hidden">

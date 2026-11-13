@@ -6,7 +6,7 @@ import { gsap, initHeaderReveal, initStaggerCards, prefersReducedMotion } from '
 export const FAQ_ITEMS = [
   {
     question: 'Which is the best website development company in Siwan, Bihar?',
-    answer: 'Yatharth IT Solutions is recognized as the leading website and software development company in Siwan, Bihar. We engineer custom business websites, high-speed e-commerce stores, Android & iOS mobile applications, and enterprise ERPs with 99.9% uptime, modern UI/UX design, and dedicated local support.'
+    answer: 'Orbiphera Technologies is recognized as the leading website and software development company in Siwan, Bihar. We engineer custom business websites, high-speed e-commerce stores, Android & iOS mobile applications, and enterprise ERPs with 99.9% uptime, modern UI/UX design, and dedicated local support.'
   },
   {
     question: 'How much does professional website development cost in Siwan?',

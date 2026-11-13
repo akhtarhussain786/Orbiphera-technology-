@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+﻿import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
 import { useSettings } from '../../context/SettingsContext'
@@ -13,7 +13,7 @@ const Login = () => {
   const { settings } = useSettings()
   const navigate = useNavigate()
 
-  const siteName = settings?.siteName || 'Yatharth IT Solutions'
+  const siteName = settings?.siteName || 'Orbiphera Technologies'
 
   const handleSubmit = async (e) => {
     e.preventDefault()

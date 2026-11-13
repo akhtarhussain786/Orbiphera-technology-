@@ -144,7 +144,7 @@ const DEFAULT_TESTIMONIALS = [
   {
     id: 'review-1',
     headline: 'Things were visible, high-velocity, and efficient.',
-    body: 'It was really good working with Yatharth IT Solutions and their engineering team, because they were attentive to our technical needs. It was collaborative, and as a client I can track the code commits and progress of the project. We used transparent sprint management, so things were visible and efficient. If you are looking for scalable software or mobile apps, I highly recommend them!',
+    body: 'It was really good working with Orbiphera Technologies and their engineering team, because they were attentive to our technical needs. It was collaborative, and as a client I can track the code commits and progress of the project. We used transparent sprint management, so things were visible and efficient. If you are looking for scalable software or mobile apps, I highly recommend them!',
     companyLogo: 'SPACECROP',
     authorName: 'Mary Grace Gasco',
     authorRole: 'Chief Executive Officer',
@@ -155,7 +155,7 @@ const DEFAULT_TESTIMONIALS = [
   {
     id: 'review-2',
     headline: 'The architecture & result is just amazing.',
-    body: 'Yatharth IT Solutions is the right choice, I would highly recommend them, since they have been professional and competent from the very first moment. Our platform is wonderful, attractive, easy to use with the perfect design system. The team worked closely with us to provide a system that met all criteria. The result is just amazing.',
+    body: 'Orbiphera Technologies is the right choice, I would highly recommend them, since they have been professional and competent from the very first moment. Our platform is wonderful, attractive, easy to use with the perfect design system. The team worked closely with us to provide a system that met all criteria. The result is just amazing.',
     companyLogo: 'NON STOP NANNY',
     authorName: 'Adrienn Asztalos',
     authorRole: 'Founder',
@@ -177,7 +177,7 @@ const DEFAULT_TESTIMONIALS = [
   {
     id: 'review-4',
     headline: 'We will surely continue working with them.',
-    body: 'We have already done two projects of different nature, ie a software adaptation and an enterprise web platform, with the team at Yatharth IT. They have always been professional and flexible in adapting to our needs and are not afraid of incorporating new knowledge to their skills if the project requires it. We will surely continue working with them as the projects evolve.',
+    body: 'We have already done two projects of different nature, ie a software adaptation and an enterprise web platform, with the team at Orbiphera Technologies. They have always been professional and flexible in adapting to our needs and are not afraid of incorporating new knowledge to their skills if the project requires it. We will surely continue working with them as the projects evolve.',
     companyLogo: 'BOTTEGA POLANCO',
     authorName: 'BOTTEGA Hospitality',
     authorRole: 'Chief Executive Officer',

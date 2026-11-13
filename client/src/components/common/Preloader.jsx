@@ -5,8 +5,8 @@ import { useSettings } from '../../context/SettingsContext'
 
 export default function Preloader({ onComplete }) {
   const { settings } = useSettings()
-  const brandTitle = settings?.preloaderTitle || settings?.siteName || 'Yatharth Technologies'
-  const brandSubtitle = settings?.preloaderSubtitle || settings?.tagline || 'IT Software Development Agency'
+  const brandTitle = settings?.preloaderTitle || settings?.siteName || 'Orbiphera Technologies'
+  const brandSubtitle = settings?.preloaderSubtitle || settings?.tagline || 'Website, Software & App Development'
 
   const getLoadingStatus = (p) => {
     if (p < 25) return 'INITIALIZING CORE SYSTEMS'
@@ -18,7 +18,7 @@ export default function Preloader({ onComplete }) {
   const [shouldRender, setShouldRender] = useState(() => {
     if (typeof window === 'undefined') return false
     const prefersReduced = window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches
-    const alreadyVisited = sessionStorage.getItem('yatharth_has_loaded')
+    const alreadyVisited = sessionStorage.getItem('orbiphera_has_loaded')
     return !prefersReduced && !alreadyVisited
   })
 
@@ -43,7 +43,7 @@ export default function Preloader({ onComplete }) {
         // Exit transition
         const tl = gsap.timeline({
           onComplete: () => {
-            sessionStorage.setItem('yatharth_has_loaded', 'true')
+            sessionStorage.setItem('orbiphera_has_loaded', 'true')
             setShouldRender(false)
             if (onComplete) onComplete()
           }
@@ -65,7 +65,7 @@ export default function Preloader({ onComplete }) {
             '-=0.1'
           )
         } else {
-          sessionStorage.setItem('yatharth_has_loaded', 'true')
+          sessionStorage.setItem('orbiphera_has_loaded', 'true')
           setShouldRender(false)
           if (onComplete) onComplete()
         }

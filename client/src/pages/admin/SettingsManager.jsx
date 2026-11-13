@@ -127,7 +127,7 @@ export default function SettingsManager() {
       if (res.data.success) {
         const s = res.data.settings
         setFormData({
-          siteName: s.siteName || 'Yatharth It Solutions',
+          siteName: s.siteName || 'Orbiphera Technologies',
           tagline: s.tagline || '',
           preloaderTitle: s.preloaderTitle || '',
           preloaderSubtitle: s.preloaderSubtitle || '',
@@ -166,14 +166,14 @@ export default function SettingsManager() {
       if (refreshSettings) await refreshSettings()
       try {
         localStorage.setItem('site_settings_cache', JSON.stringify(saved))
-      } catch (_) {}
+      } catch (_) { }
       toast.success('Website settings & brand identity updated successfully!')
     } catch (e) {
       console.warn('API save notice, applied local fallback:', e.message)
       if (updateLocalSettings) updateLocalSettings(formData)
       try {
         localStorage.setItem('site_settings_cache', JSON.stringify(formData))
-      } catch (_) {}
+      } catch (_) { }
       toast.success('Website settings updated!')
     } finally {
       setSaving(false)
@@ -269,7 +269,7 @@ export default function SettingsManager() {
                 type="text"
                 value={formData.preloaderTitle}
                 onChange={(e) => setFormData({ ...formData, preloaderTitle: e.target.value })}
-                placeholder={formData.siteName || 'Yatharth IT Solutions'}
+                placeholder={formData.siteName || 'Orbiphera Technologies'}
                 className="w-full px-3.5 py-2 bg-[#0B0E14] border border-white/10 rounded-xl text-white text-xs focus:outline-none focus:border-[#E50914]"
               />
             </div>

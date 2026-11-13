@@ -12,15 +12,15 @@ export const useSettings = () => {
 }
 
 const DEFAULT_SETTINGS = {
-  siteName: 'Yatharth IT Solutions',
-  tagline: 'Engineering Digital Solutions. Building the Future.',
+  siteName: 'Orbiphera Technologies',
+  tagline: 'Website, Software & App Development',
   preloaderTitle: '',
   preloaderSubtitle: '',
   logoUrl: '/logo.png',
   faviconUrl: '/favicon.ico',
-  contactEmail: 'contact@yathartitsolutions.com',
+  contactEmail: 'contact@orbiphera.in',
   contactPhone: '+91 98765 43210',
-  address: 'Yathart IT Solutions, Digital Tech Hub, India',
+  address: 'Orbiphera Technologies, Digital Tech Hub, India',
   socialLinks: {
     twitter: 'https://twitter.com',
     linkedin: 'https://linkedin.com',
@@ -28,8 +28,8 @@ const DEFAULT_SETTINGS = {
     instagram: 'https://instagram.com',
     facebook: 'https://facebook.com'
   },
-  defaultMetaTitle: 'Yatharth IT Solutions - Software Development & IT Solutions Company',
-  defaultMetaDescription: 'We design and develop powerful software, mobile applications, websites, and scalable digital platforms that help businesses grow faster.',
+  defaultMetaTitle: 'Orbiphera Technologies | Website, Software & App Development',
+  defaultMetaDescription: 'Orbiphera Technologies is a premier software development, custom web applications, mobile apps, and enterprise digital solutions engineering company. Scalable, high-performance, and SEO-ready.',
   maintenanceMode: false
 }
 
@@ -63,7 +63,7 @@ export const SettingsProvider = ({ children }) => {
     if (data.siteName) {
       const name = data.siteName
       const tagline = data.tagline || ''
-      document.title = tagline ? `${name} - ${tagline}` : name
+      document.title = tagline ? `${name} | ${tagline}` : name
     }
     if (data.faviconUrl) {
       let link = document.querySelector("link[rel~='icon']")

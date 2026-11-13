@@ -39,10 +39,10 @@ export default function HeroDashboardSaaS() {
 
             <div className="flex items-center space-x-2 pl-2">
               <div className="w-5 h-5 rounded-md bg-[#E50914] flex items-center justify-center text-white font-black text-[10px]">
-                Y
+                OP
               </div>
               <span className="text-xs font-black text-white tracking-wider uppercase">
-                Yatharth Analytics
+                Orbiphera Analytics
               </span>
             </div>
           </div>

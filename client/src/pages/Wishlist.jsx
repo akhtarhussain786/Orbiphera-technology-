@@ -1,4 +1,4 @@
-import React from 'react'
+﻿import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Heart, ShoppingCart, Trash2, ArrowRight, Sparkles } from 'lucide-react'
 import { useWishlist } from '../context/WishlistContext'
@@ -13,7 +13,7 @@ export default function Wishlist() {
   const { addToCart } = useCart()
   const { settings } = useSettings()
 
-  const siteName = settings?.siteName || 'Yatharth IT Solutions'
+  const siteName = settings?.siteName || 'Orbiphera Technologies'
 
   if (!wishlistItems || wishlistItems.length === 0) {
     return (

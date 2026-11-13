@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import axios from 'axios'
 import {
   Quote, Plus, Save, Trash2, Edit3, ArrowUp, ArrowDown,
@@ -11,7 +11,7 @@ const DEFAULT_REVIEWS = [
   {
     id: 'review-1',
     headline: 'Things were visible, high-velocity, and efficient.',
-    body: 'It was really good working with Yatharth IT Solutions and their engineering team, because they were attentive to our technical needs. It was collaborative, and as a client I can track the code commits and progress of the project. We used transparent sprint management, so things were visible and efficient. If you are looking for scalable software or mobile apps, I highly recommend them!',
+    body: 'It was really good working with Orbiphera Technologies and their engineering team, because they were attentive to our technical needs. It was collaborative, and as a client I can track the code commits and progress of the project. We used transparent sprint management, so things were visible and efficient. If you are looking for scalable software or mobile apps, I highly recommend them!',
     companyLogo: 'SPACECROP',
     authorName: 'Mary Grace Gasco',
     authorRole: 'Chief Executive Officer',
@@ -22,7 +22,7 @@ const DEFAULT_REVIEWS = [
   {
     id: 'review-2',
     headline: 'The architecture & result is just amazing.',
-    body: 'Yatharth IT Solutions is the right choice, I would highly recommend them, since they have been professional and competent from the very first moment. Our platform is wonderful, attractive, easy to use with the perfect design system. The team worked closely with us to provide a system that met all criteria. The result is just amazing.',
+    body: 'Orbiphera Technologies is the right choice, I would highly recommend them, since they have been professional and competent from the very first moment. Our platform is wonderful, attractive, easy to use with the perfect design system. The team worked closely with us to provide a system that met all criteria. The result is just amazing.',
     companyLogo: 'NON STOP NANNY',
     authorName: 'Adrienn Asztalos',
     authorRole: 'Founder',
@@ -44,7 +44,7 @@ const DEFAULT_REVIEWS = [
   {
     id: 'review-4',
     headline: 'We will surely continue working with them.',
-    body: 'We have already done two projects of different nature, ie a software adaptation and an enterprise web platform, with the team at Yatharth IT. They have always been professional and flexible in adapting to our needs and are not afraid of incorporating new knowledge to their skills if the project requires it. We will surely continue working with them as the projects evolve.',
+    body: 'We have already done two projects of different nature, ie a software adaptation and an enterprise web platform, with the team at Orbiphera Technologies. They have always been professional and flexible in adapting to our needs and are not afraid of incorporating new knowledge to their skills if the project requires it. We will surely continue working with them as the projects evolve.',
     companyLogo: 'BOTTEGA POLANCO',
     authorName: 'BOTTEGA Hospitality',
     authorRole: 'Chief Executive Officer',
@@ -682,7 +682,7 @@ export default function TestimonialsManager() {
                 <textarea
                   rows="3"
                   required
-                  placeholder="e.g. It was really good working with Yatharth IT Solutions and their engineering team..."
+                  placeholder="e.g. It was really good working with Orbiphera Technologies and their engineering team..."
                   value={formData.body}
                   onChange={(e) => setFormData({ ...formData, body: e.target.value })}
                   className="w-full px-3.5 py-2 bg-[#0B0E14] border border-white/10 rounded-xl text-white text-xs focus:outline-none focus:border-[#F5B700]"

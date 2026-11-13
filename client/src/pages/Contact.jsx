@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Mail, Phone, MapPin, Send, CheckCircle2, Sparkles } from 'lucide-react'
 import axios from 'axios'
@@ -125,7 +125,7 @@ export default function Contact() {
                 <div>
                   <span className="text-xs text-white/60 uppercase tracking-wider block">Headquarters</span>
                   <p className="text-white font-semibold">
-                    {settings?.address || 'Yatharth IT Solutions, Digital Tech Hub, India'}
+                    {settings?.address || 'Orbiphera Technologies, Digital Tech Hub, India'}
                   </p>
                 </div>
               </div>

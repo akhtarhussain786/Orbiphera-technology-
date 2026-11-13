@@ -70,7 +70,7 @@ export const LandingFooter: React.FC = () => {
         {/* Legal & Bottom Row */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
           <div className="flex items-center space-x-2">
-            <span>&copy; {new Date().getFullYear()} Yatharth IT Solutions. All rights reserved.</span>
+            <span>&copy; {new Date().getFullYear()} Orbiphera Technologies. All rights reserved.</span>
           </div>
 
           <div className="flex items-center space-x-6">

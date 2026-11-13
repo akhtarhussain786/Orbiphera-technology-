@@ -3,11 +3,11 @@ import mongoose from 'mongoose'
 const websiteSettingSchema = new mongoose.Schema({
   siteName: {
     type: String,
-    default: 'NEXVORA'
+    default: 'Orbiphera Technologies'
   },
   tagline: {
     type: String,
-    default: 'Digital Products. Limitless Possibilities.'
+    default: 'Website, Software & App Development'
   },
   preloaderTitle: {
     type: String,
@@ -19,7 +19,7 @@ const websiteSettingSchema = new mongoose.Schema({
   },
   logoUrl: {
     type: String,
-    default: ''
+    default: '/logo.png'
   },
   faviconUrl: {
     type: String,
@@ -27,7 +27,7 @@ const websiteSettingSchema = new mongoose.Schema({
   },
   contactEmail: {
     type: String,
-    default: 'info@nexvora.com'
+    default: 'contact@orbiphera.in'
   },
   contactPhone: {
     type: String,
@@ -35,7 +35,7 @@ const websiteSettingSchema = new mongoose.Schema({
   },
   address: {
     type: String,
-    default: 'Digital IT Park, Tech Hub, India'
+    default: 'Orbiphera Technologies, Digital Tech Hub, India'
   },
   socialLinks: {
     twitter: { type: String, default: 'https://twitter.com' },
@@ -47,11 +47,11 @@ const websiteSettingSchema = new mongoose.Schema({
   },
   defaultMetaTitle: {
     type: String,
-    default: 'NEXVORA - Digital Products & Solutions Marketplace'
+    default: 'Orbiphera Technologies | Website, Software & App Development'
   },
   defaultMetaDescription: {
     type: String,
-    default: 'Premium digital marketplace for website templates, business software, SaaS solutions, and custom digital engineering.'
+    default: 'Orbiphera Technologies is a premier software development, custom web applications, mobile apps, and enterprise digital solutions engineering company. Scalable, high-performance, and SEO-ready.'
   },
   defaultOgImage: {
     type: String,

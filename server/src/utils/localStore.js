@@ -14,15 +14,15 @@ const DEFAULT_PASSWORD_HASH = bcrypt.hashSync('Admin@123456', 10)
 
 const INITIAL_DATA = {
   websiteSettings: {
-    siteName: 'Yatharth IT Solutions',
-    tagline: 'Engineering Digital Solutions. Building the Future.',
+    siteName: 'Orbiphera Technologies',
+    tagline: 'Website, Software & App Development',
     preloaderTitle: '',
     preloaderSubtitle: '',
     logoUrl: '/logo.png',
     faviconUrl: '/favicon.ico',
-    contactEmail: 'contact@yathartitsolutions.com',
+    contactEmail: 'contact@orbiphera.in',
     contactPhone: '+91 98765 43210',
-    address: 'Yathart IT Solutions, Digital Tech Hub, India',
+    address: 'Orbiphera Technologies, Digital Tech Hub, India',
     socialLinks: {
       twitter: 'https://twitter.com',
       linkedin: 'https://linkedin.com',
@@ -30,9 +30,9 @@ const INITIAL_DATA = {
       instagram: 'https://instagram.com',
       facebook: 'https://facebook.com'
     },
-    defaultMetaTitle: 'Yatharth IT Solutions - Software Development & IT Solutions Company',
-    defaultMetaDescription: 'We design and develop powerful software, mobile applications, websites, and scalable digital platforms that help businesses grow faster.',
-    defaultOgImage: '',
+    defaultMetaTitle: 'Orbiphera Technologies | Website, Software & App Development',
+    defaultMetaDescription: 'Orbiphera Technologies is a premier software development, custom web applications, mobile apps, and enterprise digital solutions engineering company. Scalable, high-performance, and SEO-ready.',
+    defaultOgImage: '/logo.png',
     googleAnalyticsId: '',
     googleSearchConsoleKey: '',
     maintenanceMode: false,
@@ -90,7 +90,7 @@ const INITIAL_DATA = {
     {
       _id: 'sec_1',
       sectionKey: 'hero',
-      title: 'Build Something Extraordinary With Yatharth IT Solutions',
+      title: 'Build Something Extraordinary With Orbiphera Technologies',
       subtitle: 'Premium website templates, powerful business software, and custom digital solutions — everything you need to turn your next big idea into reality.',
       data: {
         badge: 'Premium Digital Marketplace',
@@ -110,7 +110,7 @@ const INITIAL_DATA = {
     {
       _id: 'sec_2',
       sectionKey: 'why_nexvora',
-      title: 'Why Choose Yatharth IT Solutions',
+      title: 'Why Choose Orbiphera Technologies',
       subtitle: 'Engineered for speed, built for scale, and backed by expert engineering support.',
       data: {
         cards: [
@@ -171,13 +171,13 @@ const INITIAL_DATA = {
       slug: 'home',
       template: 'landing',
       status: 'published',
-      metaTitle: 'Yatharth It Solutions - Digital Products. Limitless Possibilities.',
-      metaDescription: 'Premium digital marketplace where businesses purchase ready-made website templates, SaaS solutions, and custom digital development.',
-      primaryKeyword: 'digital marketplace',
-      secondaryKeywords: ['website templates', 'business software', 'saas solutions'],
-      h1Heading: 'Build Something Extraordinary With Yatharth IT Solutions',
+      metaTitle: 'Orbiphera Technologies | Website, Software & App Development',
+      metaDescription: 'Orbiphera Technologies is a premier software development, custom web applications, mobile apps, and enterprise digital solutions engineering company.',
+      primaryKeyword: 'software development company',
+      secondaryKeywords: ['website development', 'business software', 'saas solutions'],
+      h1Heading: 'Build Something Extraordinary With Orbiphera Technologies',
       schemaType: 'WebPage',
-      content: '<h1>Build Something Extraordinary</h1><p>Welcome to Yatharth IT Solutions marketplace.</p>'
+      content: '<h1>Build Something Extraordinary</h1><p>Welcome to Orbiphera Technologies.</p>'
     },
     {
       _id: 'page_2',
@@ -185,7 +185,7 @@ const INITIAL_DATA = {
       slug: 'marketplace',
       template: 'default',
       status: 'published',
-      metaTitle: 'Explore Digital Products Marketplace | Yatharth It Solutions',
+      metaTitle: 'Explore Digital Products Marketplace | Orbiphera Technologies',
       metaDescription: 'Browse hundreds of vetted website templates and production-ready business software applications.',
       primaryKeyword: 'buy website templates',
       secondaryKeywords: ['digital software store', 'react templates'],

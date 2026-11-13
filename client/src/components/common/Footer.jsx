@@ -28,8 +28,8 @@ export default function Footer() {
   const [email, setEmail] = useState('')
   const [subscribing, setSubscribing] = useState(false)
 
-  const brandName = settings?.siteName || 'Yatharth IT Solutions'
-  const contactEmail = settings?.contactEmail || 'contact@yathartitsolutions.com'
+  const brandName = settings?.siteName || 'Orbiphera Technologies'
+  const contactEmail = settings?.contactEmail || 'contact@orbiphera.in'
   const contactPhone = settings?.contactPhone || '+91 98765 43210'
 
   const rawPhone = contactPhone.replace(/[^0-9]/g, '')
@@ -152,7 +152,7 @@ export default function Footer() {
         <div ref={topRowRef} className="grid grid-cols-1 lg:grid-cols-12 gap-8 pb-12 border-b border-white/10 items-start">
           {/* Brand Info (5 cols) */}
           <div className="lg:col-span-5 space-y-4">
-            <Link to="/" className="flex items-center space-x-3 group" aria-label="Yatharth IT Solutions">
+            <Link to="/" className="flex items-center space-x-3 group" aria-label="Orbiphera Technologies">
               <BrandLogo size="md" showText={true} theme="dark" textClassName="text-white text-base font-black tracking-tight" />
             </Link>
 

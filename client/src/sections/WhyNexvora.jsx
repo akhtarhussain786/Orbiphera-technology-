@@ -1,4 +1,4 @@
-import React from 'react'
+﻿import React from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import { 
   ShieldCheck, 
@@ -49,7 +49,7 @@ const WhyNexvora = () => {
   const { settings } = useSettings()
   const shouldReduceMotion = useReducedMotion()
 
-  const brandName = settings?.siteName || 'Yatharth IT Solutions'
+  const brandName = settings?.siteName || 'Orbiphera Technologies'
 
   const containerVariants = shouldReduceMotion ? {} : {
     hidden: { opacity: 0 },

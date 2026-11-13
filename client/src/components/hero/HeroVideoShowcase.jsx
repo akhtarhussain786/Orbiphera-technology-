@@ -44,7 +44,7 @@ const VIDEO_CHANNELS = [
     icon: Terminal,
     // Terminal visual mode with live telemetry
     isTerminal: true,
-    title: 'Yatharth IT Solutions Production Engine Telemetry',
+    title: 'Orbiphera Technologies Production Engine Telemetry',
     description: 'Live sprint telemetry, REST API throughput, and Flutter mobile synchronization.'
   }
 ]
@@ -127,7 +127,7 @@ export default function HeroVideoShowcase() {
           <div className="w-full h-full p-4 sm:p-5 font-mono text-xs text-slate-200 bg-[#0A0F1D] flex flex-col justify-between overflow-y-auto">
             <div className="space-y-2">
               <div className="flex items-center justify-between text-slate-400 pb-2 border-b border-white/10 text-[11px]">
-                <span>yatharth-it-cluster: v4.8.0 [x86_64-linux-prod]</span>
+                <span>orbiphera-cluster: v4.8.0 [x86_64-linux-prod]</span>
                 <span className="text-[#10B981] flex items-center space-x-1">
                   <span className="w-2 h-2 rounded-full bg-[#10B981] inline-block animate-pulse" />
                   <span>ALL SERVICES OPERATIONAL</span>
@@ -135,7 +135,7 @@ export default function HeroVideoShowcase() {
               </div>
 
               <div className="text-[#F5C542] pt-1">
-                $ yatharth deploy --target=production --cluster=asia-south1
+                $ orbiphera deploy --target=production --cluster=asia-south1
               </div>
               <div className="text-slate-300">
                 [OK] Compiled 2,601 frontend modules (Vite + React) in 1.4s
@@ -213,7 +213,7 @@ export default function HeroVideoShowcase() {
           </span>
         </div>
         <div className="text-[11px] text-slate-400 font-mono shrink-0">
-          ● Yatharth IT Solutions Showreel
+          ● Orbiphera Technologies Showreel
         </div>
       </div>
     </div>

@@ -1,17 +1,17 @@
 import React from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
-import { 
-  MapPin, 
-  Search, 
-  Code2, 
-  Headphones, 
-  CheckCircle2, 
-  ArrowRight, 
-  Building2, 
-  GraduationCap, 
-  Stethoscope, 
-  ShoppingBag, 
-  Dumbbell, 
+import {
+  MapPin,
+  Search,
+  Code2,
+  Headphones,
+  CheckCircle2,
+  ArrowRight,
+  Building2,
+  GraduationCap,
+  Stethoscope,
+  ShoppingBag,
+  Dumbbell,
   Sparkles,
   PhoneCall,
   MessageSquare
@@ -58,21 +58,21 @@ export default function LocalTrustSection() {
   const whatsappNumber = rawPhone.length === 10 ? `91${rawPhone}` : rawPhone
 
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-    'Hello Yatharth IT Solutions! I am based in Siwan/Bihar and would like to discuss a website/software project.'
+    'Hello Orbiphera Technologies! I am based in Siwan/Bihar and would like to discuss a website/software project.'
   )}`
 
   return (
-    <section 
-      id="local-presence" 
+    <section
+      id="local-presence"
       className="scroll-mt-28 py-10 sm:py-16 lg:py-24 bg-[#0F0F11] border-t border-white/[0.06] relative overflow-hidden text-white"
     >
       {/* Background Radial Glow */}
-      <div 
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[350px] bg-[#E50914]/8 rounded-full blur-[150px] pointer-events-none" 
+      <div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[350px] bg-[#E50914]/8 rounded-full blur-[150px] pointer-events-none"
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14 space-y-4">
           <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-[#121214] border border-[#E50914]/30 text-[#FF2A36] text-xs font-mono font-bold tracking-wider uppercase shadow-sm">
@@ -83,7 +83,7 @@ export default function LocalTrustSection() {
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.1]">
             Why Businesses in Siwan Choose{' '}
             <span className="text-[#FF2A36] relative inline-block">
-              Yatharth IT Solutions.
+              Orbiphera Technologies.
             </span>
           </h2>
 
@@ -153,7 +153,7 @@ export default function LocalTrustSection() {
             {LOCAL_INDUSTRIES.map((ind, idx) => {
               const IndIcon = ind.icon
               return (
-                <div 
+                <div
                   key={idx}
                   className="p-4 rounded-2xl bg-[#0B0B0C] border border-white/5 hover:border-white/20 transition-colors space-y-2"
                 >

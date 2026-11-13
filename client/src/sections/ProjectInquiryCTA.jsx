@@ -32,7 +32,7 @@ export default function ProjectInquiryCTA() {
   })
   const [submitting, setSubmitting] = useState(false)
 
-  const brandName = settings?.siteName || 'Yatharth IT Solutions'
+  const brandName = settings?.siteName || 'Orbiphera Technologies'
   const contactEmail = settings?.contactEmail || 'contact@yathartitsolutions.com'
   const contactPhone = settings?.contactPhone || '+91 98765 43210'
   const rawPhone = contactPhone.replace(/[^0-9]/g, '')

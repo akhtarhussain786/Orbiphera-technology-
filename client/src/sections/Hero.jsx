@@ -393,7 +393,7 @@ export default function Hero() {
             <div className="flex items-center justify-between pb-3 border-b border-white/10">
               <div className="flex items-center space-x-2">
                 <span className="w-2.5 h-2.5 rounded-full bg-[#E50914] animate-pulse" />
-                <h3 className="text-base font-bold text-white">Yatharth IT Solutions - System Walkthrough</h3>
+                <h3 className="text-base font-bold text-white">Orbiphera Technologies - System Walkthrough</h3>
               </div>
               <button
                 type="button"
@@ -407,7 +407,7 @@ export default function Hero() {
             <div className="relative aspect-video rounded-2xl overflow-hidden bg-black border border-white/10">
               <iframe
                 src="https://www.youtube-nocookie.com/embed/joiyb6c_Ry4?autoplay=1&mute=0&controls=1&modestbranding=1&rel=0"
-                title="Yatharth IT Solutions Showcase"
+                title="Orbiphera Technologies Showcase"
                 className="w-full h-full object-cover"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen

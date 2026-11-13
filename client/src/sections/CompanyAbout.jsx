@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+﻿import React, { useEffect, useRef } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import { 
   ShieldCheck, 
@@ -23,7 +23,7 @@ export default function CompanyAbout() {
   const statsContainerRef = useRef(null)
   const shouldReduceMotion = useReducedMotion()
 
-  const brandName = settings?.siteName || 'Yatharth IT Solutions'
+  const brandName = settings?.siteName || 'Orbiphera Technologies'
 
   const highlights = [
     { title: 'Clean Architecture First', desc: 'Codebases engineered with strict modularity, automated testing, and long-term maintainability.' },

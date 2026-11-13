@@ -1,11 +1,11 @@
-import React from 'react'
+﻿import React from 'react'
 import { Outlet, Link } from 'react-router-dom'
 import { Hexagon } from 'lucide-react'
 import { useSettings } from '../context/SettingsContext'
 
 const AuthLayout = () => {
   const { settings } = useSettings()
-  const siteName = settings?.siteName || 'Yatharth IT Solutions'
+  const siteName = settings?.siteName || 'Orbiphera Technologies'
 
   return (
     <div className="min-h-screen bg-[#F8F7F4] text-[#111827] flex flex-col justify-between relative overflow-hidden">

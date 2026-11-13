@@ -5,7 +5,7 @@ import WebsiteSetting from '../models/WebsiteSetting.model.js'
 export const generateSitemapXml = async (req, res) => {
   try {
     const setting = await WebsiteSetting.findOne()
-    const baseUrl = process.env.CLIENT_URL || `http://${req.headers.host || 'localhost:5173'}`
+    const baseUrl = process.env.CLIENT_URL || (req.headers.host?.includes('orbiphera.in') ? 'https://orbiphera.in' : `http://${req.headers.host || 'localhost:5173'}`)
 
     const pages = await Page.find({ status: 'published' }).sort({ updatedAt: -1 })
     const products = await Product.find({ status: 'published' }).sort({ updatedAt: -1 })
@@ -60,7 +60,7 @@ export const generateSitemapXml = async (req, res) => {
 
 export const generateRobotsTxt = async (req, res) => {
   try {
-    const baseUrl = process.env.CLIENT_URL || `http://${req.headers.host || 'localhost:5173'}`
+    const baseUrl = process.env.CLIENT_URL || (req.headers.host?.includes('orbiphera.in') ? 'https://orbiphera.in' : `http://${req.headers.host || 'localhost:5173'}`)
     const setting = await WebsiteSetting.findOne()
 
     let content = `User-agent: *\n`

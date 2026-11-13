@@ -19,15 +19,15 @@ import { useSettings } from '../context/SettingsContext'
 
 const Home = () => {
   const { settings } = useSettings()
-  const siteName = settings?.siteName || 'Yatharth IT Solutions'
+  const siteName = settings?.siteName || 'Orbiphera Technologies'
 
   return (
     <div className="bg-[#0B0B0C] min-h-screen text-[#FFFFFF] font-sans antialiased selection:bg-[#E50914] selection:text-white">
       <SeoHead
-        title={`Best Website Company in Siwan | Web & Software Development - ${siteName}`}
-        description="Looking for the best website company in Siwan? Yatharth IT Solutions is the #1 web development, mobile app, and custom software company in Siwan, Bihar. 100% custom-built, fast, and SEO-ready."
-        keywords={`best website company in siwan, website development company in siwan, web design siwan, software company in siwan, app development company in siwan bihar, website designer in siwan, IT company in siwan, web development bihar, ${siteName} Siwan`}
-        canonical="https://yathartitsolutions.com/"
+        title={settings?.defaultMetaTitle || 'Orbiphera Technologies | Website, Software & App Development'}
+        description={settings?.defaultMetaDescription || 'Orbiphera Technologies is a premier software development, custom web applications, mobile apps, and enterprise digital solutions engineering company. Scalable, high-performance, and SEO-ready.'}
+        keywords={`Orbiphera Technologies, Orbiphera Technology, website development company, custom software development, mobile app development, enterprise digital solutions, ${siteName}`}
+        canonical="https://orbiphera.in/"
         faqs={FAQ_ITEMS}
       />
 

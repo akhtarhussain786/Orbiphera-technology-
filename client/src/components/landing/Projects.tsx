@@ -64,7 +64,7 @@ export const LandingProjects: React.FC = () => {
                     <div className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
                   </div>
                   <span className="text-[10px] text-gray-400 font-mono tracking-wider">
-                    {proj.id}.yatharthit.com
+                    {proj.id}.orbiphera.in
                   </span>
                   <div className="w-8" />
                 </div>

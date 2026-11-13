@@ -98,7 +98,7 @@ export default function WhyChooseUs() {
           <h2 className="reveal-item text-2xl sm:text-4xl lg:text-[46px] font-black text-white tracking-tight leading-[1.12]">
             Why Businesses Choose{' '}
             <span className="text-[#E50914] relative inline-block">
-              Yatharth IT Solutions.
+              Orbiphera Technologies.
             </span>
           </h2>
 

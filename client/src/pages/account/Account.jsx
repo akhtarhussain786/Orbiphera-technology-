@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+﻿import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { 
@@ -20,7 +20,7 @@ export default function Account() {
   const navigate = useNavigate()
 
   const [activeTab, setActiveTab] = useState('licenses')
-  const siteName = settings?.siteName || 'Yatharth IT Solutions'
+  const siteName = settings?.siteName || 'Orbiphera Technologies'
 
   const mockPurchases = [
     {

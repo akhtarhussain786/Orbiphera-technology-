@@ -84,11 +84,11 @@ export async function seedInitialData() {
     let existingSettings = await WebsiteSetting.findOne()
     if (!existingSettings) {
       existingSettings = await WebsiteSetting.create({
-        siteName: 'Yatharth It Solutions',
-        tagline: 'Digital Products. Limitless Possibilities.',
-        contactEmail: 'contact@yathartitsolutions.com',
+        siteName: 'Orbiphera Technologies',
+        tagline: 'Website, Software & App Development',
+        contactEmail: 'contact@orbiphera.in',
         contactPhone: '+91 98765 43210',
-        address: 'Yathart IT Solutions, Digital Tech Hub, India',
+        address: 'Orbiphera Technologies, Digital Tech Hub, India',
         socialLinks: {
           twitter: 'https://twitter.com',
           linkedin: 'https://linkedin.com',
@@ -96,17 +96,25 @@ export async function seedInitialData() {
           instagram: 'https://instagram.com',
           facebook: 'https://facebook.com'
         },
-        defaultMetaTitle: 'Yatharth It Solutions - Digital Products & Solutions Marketplace',
-        defaultMetaDescription: 'Premium digital marketplace where businesses purchase ready-made website templates, business software, SaaS solutions, and custom digital engineering.',
+        defaultMetaTitle: 'Orbiphera Technologies | Website, Software & App Development',
+        defaultMetaDescription: 'Orbiphera Technologies is a premier software development, custom web applications, mobile apps, and enterprise digital solutions engineering company. Scalable, high-performance, and SEO-ready.',
         maintenanceMode: false
       })
-      console.log('✅ Seeded Website Settings for Yatharth It Solutions')
-    } else if (existingSettings.siteName === 'NEXVORA') {
-      existingSettings.siteName = 'Yatharth It Solutions'
-      existingSettings.contactEmail = 'contact@yathartitsolutions.com'
-      existingSettings.defaultMetaTitle = 'Yatharth It Solutions - Digital Products & Solutions Marketplace'
+      console.log('✅ Seeded Website Settings for Orbiphera Technologies')
+    } else if (
+      existingSettings.siteName === 'NEXVORA' ||
+      existingSettings.siteName === 'Yatharth It Solutions' ||
+      existingSettings.siteName === 'Yatharth IT Solutions' ||
+      existingSettings.defaultMetaTitle?.includes('Yatharth')
+    ) {
+      existingSettings.siteName = 'Orbiphera Technologies'
+      existingSettings.tagline = 'Website, Software & App Development'
+      existingSettings.contactEmail = 'contact@orbiphera.in'
+      existingSettings.address = 'Orbiphera Technologies, Digital Tech Hub, India'
+      existingSettings.defaultMetaTitle = 'Orbiphera Technologies | Website, Software & App Development'
+      existingSettings.defaultMetaDescription = 'Orbiphera Technologies is a premier software development, custom web applications, mobile apps, and enterprise digital solutions engineering company. Scalable, high-performance, and SEO-ready.'
       await existingSettings.save()
-      console.log('✅ Updated Website Settings to Yatharth It Solutions in MongoDB')
+      console.log('✅ Migrated Website Settings to Orbiphera Technologies in MongoDB')
     }
 
     // 3. Ensure Navigation Menus
