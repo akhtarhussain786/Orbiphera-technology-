@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: orbiphera-backend
+    env: node
+    plan: free
+    region: singapore
+    buildCommand: npm --prefix server install
+    startCommand: node server/src/server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: CLIENT_URL
+        value: https://orbiphera.in
