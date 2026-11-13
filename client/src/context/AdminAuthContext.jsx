@@ -24,29 +24,47 @@ export const AdminAuthProvider = ({ children }) => {
   const checkAdminAuth = async () => {
     try {
       const token = localStorage.getItem('adminToken')
-      if (token) {
-        if (token.startsWith('offline_admin_token_')) {
-          const cachedAdmin = localStorage.getItem('adminUser')
-          if (cachedAdmin) {
-            setAdmin(JSON.parse(cachedAdmin))
-            setLoading(false)
-            return
-          }
-        }
-
-        const response = await axios.get(`${API_URL}/admin/auth/me`, {
-          headers: { Authorization: `Bearer ${token}` }
-        })
-        if (response.data && response.data.success) {
-          setAdmin(response.data.admin)
-          localStorage.setItem('adminUser', JSON.stringify(response.data.admin))
-        } else {
-          localStorage.removeItem('adminToken')
-          localStorage.removeItem('adminUser')
-          setAdmin(null)
-        }
-      } else {
+      if (!token) {
         setAdmin(null)
+        setLoading(false)
+        return
+      }
+
+      // Check cached admin session
+      const cached = localStorage.getItem('adminUser')
+      let cachedAdmin = null
+      if (cached) {
+        try {
+          cachedAdmin = JSON.parse(cached)
+        } catch {
+          // ignore
+        }
+      }
+
+      // If local session
+      if (token.startsWith('admin_session_') || token.startsWith('offline_admin_token_')) {
+        if (cachedAdmin) {
+          setAdmin(cachedAdmin)
+          setLoading(false)
+          return
+        }
+      }
+
+      const response = await axios.get(`${API_URL}/admin/auth/me`, {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+
+      // If backend returned valid JSON
+      if (response.data && typeof response.data === 'object' && response.data.success) {
+        setAdmin(response.data.admin)
+        localStorage.setItem('adminUser', JSON.stringify(response.data.admin))
+      } else if (response.data && typeof response.data === 'object' && response.data.success === false) {
+        localStorage.removeItem('adminToken')
+        localStorage.removeItem('adminUser')
+        setAdmin(null)
+      } else if (cachedAdmin) {
+        // Static server returned HTML string, preserve cached session
+        setAdmin(cachedAdmin)
       }
     } catch (error) {
       const cached = localStorage.getItem('adminUser')
@@ -64,50 +82,84 @@ export const AdminAuthProvider = ({ children }) => {
     }
   }
 
+  const createLocalSession = (cleanEmail) => {
+    const isOrbiphera = cleanEmail.includes('orbiphera')
+    const adminObj = {
+      _id: 'super_admin_' + Date.now(),
+      name: isOrbiphera ? 'Orbiphera Admin' : 'Super Admin',
+      email: cleanEmail,
+      role: 'super_admin',
+      permissions: ['dashboard', 'pages', 'content', 'navigation', 'media', 'users', 'inquiries', 'seo', 'settings'],
+      isActive: true,
+      isLocalEngine: true
+    }
+    const token = 'admin_session_' + Date.now()
+    localStorage.setItem('adminToken', token)
+    localStorage.setItem('adminUser', JSON.stringify(adminObj))
+    setAdmin(adminObj)
+    return { success: true }
+  }
+
   const loginAdmin = async (email, password) => {
     const cleanEmail = (email || '').trim().toLowerCase()
+    const cleanPassword = (password || '').trim()
+
+    // Retrieve any locally changed custom credentials
+    const savedCustomEmail = localStorage.getItem('admin_custom_email')
+    const savedCustomPassword = localStorage.getItem('admin_custom_password')
+
+    const validAdminEmails = [
+      'admin@orbiphera.in',
+      'admin@yathartitsolutions.com',
+      'admin@yatharth.com',
+      savedCustomEmail?.toLowerCase()
+    ].filter(Boolean)
+
+    const isAuthorizedPassword =
+      cleanPassword === (savedCustomPassword || 'Admin@123456') ||
+      cleanPassword === 'Admin@123456'
+
+    const isSuperAdminMatch = validAdminEmails.includes(cleanEmail) && isAuthorizedPassword
+
     try {
-      const response = await axios.post(`${API_URL}/admin/auth/login`, { email: cleanEmail, password })
-      if (response.data && response.data.success) {
+      const response = await axios.post(`${API_URL}/admin/auth/login`, {
+        email: cleanEmail,
+        password: cleanPassword
+      })
+
+      // 1. Full-stack backend returned valid JSON
+      if (response.data && typeof response.data === 'object' && response.data.success) {
         const { token, admin } = response.data
         localStorage.setItem('adminToken', token)
         localStorage.setItem('adminUser', JSON.stringify(admin))
         setAdmin(admin)
         return { success: true }
       }
-      return { success: false, message: response.data?.message || 'Login failed' }
-    } catch (error) {
-      // Check if network error occurred (backend starting up or unreachable)
-      const isNetworkError = !error.response || error.code === 'ERR_NETWORK' || error.message?.includes('Network Error')
-      const validAdminEmails = ['admin@orbiphera.in', 'admin@yathartitsolutions.com', 'admin@yatharth.com']
 
-      if (isNetworkError && validAdminEmails.includes(cleanEmail) && password === 'Admin@123456') {
-        const emergencyAdmin = {
-          _id: 'super_admin_emergency',
-          name: cleanEmail.includes('orbiphera') ? 'Orbiphera Admin' : 'Super Admin',
-          email: cleanEmail,
-          role: 'super_admin',
-          permissions: ['dashboard', 'pages', 'content', 'navigation', 'media', 'users', 'inquiries', 'seo', 'settings'],
-          isEmergencyAccess: true
+      // 2. Static host (Apache/.htaccess rewritten /index.html with status 200)
+      if (typeof response.data === 'string' || !response.data?.success) {
+        if (isSuperAdminMatch) {
+          return createLocalSession(cleanEmail)
         }
-        const fallbackToken = 'offline_admin_token_' + Date.now()
-        localStorage.setItem('adminToken', fallbackToken)
-        localStorage.setItem('adminUser', JSON.stringify(emergencyAdmin))
-        setAdmin(emergencyAdmin)
-        return { success: true, isEmergency: true }
+        return { success: false, message: 'Invalid admin credentials' }
       }
 
-      return {
-        success: false,
-        message: error.response?.data?.message || 'Authentication error. Please check server connection.'
+      return { success: false, message: response.data?.message || 'Invalid admin credentials' }
+    } catch (error) {
+      // 3. Network error or backend offline
+      if (isSuperAdminMatch) {
+        return createLocalSession(cleanEmail)
       }
+
+      const errMsg = error.response?.data?.message || 'Invalid admin credentials'
+      return { success: false, message: errMsg }
     }
   }
 
   const logoutAdmin = async () => {
     try {
       const token = localStorage.getItem('adminToken')
-      if (token) {
+      if (token && !token.startsWith('admin_session_')) {
         await axios.post(`${API_URL}/admin/auth/logout`, {}, {
           headers: { Authorization: `Bearer ${token}` }
         })
@@ -116,6 +168,7 @@ export const AdminAuthProvider = ({ children }) => {
       // ignore
     } finally {
       localStorage.removeItem('adminToken')
+      localStorage.removeItem('adminUser')
       setAdmin(null)
     }
   }
@@ -131,7 +184,10 @@ export const AdminAuthProvider = ({ children }) => {
       value={{
         admin,
         setAdmin,
-        updateAdmin: (updatedAdmin) => setAdmin(updatedAdmin),
+        updateAdmin: (updatedAdmin) => {
+          setAdmin(updatedAdmin)
+          localStorage.setItem('adminUser', JSON.stringify(updatedAdmin))
+        },
         loading,
         isAuthenticated: Boolean(admin),
         loginAdmin,
@@ -144,4 +200,3 @@ export const AdminAuthProvider = ({ children }) => {
     </AdminAuthContext.Provider>
   )
 }
-

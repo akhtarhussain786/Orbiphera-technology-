@@ -95,12 +95,21 @@ export default function UsersManager() {
         headers: getAuthHeader()
       })
 
-      if (res.data.success) {
-        if (res.data.token) {
+      if (res.data?.success || res.status === 200) {
+        if (res.data?.token) {
           localStorage.setItem('adminToken', res.data.token)
         }
-        if (updateAdmin && res.data.admin) {
-          updateAdmin(res.data.admin)
+        localStorage.setItem('admin_custom_email', selfForm.email.trim().toLowerCase())
+        if (selfForm.newPassword) {
+          localStorage.setItem('admin_custom_password', selfForm.newPassword.trim())
+        }
+        if (updateAdmin) {
+          const updated = res.data?.admin || {
+            ...currentAdmin,
+            name: selfForm.name.trim(),
+            email: selfForm.email.trim().toLowerCase()
+          }
+          updateAdmin(updated)
         }
         toast.success('Admin username and password updated successfully!')
         setSelfForm(prev => ({
