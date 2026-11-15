@@ -39,6 +39,12 @@ import Billing from './pages/account/Billing'
 import AdminDashboard from './pages/admin/Dashboard'
 import NotFound from './pages/NotFound'
 import LandingPage from './pages/LandingPage'
+import { useAnalyticsTracker } from './hooks/useAnalyticsTracker'
+
+function AnalyticsTracker() {
+  useAnalyticsTracker()
+  return null
+}
 
 function App() {
   return (
@@ -48,6 +54,7 @@ function App() {
           <CartProvider>
             <WishlistProvider>
           <Router>
+            <AnalyticsTracker />
             <Routes>
               {/* Main Layout Routes */}
               <Route path="/" element={<MainLayout />}>

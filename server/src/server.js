@@ -24,6 +24,7 @@ import inquiriesAdminRoutes from './routes/inquiriesAdmin.routes.js'
 import settingsAdminRoutes from './routes/settingsAdmin.routes.js'
 import seoAdminRoutes from './routes/seoAdmin.routes.js'
 import sitemapRoutes from './routes/sitemap.routes.js'
+import analyticsRoutes from './routes/analytics.routes.js'
 
 // Middleware & Utilities
 import { trackVisitor } from './middleware/tracking.middleware.js'
@@ -111,6 +112,8 @@ app.get('/api/health', (req, res) => {
 })
 
 // Public & Customer Routes
+app.use('/api/analytics', analyticsRoutes)
+app.use('/api', analyticsRoutes)
 app.use('/api/auth', authRoutes)
 app.use('/api/products', productRoutes)
 app.use('/api/categories', categoryRoutes)
@@ -121,6 +124,7 @@ app.use('/api/navigation', navigationRoutes)
 app.use('/api/settings', settingsAdminRoutes)
 
 // Advanced Admin Panel Routes
+app.use('/api/admin/analytics', analyticsRoutes)
 app.use('/api/admin/auth', adminAuthRoutes)
 app.use('/api/admin/dashboard', adminDashboardRoutes)
 app.use('/api/admin/pages', pagesRoutes)

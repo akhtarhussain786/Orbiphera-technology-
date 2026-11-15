@@ -29,6 +29,7 @@ import { useSettings } from '../context/SettingsContext'
 import BrandLogo from '../components/common/BrandLogo'
 import AdminLogin from '../pages/admin/AdminLogin'
 import Dashboard from '../pages/admin/Dashboard'
+import AnalyticsManager from '../pages/admin/AnalyticsManager'
 import PagesManager from '../pages/admin/PagesManager'
 import ContentManager from '../pages/admin/ContentManager'
 import ProductsManager from '../pages/admin/ProductsManager'
@@ -76,7 +77,8 @@ export default function AdminLayout() {
     {
       group: 'Overview',
       items: [
-        { id: 'dashboard', label: 'Executive Dashboard', icon: LayoutDashboard }
+        { id: 'dashboard', label: 'Executive Dashboard', icon: LayoutDashboard },
+        { id: 'analytics', label: 'Real Human Analytics', icon: Activity, badge: 'REAL-TIME' }
       ]
     },
     {
@@ -116,6 +118,8 @@ export default function AdminLayout() {
     switch (activeTab) {
       case 'dashboard':
         return <Dashboard setActiveTab={setActiveTab} />
+      case 'analytics':
+        return <AnalyticsManager />
       case 'pages':
         return <PagesManager />
       case 'content':

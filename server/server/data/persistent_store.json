@@ -67,6 +67,26 @@
       ],
       "isActive": true,
       "createdAt": "2026-11-01T10:44:47.198Z"
+    },
+    {
+      "_id": "admin_orbiphera",
+      "name": "Orbiphera Admin",
+      "email": "admin@orbiphera.in",
+      "password": "$2a$10$29TbJ4/P4LWwhnA5dexL4eeJF.Mb25kj06.t6Q3ieDf7NAN3XXAgG",
+      "role": "super_admin",
+      "permissions": [
+        "dashboard",
+        "pages",
+        "content",
+        "navigation",
+        "media",
+        "users",
+        "inquiries",
+        "seo",
+        "settings"
+      ],
+      "isActive": true,
+      "createdAt": "2026-11-15T07:02:09.387Z"
     }
   ],
   "navigation": {

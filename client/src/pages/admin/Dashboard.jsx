@@ -262,8 +262,14 @@ export default function Dashboard({ setActiveTab }) {
             </span>
           </div>
           <div className="mt-3 pt-3 border-t border-white/5 flex items-center justify-between text-[11px] text-gray-400">
-            <span>Impressions recorded:</span>
-            <span className="font-mono text-white font-semibold">{totalPageViewsVal}</span>
+            <button
+              onClick={() => setActiveTab('analytics')}
+              className="text-[#FFC800] hover:underline font-semibold flex items-center"
+            >
+              <span>Live Human Analytics</span>
+              <ChevronRight className="w-3 h-3 ml-0.5" />
+            </button>
+            <span className="font-mono text-white font-semibold">{totalPageViewsVal} views</span>
           </div>
         </div>
 
@@ -443,10 +449,16 @@ export default function Dashboard({ setActiveTab }) {
 
           <div className="mt-4 pt-3 border-t border-white/5 flex flex-wrap items-center justify-between text-[11px] text-gray-400 gap-2">
             <span className="flex items-center space-x-1.5">
-              <span className="w-2 h-2 rounded-full bg-emerald-400" />
-              <span>Tracking IP hash hashing enabled (GDPR compliant)</span>
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span>Multi-layer bot filtering & privacy hashing active</span>
             </span>
-            <span className="font-mono text-gray-500">Live Traffic Stream Active</span>
+            <button
+              onClick={() => setActiveTab('analytics')}
+              className="text-[#FFC800] hover:underline font-bold flex items-center space-x-1"
+            >
+              <span>View Deep Real-Time Analytics</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </button>
           </div>
         </div>
 

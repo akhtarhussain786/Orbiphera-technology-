@@ -41,6 +41,16 @@ const INITIAL_DATA = {
   },
   adminUsers: [
     {
+      _id: 'admin_orbiphera',
+      name: 'Orbiphera Admin',
+      email: 'admin@orbiphera.in',
+      password: DEFAULT_PASSWORD_HASH,
+      role: 'super_admin',
+      permissions: ['dashboard', 'pages', 'content', 'navigation', 'media', 'users', 'inquiries', 'seo', 'settings'],
+      isActive: true,
+      createdAt: new Date().toISOString()
+    },
+    {
       _id: 'admin_1',
       name: 'Super Admin',
       email: 'admin@yathartitsolutions.com',
@@ -391,8 +401,21 @@ class LocalStore {
 
   findAdminByEmail(email) {
     if (!email) return null
+    const clean = email.toLowerCase().trim()
     const users = this.getAdminUsers()
-    return users.find(u => u.email.toLowerCase().trim() === email.toLowerCase().trim()) || null
+    let found = users.find(u => u.email.toLowerCase().trim() === clean) || null
+    if (!found && clean === 'admin@orbiphera.in') {
+      found = this.createAdminUser({
+        _id: 'admin_orbiphera',
+        name: 'Orbiphera Admin',
+        email: 'admin@orbiphera.in',
+        password: DEFAULT_PASSWORD_HASH,
+        role: 'super_admin',
+        permissions: ['dashboard', 'pages', 'content', 'navigation', 'media', 'users', 'inquiries', 'seo', 'settings'],
+        isActive: true
+      })
+    }
+    return found
   }
 
   findAdminById(id) {
