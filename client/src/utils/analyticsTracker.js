@@ -193,3 +193,4 @@ export function sendHeartbeat(seconds = 30) {
     }).catch(() => {})
   } catch (_) {}
 }
+

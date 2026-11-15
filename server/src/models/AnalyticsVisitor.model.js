@@ -119,3 +119,4 @@ analyticsVisitorSchema.index({ countryCode: 1, isHuman: 1 })
 const AnalyticsVisitor = mongoose.model('AnalyticsVisitor', analyticsVisitorSchema)
 
 export default AnalyticsVisitor
+

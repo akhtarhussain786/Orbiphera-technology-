@@ -40,6 +40,7 @@ import AdminDashboard from './pages/admin/Dashboard'
 import NotFound from './pages/NotFound'
 import LandingPage from './pages/LandingPage'
 import { useAnalyticsTracker } from './hooks/useAnalyticsTracker'
+import ErrorBoundary from './components/common/ErrorBoundary'
 
 function AnalyticsTracker() {
   useAnalyticsTracker()
@@ -48,14 +49,15 @@ function AnalyticsTracker() {
 
 function App() {
   return (
-    <AuthProvider>
-      <AdminAuthProvider>
-        <SettingsProvider>
-          <CartProvider>
-            <WishlistProvider>
-          <Router>
-            <AnalyticsTracker />
-            <Routes>
+    <ErrorBoundary>
+      <AuthProvider>
+        <AdminAuthProvider>
+          <SettingsProvider>
+            <CartProvider>
+              <WishlistProvider>
+            <Router>
+              <AnalyticsTracker />
+              <Routes>
               {/* Main Layout Routes */}
               <Route path="/" element={<MainLayout />}>
                 <Route index element={<Home />} />
@@ -130,6 +132,7 @@ function App() {
     </SettingsProvider>
   </AdminAuthProvider>
 </AuthProvider>
+</ErrorBoundary>
   )
 }
 

@@ -71,3 +71,4 @@ analyticsBotLogSchema.index({ botCategory: 1, timestamp: -1 })
 const AnalyticsBotLog = mongoose.model('AnalyticsBotLog', analyticsBotLogSchema)
 
 export default AnalyticsBotLog
+

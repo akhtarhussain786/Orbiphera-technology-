@@ -249,3 +249,4 @@ export function detectBot(req, clientSignals = {}) {
     confidence: 96
   }
 }
+

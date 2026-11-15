@@ -76,3 +76,4 @@ analyticsPageViewSchema.index({ path: 1, trafficType: 1 })
 const AnalyticsPageView = mongoose.model('AnalyticsPageView', analyticsPageViewSchema)
 
 export default AnalyticsPageView
+

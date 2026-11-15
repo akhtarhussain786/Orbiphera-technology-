@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import {
   LayoutDashboard,
+  Activity,
   FileText,
   Layers,
   Briefcase,
@@ -26,6 +27,7 @@ import {
 } from 'lucide-react'
 import { useAdminAuth } from '../context/AdminAuthContext'
 import { useSettings } from '../context/SettingsContext'
+import ErrorBoundary from '../components/common/ErrorBoundary'
 import BrandLogo from '../components/common/BrandLogo'
 import AdminLogin from '../pages/admin/AdminLogin'
 import Dashboard from '../pages/admin/Dashboard'
@@ -433,7 +435,9 @@ export default function AdminLayout() {
 
         {/* Viewport Content */}
         <div className="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl w-full mx-auto">
-          {renderActiveView()}
+          <ErrorBoundary>
+            {renderActiveView()}
+          </ErrorBoundary>
         </div>
       </main>
     </div>

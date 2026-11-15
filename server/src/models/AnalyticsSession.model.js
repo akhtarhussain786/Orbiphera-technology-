@@ -109,3 +109,4 @@ analyticsSessionSchema.index({ startedAt: -1, trafficType: 1 })
 const AnalyticsSession = mongoose.model('AnalyticsSession', analyticsSessionSchema)
 
 export default AnalyticsSession
+
