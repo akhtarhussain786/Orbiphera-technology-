@@ -28,7 +28,7 @@ const SERVICES = [
       'Custom Web Applications',
       'PHP, Laravel & React Architectures'
     ],
-    link: '/custom-development?service=website'
+    link: '/services/website-development'
   },
   {
     id: 'mobile-app-development',
@@ -43,7 +43,7 @@ const SERVICES = [
       'Biometric & GPS Telemetry',
       'Secure REST & WebSocket APIs'
     ],
-    link: '/custom-development?service=mobile'
+    link: '/services/mobile-app-development'
   },
   {
     id: 'erp-software-development',
@@ -58,7 +58,7 @@ const SERVICES = [
       'Inventory & Warehouse Logistics',
       'Finance, Billing & GST Accounting'
     ],
-    link: '/software?category=erp'
+    link: '/services/erp-software-development'
   },
   {
     id: 'ems-employee-management',
@@ -73,7 +73,7 @@ const SERVICES = [
       'Live Employee Tracking & Visits',
       'Role-Based Granular Access (RBAC)'
     ],
-    link: '/software?category=ems'
+    link: '/services/it-solutions'
   },
   {
     id: 'crm-development',
@@ -88,7 +88,7 @@ const SERVICES = [
       'Live Performance Dashboards',
       'Detailed Analytics & Exportable Reports'
     ],
-    link: '/custom-development?service=crm'
+    link: '/services/crm-software-development'
   },
   {
     id: 'custom-software-development',
@@ -103,7 +103,7 @@ const SERVICES = [
       'Third-Party API & Cloud Integrations',
       'Full Source Code Ownership'
     ],
-    link: '/custom-development?service=custom'
+    link: '/services/custom-software-development'
   }
 ]
 

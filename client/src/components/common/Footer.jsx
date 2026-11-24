@@ -90,12 +90,23 @@ export default function Footer() {
     {
       title: 'OUR SERVICES',
       links: [
-        { name: 'Website Development', href: '/#services' },
-        { name: 'Mobile App Development', href: '/#services' },
-        { name: 'ERP Software Development', href: '/#services' },
-        { name: 'EMS – Employee Management', href: '/#services' },
-        { name: 'CRM Development', href: '/#services' },
-        { name: 'Custom Software Solutions', href: '/#services' }
+        { name: 'Website Development', href: '/services/website-development' },
+        { name: 'Mobile App Development', href: '/services/mobile-app-development' },
+        { name: 'Flutter App Development', href: '/services/flutter-app-development' },
+        { name: 'Android App Development', href: '/services/android-app-development' },
+        { name: 'ERP Software Development', href: '/services/erp-software-development' },
+        { name: 'Custom Software & CRM', href: '/services/custom-software-development' }
+      ]
+    },
+    {
+      title: 'REGIONAL HUBS & SEO',
+      links: [
+        { name: 'All Services Catalog', href: '/services' },
+        { name: 'Bihar IT Services Hub', href: '/locations/bihar' },
+        { name: 'Patna Tech Center', href: '/locations/patna' },
+        { name: 'Siwan & Chapra Office', href: '/locations/siwan' },
+        { name: 'All Locations Hub', href: '/locations' },
+        { name: 'Engineering Blog & Guides', href: '/blog' }
       ]
     },
     {
@@ -109,19 +120,9 @@ export default function Footer() {
       ]
     },
     {
-      title: 'HOW WE WORK',
-      links: [
-        { name: 'Why Choose Us (6 Pillars)', href: '/#why-us' },
-        { name: 'About Our Company', href: '/#about' },
-        { name: '5-Step Workflow Process', href: '/#process' },
-        { name: 'Completed Portfolio', href: '/#work' },
-        { name: 'Industries We Serve', href: '/#industries' },
-        { name: 'Direct Architecture Team', href: '/#team' }
-      ]
-    },
-    {
       title: 'COMPANY & CONTACT',
       links: [
+        { name: 'Why Choose Us (6 Pillars)', href: '/#why-us' },
         { name: 'Client Reviews & Testimonials', href: '/#reviews' },
         { name: 'Frequently Asked Questions', href: '/#faq' },
         { name: 'Request Free Consultation', href: '#contact' },

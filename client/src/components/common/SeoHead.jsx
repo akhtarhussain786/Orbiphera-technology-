@@ -9,13 +9,18 @@ export default function SeoHead({
   ogImage = '',
   ogType = 'website',
   schemaJson = null,
-  faqs = null
+  faqs = null,
+  breadcrumbs = null,
+  service = null,
+  article = null,
+  localBusiness = null
 }) {
   const { settings } = useSettings()
 
   useEffect(() => {
     const siteName = settings?.siteName || 'Orbiphera Technologies'
     const tagline = settings?.tagline || 'Website, Software & App Development'
+    const baseSiteUrl = 'https://orbiphera.in'
 
     // 1. Set document title
     let resolvedTitle = title
@@ -41,24 +46,33 @@ export default function SeoHead({
     // 2. Standard Meta tags
     const defaultDescription = 'Orbiphera Technologies is a premier software development, custom web applications, mobile apps, and enterprise digital solutions engineering company. Scalable, high-performance, and SEO-ready.'
     const resolvedDesc = description || settings?.defaultMetaDescription || defaultDescription
-    const resolvedKeywords = keywords || 'Orbiphera Technologies, Orbiphera Technology, website development company, custom software development, mobile app development, enterprise digital solutions, ' + siteName
+    const resolvedKeywords = keywords || 'Orbiphera Technologies, website development company, custom software development, mobile app development, flutter app development, android app development, enterprise digital solutions, Bihar, India'
 
     setMetaTag('name', 'description', resolvedDesc)
     setMetaTag('name', 'keywords', resolvedKeywords)
     setMetaTag('name', 'author', siteName)
-    setMetaTag('name', 'robots', 'index, follow, max-snippet:-1, max-image-preview:large')
+    setMetaTag('name', 'robots', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1')
 
-    // 3. Local SEO Geo Tags
-    setMetaTag('name', 'geo.region', 'IN-BR')
-    setMetaTag('name', 'geo.placename', 'Siwan, Bihar, India')
-    setMetaTag('name', 'geo.position', '26.2196;84.3567')
-    setMetaTag('name', 'ICBM', '26.2196, 84.3567')
-    setMetaTag('name', 'city', 'Siwan')
-    setMetaTag('name', 'state', 'Bihar')
+    // Google Search Console Site Verification if available
+    if (settings?.googleSearchConsoleKey) {
+      setMetaTag('name', 'google-site-verification', settings.googleSearchConsoleKey)
+    }
+
+    // 3. Local SEO Geo Tags (Default to Bihar HQ or override)
+    const geoRegion = localBusiness?.geoRegion || 'IN-BR'
+    const geoPlacename = localBusiness?.placename || 'Siwan, Bihar, India'
+    const geoPosition = localBusiness?.position || '26.2196;84.3567'
+    const icbm = localBusiness?.icbm || '26.2196, 84.3567'
+
+    setMetaTag('name', 'geo.region', geoRegion)
+    setMetaTag('name', 'geo.placename', geoPlacename)
+    setMetaTag('name', 'geo.position', geoPosition)
+    setMetaTag('name', 'ICBM', icbm)
+    setMetaTag('name', 'city', localBusiness?.city || 'Siwan')
+    setMetaTag('name', 'state', localBusiness?.state || 'Bihar')
     setMetaTag('name', 'country', 'India')
 
     // 4. Canonical Link
-    const baseSiteUrl = 'https://orbiphera.in'
     const currentPath = window.location.pathname === '/' ? '' : window.location.pathname
     const currentUrl = canonical || (window.location.origin.includes('orbiphera.in') ? `${baseSiteUrl}${currentPath}` : window.location.href)
     
@@ -90,7 +104,7 @@ export default function SeoHead({
       setMetaTag('name', 'twitter:image', resolvedImage.startsWith('http') ? resolvedImage : `${baseSiteUrl}${resolvedImage}`)
     }
 
-    // 7. JSON-LD Structured Data (Organization + LocalBusiness + WebSite + FAQPage)
+    // 7. JSON-LD Structured Data Graph
     const scriptId = 'structured-data-json-ld'
     let scriptTag = document.getElementById(scriptId)
     if (!scriptTag) {
@@ -126,7 +140,12 @@ export default function SeoHead({
           'contactType': 'customer service',
           'areaServed': 'IN',
           'availableLanguage': ['English', 'Hindi']
-        }
+        },
+        'sameAs': [
+          'https://twitter.com',
+          'https://linkedin.com',
+          'https://github.com'
+        ]
       },
       {
         '@type': 'LocalBusiness',
@@ -140,16 +159,16 @@ export default function SeoHead({
         'priceRange': '₹₹',
         'address': {
           '@type': 'PostalAddress',
-          'streetAddress': 'Digital Tech Hub',
-          'addressLocality': 'Siwan',
-          'addressRegion': 'Bihar',
-          'postalCode': '841226',
+          'streetAddress': localBusiness?.streetAddress || 'Digital Tech Hub',
+          'addressLocality': localBusiness?.city || 'Siwan',
+          'addressRegion': localBusiness?.state || 'Bihar',
+          'postalCode': localBusiness?.postalCode || '841226',
           'addressCountry': 'IN'
         },
         'geo': {
           '@type': 'GeoCoordinates',
-          'latitude': 26.2196,
-          'longitude': 84.3567
+          'latitude': localBusiness?.latitude || 26.2196,
+          'longitude': localBusiness?.longitude || 84.3567
         },
         'openingHoursSpecification': [
           {
@@ -159,21 +178,14 @@ export default function SeoHead({
             'closes': '20:00'
           }
         ],
-        'areaServed': [
+        'areaServed': localBusiness?.areas || [
           { '@type': 'City', 'name': 'Siwan' },
           { '@type': 'City', 'name': 'Gopalganj' },
           { '@type': 'City', 'name': 'Chhapra' },
           { '@type': 'City', 'name': 'Patna' },
           { '@type': 'State', 'name': 'Bihar' },
           { '@type': 'Country', 'name': 'India' }
-        ],
-        'aggregateRating': {
-          '@type': 'AggregateRating',
-          'ratingValue': '4.9',
-          'reviewCount': '128',
-          'bestRating': '5',
-          'worstRating': '1'
-        }
+        ]
       },
       {
         '@type': 'WebSite',
@@ -183,15 +195,88 @@ export default function SeoHead({
         'description': resolvedDesc,
         'publisher': {
           '@id': `${baseSiteUrl}/#organization`
+        },
+        'potentialAction': {
+          '@type': 'SearchAction',
+          'target': `${baseSiteUrl}/search?q={search_term_string}`,
+          'query-input': 'required name=search_term_string'
         }
       }
     ]
 
-    // Inject FAQPage Schema if faqs array provided
+    // Service Schema injection
+    if (service) {
+      defaultSchemaGraph.push({
+        '@type': 'Service',
+        '@id': `${currentUrl}/#service`,
+        'name': service.name,
+        'description': service.description || resolvedDesc,
+        'provider': {
+          '@id': `${baseSiteUrl}/#organization`
+        },
+        'serviceType': service.serviceType || 'IT Services',
+        'areaServed': {
+          '@type': 'Country',
+          'name': 'India'
+        },
+        'hasOfferCatalog': {
+          '@type': 'OfferCatalog',
+          'name': `${service.name} Deliverables`,
+          'itemListElement': (service.features || []).map((f, i) => ({
+            '@type': 'Offer',
+            'itemOffered': {
+              '@type': 'Service',
+              'name': f
+            }
+          }))
+        }
+      })
+    }
+
+    // Article / BlogPosting Schema injection
+    if (article) {
+      defaultSchemaGraph.push({
+        '@type': 'BlogPosting',
+        '@id': `${currentUrl}/#article`,
+        'headline': article.title,
+        'description': article.description || resolvedDesc,
+        'author': {
+          '@type': 'Person',
+          'name': article.author || 'Orbiphera Engineering Team',
+          'jobTitle': 'Senior Solutions Architect'
+        },
+        'publisher': {
+          '@id': `${baseSiteUrl}/#organization`
+        },
+        'datePublished': article.datePublished || '2026-11-20',
+        'dateModified': article.dateModified || '2026-11-24',
+        'mainEntityOfPage': {
+          '@type': 'WebPage',
+          '@id': currentUrl
+        },
+        'image': article.image ? (article.image.startsWith('http') ? article.image : `${baseSiteUrl}${article.image}`) : `${baseSiteUrl}/logo.png`
+      })
+    }
+
+    // BreadcrumbList Schema injection
+    if (Array.isArray(breadcrumbs) && breadcrumbs.length > 0) {
+      defaultSchemaGraph.push({
+        '@type': 'BreadcrumbList',
+        '@id': `${currentUrl}/#breadcrumb`,
+        'itemListElement': breadcrumbs.map((crumb, idx) => ({
+          '@type': 'ListItem',
+          'position': idx + 1,
+          'name': crumb.name,
+          'item': crumb.url.startsWith('http') ? crumb.url : `${baseSiteUrl}${crumb.url}`
+        }))
+      })
+    }
+
+    // FAQPage Schema injection
     if (Array.isArray(faqs) && faqs.length > 0) {
       defaultSchemaGraph.push({
         '@type': 'FAQPage',
-        '@id': `${baseSiteUrl}/#faq`,
+        '@id': `${currentUrl}/#faq`,
         'mainEntity': faqs.map(item => ({
           '@type': 'Question',
           'name': item.question,
@@ -209,7 +294,7 @@ export default function SeoHead({
     }
 
     scriptTag.text = JSON.stringify(schemaJson || defaultSchema)
-  }, [title, description, keywords, canonical, ogImage, ogType, schemaJson, faqs, settings])
+  }, [title, description, keywords, canonical, ogImage, ogType, schemaJson, faqs, breadcrumbs, service, article, localBusiness, settings])
 
   return null
 }

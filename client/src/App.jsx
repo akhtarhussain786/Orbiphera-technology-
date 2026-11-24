@@ -39,6 +39,12 @@ import Billing from './pages/account/Billing'
 import AdminDashboard from './pages/admin/Dashboard'
 import NotFound from './pages/NotFound'
 import LandingPage from './pages/LandingPage'
+import ServicesHubPage from './pages/services/ServicesHubPage'
+import ServiceDetailPage from './pages/services/ServiceDetailPage'
+import LocationsHubPage from './pages/locations/LocationsHubPage'
+import LocationDetailPage from './pages/locations/LocationDetailPage'
+import BlogListPage from './pages/blog/BlogListPage'
+import BlogPostPage from './pages/blog/BlogPostPage'
 import { useAnalyticsTracker } from './hooks/useAnalyticsTracker'
 import ErrorBoundary from './components/common/ErrorBoundary'
 
@@ -75,6 +81,18 @@ function App() {
                 <Route path="request-quote" element={<RequestQuote />} />
                 <Route path="contact" element={<Contact />} />
                 <Route path="request-demo" element={<RequestDemo />} />
+
+                {/* SEO Service Landing Pages */}
+                <Route path="services" element={<ServicesHubPage />} />
+                <Route path="services/:serviceSlug" element={<ServiceDetailPage />} />
+
+                {/* Local SEO Landing Pages */}
+                <Route path="locations" element={<LocationsHubPage />} />
+                <Route path="locations/:locationSlug" element={<LocationDetailPage />} />
+
+                {/* SEO Blog & Content Marketing */}
+                <Route path="blog" element={<BlogListPage />} />
+                <Route path="blog/:postSlug" element={<BlogPostPage />} />
                 
                 {/* Account Routes */}
                 <Route path="account" element={<Account />} />

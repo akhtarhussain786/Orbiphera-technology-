@@ -121,12 +121,14 @@ export default function Navbar() {
   }, [location.pathname, location.hash])
 
   const megaServices = [
-    { title: 'Website Development', desc: 'Custom portals, dynamic stores & landing pages', href: '/#services', icon: Globe },
-    { title: 'Mobile App Development', desc: 'Android, iOS & Flutter cross-platform apps', href: '/#services', icon: Smartphone },
-    { title: 'ERP Software Development', desc: 'Institute, hospital & inventory management', href: '/#services', icon: Layers },
-    { title: 'EMS – Employee Management', desc: 'GPS attendance, tracking & automated payroll', href: '/#services', icon: Target },
-    { title: 'CRM Development', desc: 'Lead pipelines, tracking & sales analytics', href: '/#services', icon: BarChart3 },
-    { title: 'Custom Software Solutions', desc: 'Bespoke business automation & secure APIs', href: '/#services', icon: Code2 }
+    { title: 'Website Development', desc: 'Custom portals, dynamic stores & landing pages', href: '/services/website-development', icon: Globe },
+    { title: 'Mobile App Development', desc: 'Android, iOS & Flutter cross-platform apps', href: '/services/mobile-app-development', icon: Smartphone },
+    { title: 'Flutter App Development', desc: 'Single codebase, native 120fps cross-platform', href: '/services/flutter-app-development', icon: Smartphone },
+    { title: 'Android App Development', desc: 'Kotlin, Jetpack & Google Play Store publishing', href: '/services/android-app-development', icon: Smartphone },
+    { title: 'ERP Software Development', desc: 'Institute, hospital, warehouse & GST ledgers', href: '/services/erp-software-development', icon: Layers },
+    { title: 'CRM Software Development', desc: 'Lead pipelines, WhatsApp alerts & sales analytics', href: '/services/crm-software-development', icon: BarChart3 },
+    { title: 'Custom Software Solutions', desc: 'Bespoke business automation & secure APIs', href: '/services/custom-software-development', icon: Code2 },
+    { title: 'IT Solutions & Consulting', desc: 'Cloud VPS, security audits & managed infrastructure', href: '/services/it-solutions', icon: Sparkles }
   ]
 
   const productItems = [
@@ -230,9 +232,9 @@ export default function Navbar() {
                     {megaServices.map((it) => {
                       const Icon = it.icon
                       return (
-                        <a
+                        <Link
                           key={it.title}
-                          href={it.href}
+                          to={it.href}
                           onClick={() => setIsServicesOpen(false)}
                           className="flex items-start space-x-3 p-3 rounded-2xl bg-white/[0.03] hover:bg-[#E50914]/10 border border-transparent hover:border-[#E50914]/30 transition-all group"
                         >
@@ -247,7 +249,7 @@ export default function Navbar() {
                               {it.desc}
                             </span>
                           </div>
-                        </a>
+                        </Link>
                       )
                     })}
                   </div>
@@ -333,6 +335,22 @@ export default function Navbar() {
             Portfolio
           </a>
 
+          {/* Locations */}
+          <Link
+            to="/locations"
+            className="px-3 xl:px-3.5 py-1.5 rounded-full text-white hover:text-[#FF2A36] hover:bg-white/5 transition-colors whitespace-nowrap"
+          >
+            Locations
+          </Link>
+
+          {/* Blog */}
+          <Link
+            to="/blog"
+            className="px-3 xl:px-3.5 py-1.5 rounded-full text-white hover:text-[#FF2A36] hover:bg-white/5 transition-colors whitespace-nowrap"
+          >
+            Blog
+          </Link>
+
           {/* About Us */}
           <a
             href="/#why-us"
@@ -387,7 +405,9 @@ export default function Navbar() {
             <div className="space-y-1">
               <span className="text-[10px] font-bold tracking-wider uppercase text-[#FF2A36] block px-2">Navigation</span>
               <Link to="/" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 px-2 text-xs font-bold text-white hover:text-[#FF2A36]">Home</Link>
-              <a href="/#services" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 px-2 text-xs font-bold text-white hover:text-[#FF2A36]">Services</a>
+              <Link to="/services" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 px-2 text-xs font-bold text-white hover:text-[#FF2A36]">Services & Solutions</Link>
+              <Link to="/locations" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 px-2 text-xs font-bold text-white hover:text-[#FF2A36]">Locations & Regional Hubs</Link>
+              <Link to="/blog" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 px-2 text-xs font-bold text-white hover:text-[#FF2A36]">Tech Blog & Guides</Link>
               <a href="/#products" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 px-2 text-xs font-bold text-white hover:text-[#FF2A36]">Products</a>
               <a href="/#work" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 px-2 text-xs font-bold text-white hover:text-[#FF2A36]">Portfolio</a>
               <a href="/#why-us" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 px-2 text-xs font-bold text-white hover:text-[#FF2A36]">About Us</a>

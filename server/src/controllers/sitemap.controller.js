@@ -37,6 +37,33 @@ export const generateSitemapXml = async (req, res) => {
     // Core high-authority routes
     const coreRoutes = [
       { loc: `${baseUrl}/`, priority: '1.0', changefreq: 'daily' },
+      
+      // Services Hub & Dedicated Service Landing Pages
+      { loc: `${baseUrl}/services`, priority: '0.9', changefreq: 'weekly' },
+      { loc: `${baseUrl}/services/website-development`, priority: '0.9', changefreq: 'weekly' },
+      { loc: `${baseUrl}/services/mobile-app-development`, priority: '0.9', changefreq: 'weekly' },
+      { loc: `${baseUrl}/services/flutter-app-development`, priority: '0.9', changefreq: 'weekly' },
+      { loc: `${baseUrl}/services/android-app-development`, priority: '0.9', changefreq: 'weekly' },
+      { loc: `${baseUrl}/services/erp-software-development`, priority: '0.9', changefreq: 'weekly' },
+      { loc: `${baseUrl}/services/crm-software-development`, priority: '0.9', changefreq: 'weekly' },
+      { loc: `${baseUrl}/services/custom-software-development`, priority: '0.9', changefreq: 'weekly' },
+      { loc: `${baseUrl}/services/it-solutions`, priority: '0.9', changefreq: 'weekly' },
+
+      // Local SEO Hubs (Bihar, Patna, Siwan & Chapra)
+      { loc: `${baseUrl}/locations`, priority: '0.8', changefreq: 'weekly' },
+      { loc: `${baseUrl}/locations/bihar`, priority: '0.9', changefreq: 'weekly' },
+      { loc: `${baseUrl}/locations/patna`, priority: '0.9', changefreq: 'weekly' },
+      { loc: `${baseUrl}/locations/siwan`, priority: '0.9', changefreq: 'weekly' },
+
+      // Engineering Blog & Content Marketing Guides
+      { loc: `${baseUrl}/blog`, priority: '0.9', changefreq: 'daily' },
+      { loc: `${baseUrl}/blog/how-to-choose-the-best-website-development-company`, priority: '0.8', changefreq: 'monthly' },
+      { loc: `${baseUrl}/blog/website-development-cost-in-india-complete-guide`, priority: '0.8', changefreq: 'monthly' },
+      { loc: `${baseUrl}/blog/flutter-vs-native-app-development-comparison`, priority: '0.8', changefreq: 'monthly' },
+      { loc: `${baseUrl}/blog/how-much-does-an-android-app-development-cost`, priority: '0.8', changefreq: 'monthly' },
+      { loc: `${baseUrl}/blog/why-growing-businesses-need-custom-erp-crm-software`, priority: '0.8', changefreq: 'monthly' },
+
+      // Marketplace & Solutions
       { loc: `${baseUrl}/marketplace`, priority: '0.9', changefreq: 'daily' },
       { loc: `${baseUrl}/software`, priority: '0.9', changefreq: 'weekly' },
       { loc: `${baseUrl}/custom-development`, priority: '0.9', changefreq: 'weekly' },
