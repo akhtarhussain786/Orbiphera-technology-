@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import axios from 'axios'
 import {
   Package, Plus, Save, Trash2, Edit3, ArrowUp, ArrowDown,
@@ -9,6 +9,27 @@ import { useAdminAuth } from '../../context/AdminAuthContext'
 import toast from 'react-hot-toast'
 
 const DEFAULT_PRODUCTS = [
+  {
+    id: 'college-management',
+    title: 'College Management System (CMS)',
+    category: 'EDUCATION ERP',
+    badge: 'Complete College ERP',
+    desc: 'A powerful College Management System designed to simplify daily operations, student admissions, attendance, exams, fees, library, and academic records.',
+    image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&h=480&fit=crop&q=80',
+    features: [
+      'Online Student Portal',
+      'Student Attendance Management',
+      'Faculty & Staff Management',
+      'Class, Course & Department Management',
+      'Fees Collection & Online Payment',
+      'Examination & Result Generation',
+      'Admit Card & Marksheet Generation',
+      'Library Management'
+    ],
+    detailsLink: '/templates/eduprime-education-institute',
+    demoLink: '/request-demo?product=college',
+    isActive: true
+  },
   {
     id: 'erp-system',
     title: 'ERP Management System',
