@@ -1,9 +1,19 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
+
+  # 1. Direct access to existing files and directories
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # 2. Map API Inquiries directly to PHP handler on Apache
+  RewriteRule ^api/inquiries/?$ api/inquiries.php [QSA,L]
+  RewriteRule ^api/admin/inquiries/?$ api/inquiries.php [QSA,L]
+  RewriteRule ^api/admin/inquiries/([^/]+)/?$ api/inquiries.php [QSA,L]
+  RewriteRule ^api/admin/inquiries/([^/]+)/status/?$ api/inquiries.php [QSA,L]
+
+  # 3. SPA Fallback: All other routes to index.html
   RewriteRule ^index\.html$ - [L]
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule . /index.html [L]
 </IfModule>
-

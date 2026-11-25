@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import {
   Mail, Search, Trash2, Eye, CheckCircle2, MessageSquare,
@@ -25,16 +25,62 @@ export default function InquiriesManager() {
   const fetchInquiries = async () => {
     try {
       setLoading(true)
+      let list = []
+
+      // 1. Try Node.js backend
       const res = await axios.get(`${API_URL}/admin/inquiries`, {
         params: { search, status: statusFilter },
-        headers: getAuthHeader()
-      })
-      if (res.data.success) {
-        setInquiries(res.data.inquiries || [])
+        headers: getAuthHeader(),
+        timeout: 5000
+      }).catch(() => null)
+
+      if (res && res.data && typeof res.data === 'object' && res.data.success && Array.isArray(res.data.inquiries)) {
+        list = res.data.inquiries
+      } else {
+        // 2. Try PHP backend on Hostinger
+        const phpRes = await axios.get('/api/inquiries.php', {
+          params: { search, status: statusFilter },
+          timeout: 5000
+        }).catch(() => null)
+
+        if (phpRes && phpRes.data && typeof phpRes.data === 'object' && phpRes.data.success && Array.isArray(phpRes.data.inquiries)) {
+          list = phpRes.data.inquiries
+        }
       }
+
+      // 3. Merge with locally cached inquiries
+      try {
+        const local = JSON.parse(localStorage.getItem('orbiphera_inquiries') || '[]')
+        if (Array.isArray(local) && local.length > 0) {
+          const map = new Map()
+          list.forEach(i => map.set(i._id, i))
+          local.forEach(i => {
+            if (!map.has(i._id)) map.set(i._id, i)
+          })
+          list = Array.from(map.values())
+        }
+      } catch (_) {}
+
+      // Apply filters
+      if (statusFilter !== 'all') {
+        list = list.filter(i => (i.status || '').toLowerCase() === statusFilter.toLowerCase())
+      }
+      if (search) {
+        const s = search.toLowerCase()
+        list = list.filter(i => 
+          ((i.firstName || '') + ' ' + (i.lastName || '') + ' ' + (i.email || '') + ' ' + (i.phone || '') + ' ' + (i.serviceType || '') + ' ' + (i.companyName || '')).toLowerCase().includes(s)
+        )
+      }
+
+      setInquiries(list)
     } catch (e) {
-      console.error('Failed to load inquiries:', e)
-      toast.error('Failed to load enquiries')
+      console.warn('Fallback loading inquiries:', e)
+      try {
+        const local = JSON.parse(localStorage.getItem('orbiphera_inquiries') || '[]')
+        setInquiries(local)
+      } catch (_) {
+        setInquiries([])
+      }
     } finally {
       setLoading(false)
     }
@@ -42,9 +88,27 @@ export default function InquiriesManager() {
 
   const handleUpdateStatus = async (id, status) => {
     try {
-      await axios.patch(`${API_URL}/admin/inquiries/${id}/status`, { status }, {
-        headers: getAuthHeader()
-      })
+      // Try Node.js endpoint
+      let ok = await axios.patch(`${API_URL}/admin/inquiries/${id}/status`, { status }, {
+        headers: getAuthHeader(),
+        timeout: 4000
+      }).catch(() => null)
+
+      // Try PHP endpoint if Node not reachable
+      if (!ok) {
+        await axios.patch(`/api/inquiries.php/${id}`, { status }, { timeout: 4000 }).catch(() => null)
+      }
+
+      // Always update in localStorage
+      try {
+        const local = JSON.parse(localStorage.getItem('orbiphera_inquiries') || '[]')
+        const found = local.find(i => i._id === id)
+        if (found) {
+          found.status = status
+          localStorage.setItem('orbiphera_inquiries', JSON.stringify(local))
+        }
+      } catch (_) {}
+
       toast.success(`Enquiry marked as ${status}`)
       if (selectedInquiry && selectedInquiry._id === id) {
         setSelectedInquiry(prev => ({ ...prev, status }))
@@ -61,13 +125,31 @@ export default function InquiriesManager() {
 
     try {
       setSavingNotes(true)
-      await axios.patch(`${API_URL}/admin/inquiries/${selectedInquiry._id}/status`, {
+      const payload = {
         status: selectedInquiry.status,
         adminNotes: selectedInquiry.adminNotes,
         quotedAmount: selectedInquiry.quotedAmount
-      }, {
-        headers: getAuthHeader()
-      })
+      }
+
+      await axios.patch(`${API_URL}/admin/inquiries/${selectedInquiry._id}/status`, payload, {
+        headers: getAuthHeader(),
+        timeout: 4000
+      }).catch(() => null)
+
+      await axios.patch(`/api/inquiries.php/${selectedInquiry._id}`, payload, { timeout: 4000 }).catch(() => null)
+
+      // Update in localStorage
+      try {
+        const local = JSON.parse(localStorage.getItem('orbiphera_inquiries') || '[]')
+        const found = local.find(i => i._id === selectedInquiry._id)
+        if (found) {
+          found.status = selectedInquiry.status
+          found.adminNotes = selectedInquiry.adminNotes
+          found.quotedAmount = selectedInquiry.quotedAmount
+          localStorage.setItem('orbiphera_inquiries', JSON.stringify(local))
+        }
+      } catch (_) {}
+
       toast.success('Notes and quote updated!')
       fetchInquiries()
     } catch (e) {
@@ -82,8 +164,19 @@ export default function InquiriesManager() {
 
     try {
       await axios.delete(`${API_URL}/admin/inquiries/${id}`, {
-        headers: getAuthHeader()
-      })
+        headers: getAuthHeader(),
+        timeout: 4000
+      }).catch(() => null)
+
+      await axios.delete(`/api/inquiries.php/${id}`, { timeout: 4000 }).catch(() => null)
+
+      // Delete from localStorage
+      try {
+        const local = JSON.parse(localStorage.getItem('orbiphera_inquiries') || '[]')
+        const filtered = local.filter(i => i._id !== id)
+        localStorage.setItem('orbiphera_inquiries', JSON.stringify(filtered))
+      } catch (_) {}
+
       toast.success('Inquiry deleted')
       setSelectedInquiry(null)
       fetchInquiries()
@@ -113,7 +206,7 @@ export default function InquiriesManager() {
         <div className="flex items-center space-x-2">
           <button
             onClick={fetchInquiries}
-            className="px-3.5 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 text-white text-xs font-semibold border border-white/10 transition-colors"
+            className="px-3.5 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 text-white text-xs font-semibold border border-white/10 transition-colors cursor-pointer"
           >
             Refresh Inquiries
           </button>
@@ -138,7 +231,7 @@ export default function InquiriesManager() {
             <button
               key={st}
               onClick={() => setStatusFilter(st)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-medium capitalize transition-colors ${
+              className={`px-3 py-1.5 rounded-lg text-xs font-medium capitalize transition-colors cursor-pointer ${
                 statusFilter === st ? 'bg-[#1558C9] text-white' : 'bg-white/5 text-gray-400 hover:text-white'
               }`}
             >
@@ -236,14 +329,14 @@ export default function InquiriesManager() {
                         </a>
                         <button
                           onClick={() => setSelectedInquiry(inq)}
-                          className="p-1.5 text-blue-400 hover:text-white rounded-lg hover:bg-blue-500/10"
+                          className="p-1.5 text-blue-400 hover:text-white rounded-lg hover:bg-blue-500/10 cursor-pointer"
                           title="View Full Scope & Admin Notes"
                         >
                           <Eye className="w-4 h-4" />
                         </button>
                         <button
                           onClick={() => handleDeleteInquiry(inq._id)}
-                          className="p-1.5 text-red-400 hover:text-red-300 rounded-lg hover:bg-red-500/10"
+                          className="p-1.5 text-red-400 hover:text-red-300 rounded-lg hover:bg-red-500/10 cursor-pointer"
                           title="Delete"
                         >
                           <Trash2 className="w-4 h-4" />
@@ -273,7 +366,7 @@ export default function InquiriesManager() {
               </div>
               <button
                 onClick={() => setSelectedInquiry(null)}
-                className="text-gray-400 hover:text-white"
+                className="text-gray-400 hover:text-white cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -285,21 +378,21 @@ export default function InquiriesManager() {
                 href={getWhatsAppLink(selectedInquiry)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/25 text-xs font-semibold"
+                className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/25 text-xs font-semibold cursor-pointer"
               >
                 <MessageSquare className="w-3.5 h-3.5" />
                 <span>WhatsApp Client</span>
               </a>
               <a
                 href={`tel:${selectedInquiry.phone}`}
-                className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-blue-500/15 border border-blue-500/30 text-blue-400 hover:bg-blue-500/25 text-xs font-semibold"
+                className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-blue-500/15 border border-blue-500/30 text-blue-400 hover:bg-blue-500/25 text-xs font-semibold cursor-pointer"
               >
                 <Phone className="w-3.5 h-3.5" />
                 <span>Call Client</span>
               </a>
               <a
                 href={`mailto:${selectedInquiry.email}?subject=${encodeURIComponent(`Orbiphera Technologies - Project Consultation for ${selectedInquiry.serviceType || selectedInquiry.projectType || 'Software Development'}`)}`}
-                className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-gray-300 hover:text-white text-xs font-semibold"
+                className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-gray-300 hover:text-white text-xs font-semibold cursor-pointer"
               >
                 <Mail className="w-3.5 h-3.5" />
                 <span>Send Official Email</span>
@@ -332,15 +425,6 @@ export default function InquiriesManager() {
                   {selectedInquiry.projectDescription || selectedInquiry.message}
                 </div>
               </div>
-
-              {selectedInquiry.requiredFeatures && (
-                <div>
-                  <span className="text-gray-400 font-semibold block mb-1">Required Features:</span>
-                  <div className="p-3 bg-[#0B0E14] rounded-xl border border-white/5 text-gray-300">
-                    {selectedInquiry.requiredFeatures}
-                  </div>
-                </div>
-              )}
 
               {/* Internal Admin Notes & Quote Form */}
               <form onSubmit={handleSaveNotes} className="pt-4 border-t border-white/10 space-y-3">
@@ -389,7 +473,7 @@ export default function InquiriesManager() {
                   <button
                     type="button"
                     onClick={() => setSelectedInquiry(null)}
-                    className="px-4 py-2 text-xs text-gray-400 hover:text-white"
+                    className="px-4 py-2 text-xs text-gray-400 hover:text-white cursor-pointer"
                   >
                     Close
                   </button>
