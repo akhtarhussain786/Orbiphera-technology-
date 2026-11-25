@@ -33,8 +33,8 @@ export default function ProjectInquiryCTA() {
   const [submitting, setSubmitting] = useState(false)
 
   const brandName = settings?.siteName || 'Orbiphera Technologies'
-  const contactEmail = settings?.contactEmail || 'contact@yathartitsolutions.com'
-  const contactPhone = settings?.contactPhone || '+91 98765 43210'
+  const contactEmail = settings?.contactEmail || 'contact@orbiphera.in'
+  const contactPhone = settings?.contactPhone || '+91 8676875336'
   const rawPhone = contactPhone.replace(/[^0-9]/g, '')
   const whatsappNumber = rawPhone.length === 10 ? `91${rawPhone}` : rawPhone
 
@@ -84,7 +84,7 @@ export default function ProjectInquiryCTA() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    if (!formData.name || !formData.email || !formData.phone || !formData.message) {
+    if (!formData.name.trim() || !formData.email.trim() || !formData.phone.trim() || !formData.message.trim()) {
       toast.error('Please complete name, email, phone, and project description.')
       return
     }
@@ -92,37 +92,42 @@ export default function ProjectInquiryCTA() {
     try {
       setSubmitting(true)
       const API_URL = import.meta.env.VITE_API_URL || '/api'
-      await axios.post(`${API_URL}/inquiries`, {
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        companyName: formData.companyName,
+      const payload = {
+        name: formData.name.trim(),
+        firstName: formData.name.trim().split(/\s+/)[0] || 'Client',
+        lastName: formData.name.trim().split(/\s+/).slice(1).join(' ') || '',
+        email: formData.email.trim(),
+        phone: formData.phone.trim(),
+        companyName: formData.companyName.trim(),
+        company: formData.companyName.trim(),
         serviceType: formData.serviceType,
+        projectType: formData.serviceType,
         budget: formData.budget,
-        message: formData.message,
-        projectDescription: formData.message
-      })
-      toast.success('Your project inquiry was submitted successfully! Our team will contact you within 24 hours.')
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        companyName: '',
-        serviceType: 'Website Development',
-        budget: '₹50,000 - ₹1,50,000',
-        message: ''
-      })
-    } catch {
-      toast.success('Thank you! Your requirements were submitted.')
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        companyName: '',
-        serviceType: 'Website Development',
-        budget: '₹50,000 - ₹1,50,000',
-        message: ''
-      })
+        budgetRange: formData.budget,
+        message: formData.message.trim(),
+        projectDescription: formData.message.trim()
+      }
+
+      const res = await axios.post(`${API_URL}/inquiries`, payload)
+
+      if (res.data && res.data.success) {
+        toast.success('Your inquiry has been submitted! Our engineering team will review it and contact you within 24 hours.')
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          companyName: '',
+          serviceType: 'Website Development',
+          budget: '₹50,000 - ₹1,50,000',
+          message: ''
+        })
+      } else {
+        throw new Error(res.data?.message || 'Submission failed')
+      }
+    } catch (err) {
+      console.error('Inquiry submission error:', err)
+      const errorMsg = err.response?.data?.message || err.message || 'Could not send inquiry. Please try again or WhatsApp us directly.'
+      toast.error(errorMsg)
     } finally {
       setSubmitting(false)
     }

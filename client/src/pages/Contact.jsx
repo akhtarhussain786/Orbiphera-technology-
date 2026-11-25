@@ -36,11 +36,18 @@ export default function Contact() {
       const fullName = `${formData.firstName} ${formData.lastName}`.trim()
       await axios.post(`${API_URL}/inquiries`, {
         name: fullName,
-        email: formData.email,
-        phone: formData.phone,
-        company: formData.companyName,
+        firstName: formData.firstName.trim(),
+        lastName: formData.lastName.trim(),
+        email: formData.email.trim(),
+        phone: formData.phone.trim(),
+        company: formData.companyName.trim(),
+        companyName: formData.companyName.trim(),
         serviceType: formData.projectType,
-        message: formData.projectDescription
+        projectType: formData.projectType,
+        budget: formData.budget || 'Flexible',
+        budgetRange: formData.budget || 'Flexible',
+        message: formData.projectDescription.trim(),
+        projectDescription: formData.projectDescription.trim()
       })
       setSubmitted(true)
       toast.success('Your message has been dispatched to our engineering desk!')

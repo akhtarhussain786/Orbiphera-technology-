@@ -2,7 +2,7 @@
 import axios from 'axios'
 import {
   Mail, Search, Trash2, Eye, CheckCircle2, MessageSquare,
-  Clock, IndianRupee, FileText, X
+  Clock, IndianRupee, FileText, X, Phone, ExternalLink, Send
 } from 'lucide-react'
 import { useAdminAuth } from '../../context/AdminAuthContext'
 import toast from 'react-hot-toast'
@@ -30,9 +30,10 @@ export default function InquiriesManager() {
         headers: getAuthHeader()
       })
       if (res.data.success) {
-        setInquiries(res.data.inquiries)
+        setInquiries(res.data.inquiries || [])
       }
     } catch (e) {
+      console.error('Failed to load inquiries:', e)
       toast.error('Failed to load enquiries')
     } finally {
       setLoading(false)
@@ -91,15 +92,31 @@ export default function InquiriesManager() {
     }
   }
 
+  const getWhatsAppLink = (inq) => {
+    if (!inq?.phone) return '#'
+    const raw = inq.phone.replace(/[^0-9]/g, '')
+    const wa = raw.length === 10 ? `91${raw}` : raw
+    const text = encodeURIComponent(`Hello ${inq.firstName || 'Client'}, thank you for contacting Orbiphera Technologies regarding your ${inq.serviceType || inq.projectType || 'project'}. How can we assist you?`)
+    return `https://wa.me/${wa}?text=${text}`
+  }
+
   return (
     <div className="space-y-6">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h2 className="text-2xl font-bold text-white tracking-tight">Contact Enquiries & Quotations</h2>
+          <h2 className="text-2xl font-bold text-white tracking-tight">Contact Enquiries & Project Quotations</h2>
           <p className="text-sm text-gray-400 mt-1">
-            Review customer project scopes, update sales pipeline status, and maintain notes.
+            Real-time client inquiries submitted from website quote forms and contact pages.
           </p>
+        </div>
+        <div className="flex items-center space-x-2">
+          <button
+            onClick={fetchInquiries}
+            className="px-3.5 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 text-white text-xs font-semibold border border-white/10 transition-colors"
+          >
+            Refresh Inquiries
+          </button>
         </div>
       </div>
 
@@ -111,13 +128,13 @@ export default function InquiriesManager() {
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search inquiries by name, company, email..."
+            placeholder="Search inquiries by name, company, email, service..."
             className="w-full pl-10 pr-4 py-2 bg-[#0B0E14] border border-white/10 rounded-xl text-white text-xs placeholder-gray-500 focus:outline-none focus:border-[#1558C9]"
           />
         </div>
 
         <div className="flex flex-wrap gap-1.5 w-full sm:w-auto">
-          {['all', 'New', 'Contacted', 'Proposal Sent', 'Won', 'Lost'].map((st) => (
+          {['all', 'New', 'Contacted', 'Proposal Sent', 'In Discussion', 'Won', 'Lost'].map((st) => (
             <button
               key={st}
               onClick={() => setStatusFilter(st)}
@@ -137,9 +154,10 @@ export default function InquiriesManager() {
           <table className="w-full text-left text-xs">
             <thead className="bg-[#0B0E14] text-gray-400 font-semibold uppercase tracking-wider border-b border-white/10">
               <tr>
-                <th className="py-3.5 px-4">Client Name & Email</th>
-                <th className="py-3.5 px-4">Project Type</th>
+                <th className="py-3.5 px-4">Client Contact</th>
+                <th className="py-3.5 px-4">Requested Service</th>
                 <th className="py-3.5 px-4">Company</th>
+                <th className="py-3.5 px-4">Budget</th>
                 <th className="py-3.5 px-4">Status</th>
                 <th className="py-3.5 px-4">Date</th>
                 <th className="py-3.5 px-4 text-right">Actions</th>
@@ -148,13 +166,13 @@ export default function InquiriesManager() {
             <tbody className="divide-y divide-white/5 text-gray-300">
               {loading ? (
                 <tr>
-                  <td colSpan="6" className="text-center py-12 text-gray-500">
+                  <td colSpan="7" className="text-center py-12 text-gray-500">
                     Loading inquiries...
                   </td>
                 </tr>
               ) : inquiries.length === 0 ? (
                 <tr>
-                  <td colSpan="6" className="text-center py-12 text-gray-500">
+                  <td colSpan="7" className="text-center py-12 text-gray-500">
                     No inquiries received yet matching filter.
                   </td>
                 </tr>
@@ -163,15 +181,22 @@ export default function InquiriesManager() {
                   <tr key={inq._id} className="hover:bg-white/[0.02] transition-colors">
                     <td className="py-3.5 px-4">
                       <div className="font-semibold text-white">{inq.firstName} {inq.lastName}</div>
-                      <div className="text-[11px] text-gray-500 font-mono">{inq.email} • {inq.phone}</div>
+                      <div className="text-[11px] text-gray-400 font-mono mt-0.5">
+                        <a href={`mailto:${inq.email}`} className="hover:underline hover:text-white">{inq.email}</a>
+                        {' • '}
+                        <a href={`tel:${inq.phone}`} className="hover:underline hover:text-white">{inq.phone}</a>
+                      </div>
                     </td>
                     <td className="py-3.5 px-4">
-                      <span className="px-2 py-0.5 rounded bg-[#1558C9]/10 text-[#1558C9] border border-[#1558C9]/20 font-medium">
-                        {inq.projectType}
+                      <span className="px-2.5 py-1 rounded-md bg-[#1558C9]/15 text-[#5B96F7] border border-[#1558C9]/30 font-semibold inline-block">
+                        {inq.serviceType || inq.projectType || 'Website Development'}
                       </span>
                     </td>
-                    <td className="py-3.5 px-4 text-gray-400">
-                      {inq.companyName || '—'}
+                    <td className="py-3.5 px-4 text-gray-300 font-medium">
+                      {inq.companyName || inq.company || '—'}
+                    </td>
+                    <td className="py-3.5 px-4 font-mono font-medium text-emerald-400">
+                      {inq.budget || inq.budgetRange || 'Flexible'}
                     </td>
                     <td className="py-3.5 px-4">
                       <select
@@ -179,11 +204,11 @@ export default function InquiriesManager() {
                         onChange={(e) => handleUpdateStatus(inq._id, e.target.value)}
                         className={`text-xs px-2.5 py-1 rounded-full border bg-transparent font-semibold cursor-pointer focus:outline-none ${
                           inq.status === 'New'
-                            ? 'text-amber-400 border-amber-500/30'
+                            ? 'text-amber-400 border-amber-500/40 bg-amber-500/10'
                             : inq.status === 'Won'
-                            ? 'text-emerald-400 border-emerald-500/30'
+                            ? 'text-emerald-400 border-emerald-500/40 bg-emerald-500/10'
                             : inq.status === 'Contacted'
-                            ? 'text-cyan-400 border-cyan-500/30'
+                            ? 'text-cyan-400 border-cyan-500/40 bg-cyan-500/10'
                             : 'text-gray-400 border-white/10'
                         }`}
                       >
@@ -195,15 +220,24 @@ export default function InquiriesManager() {
                         <option value="Lost" className="bg-[#10151E] text-white">Lost</option>
                       </select>
                     </td>
-                    <td className="py-3.5 px-4 text-gray-500">
+                    <td className="py-3.5 px-4 text-gray-400 font-mono text-[11px]">
                       {new Date(inq.createdAt).toLocaleDateString()}
                     </td>
                     <td className="py-3.5 px-4 text-right">
-                      <div className="inline-flex items-center space-x-2">
+                      <div className="inline-flex items-center space-x-1.5">
+                        <a
+                          href={getWhatsAppLink(inq)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="p-1.5 text-emerald-400 hover:text-emerald-300 rounded-lg hover:bg-emerald-500/10"
+                          title="Chat with client on WhatsApp"
+                        >
+                          <MessageSquare className="w-4 h-4" />
+                        </a>
                         <button
                           onClick={() => setSelectedInquiry(inq)}
-                          className="p-1.5 text-gray-400 hover:text-white rounded-lg hover:bg-white/5"
-                          title="View Details & Notes"
+                          className="p-1.5 text-blue-400 hover:text-white rounded-lg hover:bg-blue-500/10"
+                          title="View Full Scope & Admin Notes"
                         >
                           <Eye className="w-4 h-4" />
                         </button>
@@ -245,19 +279,46 @@ export default function InquiriesManager() {
               </button>
             </div>
 
-            <div className="space-y-4 text-xs">
+            {/* Quick Action Contact Bar */}
+            <div className="flex flex-wrap gap-2 pb-4 border-b border-white/10">
+              <a
+                href={getWhatsAppLink(selectedInquiry)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/25 text-xs font-semibold"
+              >
+                <MessageSquare className="w-3.5 h-3.5" />
+                <span>WhatsApp Client</span>
+              </a>
+              <a
+                href={`tel:${selectedInquiry.phone}`}
+                className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-blue-500/15 border border-blue-500/30 text-blue-400 hover:bg-blue-500/25 text-xs font-semibold"
+              >
+                <Phone className="w-3.5 h-3.5" />
+                <span>Call Client</span>
+              </a>
+              <a
+                href={`mailto:${selectedInquiry.email}?subject=${encodeURIComponent(`Orbiphera Technologies - Project Consultation for ${selectedInquiry.serviceType || selectedInquiry.projectType || 'Software Development'}`)}`}
+                className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-gray-300 hover:text-white text-xs font-semibold"
+              >
+                <Mail className="w-3.5 h-3.5" />
+                <span>Send Official Email</span>
+              </a>
+            </div>
+
+            <div className="space-y-4 text-xs pt-4">
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-[#0B0E14] p-3 rounded-xl border border-white/5">
                 <div>
-                  <span className="text-gray-500 block text-[10px]">Project Type</span>
-                  <span className="text-white font-medium">{selectedInquiry.projectType}</span>
+                  <span className="text-gray-500 block text-[10px]">Service Requested</span>
+                  <span className="text-white font-medium">{selectedInquiry.serviceType || selectedInquiry.projectType}</span>
                 </div>
                 <div>
                   <span className="text-gray-500 block text-[10px]">Company</span>
-                  <span className="text-white font-medium">{selectedInquiry.companyName || 'N/A'}</span>
+                  <span className="text-white font-medium">{selectedInquiry.companyName || selectedInquiry.company || 'N/A'}</span>
                 </div>
                 <div>
-                  <span className="text-gray-500 block text-[10px]">Budget</span>
-                  <span className="text-white font-medium">{selectedInquiry.budget || 'Flexible'}</span>
+                  <span className="text-gray-500 block text-[10px]">Estimated Budget</span>
+                  <span className="text-emerald-400 font-mono font-medium">{selectedInquiry.budget || selectedInquiry.budgetRange || 'Flexible'}</span>
                 </div>
                 <div>
                   <span className="text-gray-500 block text-[10px]">Timeline</span>
@@ -267,8 +328,8 @@ export default function InquiriesManager() {
 
               <div>
                 <span className="text-gray-400 font-semibold block mb-1">Project Description & Scope:</span>
-                <div className="p-3 bg-[#0B0E14] rounded-xl border border-white/5 text-gray-300 leading-relaxed whitespace-pre-wrap">
-                  {selectedInquiry.projectDescription}
+                <div className="p-3 bg-[#0B0E14] rounded-xl border border-white/5 text-gray-200 leading-relaxed whitespace-pre-wrap">
+                  {selectedInquiry.projectDescription || selectedInquiry.message}
                 </div>
               </div>
 
@@ -335,7 +396,7 @@ export default function InquiriesManager() {
                   <button
                     type="submit"
                     disabled={savingNotes}
-                    className="px-4 py-2 bg-[#FFC800] hover:bg-[#E6B400] text-[#111827] font-semibold text-xs rounded-xl"
+                    className="px-4 py-2 bg-[#FFC800] hover:bg-[#E6B400] text-[#111827] font-semibold text-xs rounded-xl cursor-pointer"
                   >
                     {savingNotes ? 'Saving...' : 'Save Notes & Status'}
                   </button>
@@ -348,4 +409,3 @@ export default function InquiriesManager() {
     </div>
   )
 }
-

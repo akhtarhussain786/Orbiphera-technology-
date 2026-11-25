@@ -534,8 +534,37 @@
       "description": "CRM, ERP and business OS"
     }
   ],
-  "inquiries": [],
+  "inquiries": [
+    {
+      "_id": "6b066b840ce84076029df169",
+      "projectType": "ERP Software Development",
+      "serviceType": "ERP Software Development",
+      "firstName": "Aman",
+      "lastName": "Verma",
+      "email": "aman.verma@biharenterprise.in",
+      "phone": "+91 98765 12345",
+      "companyName": "Bihar Enterprise Pvt Ltd",
+      "industry": null,
+      "projectDescription": "Need a multi-branch institute and school ERP system with student fee billing.",
+      "requiredFeatures": null,
+      "preferredTechnology": null,
+      "timeline": "Within 1-3 months",
+      "budget": "₹1,50,000 - ₹5,00,000",
+      "budgetRange": "₹1,50,000 - ₹5,00,000",
+      "status": "New",
+      "createdAt": "2026-11-25T05:00:52.576Z"
+    }
+  ],
   "activityLogs": [
+    {
+      "_id": "log_1795582852578",
+      "adminEmail": "client-inquiry",
+      "action": "NEW_INQUIRY",
+      "entity": "Inquiry",
+      "entityId": "6b066b840ce84076029df169",
+      "details": "New project inquiry received from Aman Verma (aman.verma@biharenterprise.in) for ERP Software Development",
+      "createdAt": "2026-11-25T05:00:52.578Z"
+    },
     {
       "_id": "log_init",
       "adminEmail": "admin@yathartitsolutions.com",

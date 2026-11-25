@@ -4,17 +4,22 @@ const inquirySchema = new mongoose.Schema({
   projectType: {
     type: String,
     required: [true, 'Project type is required'],
-    enum: ['Website', 'Web application', 'CRM', 'Hospital management', 'Institute management', 'Resort management', 'E-commerce', 'Inventory management', 'Mobile application', 'Other']
+    default: 'Website Development'
+  },
+  serviceType: {
+    type: String,
+    default: 'Website Development'
   },
   firstName: {
     type: String,
     required: [true, 'First name is required'],
-    trim: true
+    trim: true,
+    default: 'Client'
   },
   lastName: {
     type: String,
-    required: [true, 'Last name is required'],
-    trim: true
+    trim: true,
+    default: ''
   },
   email: {
     type: String,
@@ -24,11 +29,13 @@ const inquirySchema = new mongoose.Schema({
   },
   phone: {
     type: String,
-    required: [true, 'Phone number is required']
+    required: [true, 'Phone number is required'],
+    trim: true
   },
   companyName: {
     type: String,
-    default: null
+    default: null,
+    trim: true
   },
   industry: {
     type: String,
@@ -48,9 +55,13 @@ const inquirySchema = new mongoose.Schema({
   },
   timeline: {
     type: String,
-    default: null
+    default: 'Immediate'
   },
   budget: {
+    type: String,
+    default: null
+  },
+  budgetRange: {
     type: String,
     default: null
   },
@@ -89,6 +100,6 @@ const inquirySchema = new mongoose.Schema({
   timestamps: true
 })
 
-const Inquiry = mongoose.model('Inquiry', inquirySchema)
+const Inquiry = mongoose.models.Inquiry || mongoose.model('Inquiry', inquirySchema)
 
 export default Inquiry
