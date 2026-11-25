@@ -45,6 +45,10 @@ import LocationsHubPage from './pages/locations/LocationsHubPage'
 import LocationDetailPage from './pages/locations/LocationDetailPage'
 import BlogListPage from './pages/blog/BlogListPage'
 import BlogPostPage from './pages/blog/BlogPostPage'
+import About from './pages/About'
+import Portfolio from './pages/Portfolio'
+import Pricing from './pages/Pricing'
+import Faq from './pages/Faq'
 import { useAnalyticsTracker } from './hooks/useAnalyticsTracker'
 import ErrorBoundary from './components/common/ErrorBoundary'
 
@@ -80,6 +84,11 @@ function App() {
                 <Route path="custom-development" element={<CustomDevelopment />} />
                 <Route path="request-quote" element={<RequestQuote />} />
                 <Route path="contact" element={<Contact />} />
+                <Route path="about" element={<About />} />
+                <Route path="portfolio" element={<Portfolio />} />
+                <Route path="projects" element={<Portfolio />} />
+                <Route path="pricing" element={<Pricing />} />
+                <Route path="faq" element={<Faq />} />
                 <Route path="request-demo" element={<RequestDemo />} />
 
                 {/* SEO Service Landing Pages */}

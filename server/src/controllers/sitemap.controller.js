@@ -63,6 +63,12 @@ export const generateSitemapXml = async (req, res) => {
       { loc: `${baseUrl}/blog/how-much-does-an-android-app-development-cost`, priority: '0.8', changefreq: 'monthly' },
       { loc: `${baseUrl}/blog/why-growing-businesses-need-custom-erp-crm-software`, priority: '0.8', changefreq: 'monthly' },
 
+      // Dedicated Company Pages
+      { loc: `${baseUrl}/about`, priority: '0.9', changefreq: 'monthly' },
+      { loc: `${baseUrl}/portfolio`, priority: '0.9', changefreq: 'weekly' },
+      { loc: `${baseUrl}/pricing`, priority: '0.9', changefreq: 'monthly' },
+      { loc: `${baseUrl}/faq`, priority: '0.8', changefreq: 'monthly' },
+
       // Marketplace & Solutions
       { loc: `${baseUrl}/marketplace`, priority: '0.9', changefreq: 'daily' },
       { loc: `${baseUrl}/software`, priority: '0.9', changefreq: 'weekly' },

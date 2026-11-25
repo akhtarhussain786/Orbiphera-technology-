@@ -14,7 +14,7 @@ export const FAQ_ITEMS = [
   },
   {
     question: 'Can I meet your engineering team in Siwan for an in-person consultation?',
-    answer: 'Yes, absolutely! We are headquartered in Siwan, Bihar. You can schedule an in-person discovery session at our office, call our direct engineering helpline (+91 98765 43210), or connect instantly via WhatsApp for a live demonstration.'
+    answer: 'Yes, absolutely! We are headquartered in Siwan, Bihar. You can schedule an in-person discovery session at our office, call our direct engineering helpline (+91 8676875336), or connect instantly via WhatsApp for a live demonstration.'
   },
   {
     question: 'How do you structure project contracts and intellectual property (IP) code ownership?',

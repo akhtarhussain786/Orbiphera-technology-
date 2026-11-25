@@ -19,7 +19,7 @@ const DEFAULT_SETTINGS = {
   logoUrl: '/logo.png',
   faviconUrl: '/favicon.ico',
   contactEmail: 'contact@orbiphera.in',
-  contactPhone: '+91 98765 43210',
+  contactPhone: '+91 8676875336',
   address: 'Orbiphera Technologies, Digital Tech Hub, India',
   socialLinks: {
     twitter: 'https://twitter.com',

@@ -34,9 +34,12 @@ export default function ProjectInquiryCTA() {
 
   const brandName = settings?.siteName || 'Orbiphera Technologies'
   const contactEmail = settings?.contactEmail || 'contact@orbiphera.in'
-  const contactPhone = settings?.contactPhone || '+91 8676875336'
+  const rawProvidedPhone = (settings?.contactPhone || '').replace(/[^0-9]/g, '')
+  const contactPhone = (rawProvidedPhone.length >= 10) 
+    ? settings.contactPhone 
+    : '+91 8676875336'
   const rawPhone = contactPhone.replace(/[^0-9]/g, '')
-  const whatsappNumber = rawPhone.length === 10 ? `91${rawPhone}` : rawPhone
+  const whatsappNumber = rawPhone.length === 10 ? `91${rawPhone}` : (rawPhone || '918676875336')
 
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
     `Hello ${brandName}, I would like to get a quote for a software development project.`
@@ -214,9 +217,9 @@ export default function ProjectInquiryCTA() {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center py-3.5 px-5 rounded-xl bg-[#E50914] hover:bg-[#b5e028] text-white text-xs sm:text-sm font-black transition-all shadow-[0_0_20px_rgba(229, 9, 20,0.3)] group cursor-pointer"
+                className="w-full inline-flex items-center justify-center py-3.5 px-5 rounded-xl bg-[#E50914] hover:bg-[#CC0813] text-white text-xs sm:text-sm font-black transition-all shadow-[0_0_20px_rgba(229,9,20,0.35)] group cursor-pointer"
               >
-                <span>Chat on WhatsApp ({contactPhone})</span>
+                <span>Chat with an Engineer on WhatsApp</span>
                 <ArrowRight className="w-4 h-4 ml-1.5 group-hover:translate-x-1 transition-transform" />
               </motion.a>
             </motion.div>

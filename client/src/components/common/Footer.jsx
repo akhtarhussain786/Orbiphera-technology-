@@ -30,10 +30,11 @@ export default function Footer() {
 
   const brandName = settings?.siteName || 'Orbiphera Technologies'
   const contactEmail = settings?.contactEmail || 'contact@orbiphera.in'
-  const contactPhone = settings?.contactPhone || '+91 98765 43210'
+  const rawProvidedPhone = (settings?.contactPhone || '').replace(/[^0-9]/g, '')
+  const contactPhone = (rawProvidedPhone.length >= 10) ? settings.contactPhone : '+91 8676875336'
 
   const rawPhone = contactPhone.replace(/[^0-9]/g, '')
-  const whatsappNumber = rawPhone.length === 10 ? `91${rawPhone}` : rawPhone
+  const whatsappNumber = rawPhone.length === 10 ? `91${rawPhone}` : (rawPhone || '918676875336')
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
     `Hello ${brandName}, I would like to consult with your engineering team.`
   )}`
@@ -122,10 +123,11 @@ export default function Footer() {
     {
       title: 'COMPANY & CONTACT',
       links: [
-        { name: 'Why Choose Us (6 Pillars)', href: '/#why-us' },
-        { name: 'Client Reviews & Testimonials', href: '/#reviews' },
-        { name: 'Frequently Asked Questions', href: '/#faq' },
-        { name: 'Request Free Consultation', href: '#contact' },
+        { name: 'About Our Team & Mission', href: '/about' },
+        { name: 'Portfolio & Case Studies', href: '/portfolio' },
+        { name: 'Pricing & Packages', href: '/pricing' },
+        { name: 'Frequently Asked Questions', href: '/faq' },
+        { name: 'Contact & Inquiry Form', href: '/contact' },
         { name: 'WhatsApp Technical Support', href: whatsappUrl }
       ]
     }

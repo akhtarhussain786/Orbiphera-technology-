@@ -124,8 +124,8 @@ export default function Contact() {
                 </div>
                 <div>
                   <span className="text-xs text-white/60 uppercase tracking-wider block">Email Inquiries</span>
-                  <a href={`mailto:${settings?.contactEmail || 'contact@yathartitsolutions.com'}`} className="text-white font-semibold hover:text-[#E50914] transition-colors">
-                    {settings?.contactEmail || 'contact@yathartitsolutions.com'}
+                  <a href={`mailto:${settings?.contactEmail || 'contact@orbiphera.in'}`} className="text-white font-semibold hover:text-[#E50914] transition-colors">
+                    {settings?.contactEmail || 'contact@orbiphera.in'}
                   </a>
                 </div>
               </div>
@@ -136,8 +136,8 @@ export default function Contact() {
                 </div>
                 <div>
                   <span className="text-xs text-white/60 uppercase tracking-wider block">Call / WhatsApp</span>
-                  <a href={`tel:${settings?.contactPhone || '+919876543210'}`} className="text-white font-semibold hover:text-[#E50914] transition-colors">
-                    {settings?.contactPhone || '+91 98765 43210'}
+                  <a href={`tel:${settings?.contactPhone || '+918676875336'}`} className="text-white font-semibold hover:text-[#E50914] transition-colors">
+                    {settings?.contactPhone || '+91 8676875336'}
                   </a>
                 </div>
               </div>

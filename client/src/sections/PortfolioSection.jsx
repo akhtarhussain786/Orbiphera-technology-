@@ -69,15 +69,17 @@ const PROJECTS = [
 
 const CATEGORIES = ['All', 'Websites', 'Mobile Applications', 'ERP & EMS', 'Custom Software']
 
-export default function PortfolioSection() {
+export default function PortfolioSection({ limit, showHeader = true, isPage = false }) {
   const sectionRef = useRef(null)
   const headerRef = useRef(null)
   const shouldReduceMotion = useReducedMotion()
   const [activeCategory, setActiveCategory] = useState('All')
 
-  const filteredProjects = activeCategory === 'All' 
+  const baseProjects = activeCategory === 'All' 
     ? PROJECTS 
     : PROJECTS.filter(p => p.category === activeCategory)
+
+  const filteredProjects = limit ? baseProjects.slice(0, limit) : baseProjects
 
   useEffect(() => {
     if (prefersReducedMotion()) return
@@ -214,6 +216,18 @@ export default function PortfolioSection() {
             ))}
           </AnimatePresence>
         </motion.div>
+
+        {limit && baseProjects.length > limit && (
+          <div className="mt-12 text-center">
+            <Link
+              to="/portfolio"
+              className="inline-flex items-center space-x-2 px-8 py-4 rounded-2xl bg-[#121214] hover:bg-[#E50914] text-white font-bold text-sm border border-white/10 hover:border-[#E50914] shadow-xl hover:shadow-[0_0_30px_rgba(229,9,20,0.5)] transition-all group"
+            >
+              <span>Explore All Completed Projects &amp; Case Studies</span>
+              <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </Link>
+          </div>
+        )}
 
       </div>
     </section>

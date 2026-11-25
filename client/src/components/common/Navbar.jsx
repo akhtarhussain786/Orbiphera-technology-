@@ -120,6 +120,12 @@ export default function Navbar() {
     setIsProductsOpen(false)
   }, [location.pathname, location.hash])
 
+  const isPathActive = (path) => {
+    if (path === '/') return location.pathname === '/'
+    if (path === '/portfolio') return location.pathname === '/portfolio' || location.pathname === '/projects'
+    return location.pathname.startsWith(path)
+  }
+
   const megaServices = [
     { title: 'Website Development', desc: 'Custom portals, dynamic stores & landing pages', href: '/services/website-development', icon: Globe },
     { title: 'Mobile App Development', desc: 'Android, iOS & Flutter cross-platform apps', href: '/services/mobile-app-development', icon: Smartphone },
@@ -166,14 +172,20 @@ export default function Navbar() {
         </div>
 
         {/* Desktop Navigation Links */}
-        <div className="hidden lg:flex items-center space-x-1 xl:space-x-2 text-xs xl:text-[13px] font-semibold text-white">
-          {/* Home (Active with Crimson highlight) */}
+        <div className="hidden lg:flex items-center space-x-1 xl:space-x-1.5 text-xs xl:text-[13px] font-semibold text-white">
+          {/* Home */}
           <Link
             to="/"
-            className="px-3 xl:px-3.5 py-1.5 rounded-full text-[#FF2A36] font-bold hover:bg-[#E50914]/10 transition-colors whitespace-nowrap relative"
+            className={`px-3 xl:px-3.5 py-1.5 rounded-full transition-colors whitespace-nowrap relative ${
+              isPathActive('/')
+                ? 'text-[#FF2A36] font-bold bg-[#E50914]/10'
+                : 'text-white hover:text-[#FF2A36] hover:bg-white/5'
+            }`}
           >
             <span>Home</span>
-            <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-[#E50914] rounded-full" />
+            {isPathActive('/') && (
+              <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-[#E50914] rounded-full" />
+            )}
           </Link>
 
           {/* Services Dropdown */}
@@ -197,8 +209,11 @@ export default function Navbar() {
                 setIsServicesOpen(!isServicesOpen)
                 setIsProductsOpen(false)
               }}
-              className={`flex items-center space-x-1 px-3 xl:px-3.5 py-1.5 rounded-full transition-colors whitespace-nowrap cursor-pointer ${isServicesOpen ? 'text-[#FF2A36] bg-[#E50914]/10 font-bold' : 'text-white hover:text-[#FF2A36] hover:bg-white/5'
-                }`}
+              className={`flex items-center space-x-1 px-3 xl:px-3.5 py-1.5 rounded-full transition-colors whitespace-nowrap cursor-pointer ${
+                isPathActive('/services') || isServicesOpen
+                  ? 'text-[#FF2A36] bg-[#E50914]/10 font-bold'
+                  : 'text-white hover:text-[#FF2A36] hover:bg-white/5'
+              }`}
             >
               <span>Services</span>
               <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isServicesOpen ? 'rotate-180 text-[#FF2A36]' : ''}`} />
@@ -218,14 +233,14 @@ export default function Navbar() {
                     <span className="text-[11px] font-mono font-bold tracking-widest uppercase text-[#FF2A36]">
                       CORE IT DEVELOPMENT SERVICES
                     </span>
-                    <a
-                      href="#services"
+                    <Link
+                      to="/services"
                       onClick={() => setIsServicesOpen(false)}
-                      className="text-[11px] text-slate-400 hover:text-[#FF2A36] flex items-center space-x-1"
+                      className="text-[11px] text-slate-400 hover:text-[#FF2A36] flex items-center space-x-1 font-bold"
                     >
-                      <span>View all 6 services</span>
+                      <span>Explore all 8 services</span>
                       <ArrowRight className="w-3 h-3" />
-                    </a>
+                    </Link>
                   </div>
 
                   <div className="grid grid-cols-2 gap-3">
@@ -258,126 +273,122 @@ export default function Navbar() {
             </AnimatePresence>
           </div>
 
-          {/* Products Dropdown */}
-          <div
-            className="relative"
-            ref={productsRef}
-            onMouseEnter={() => {
-              if (productsTimeoutRef.current) clearTimeout(productsTimeoutRef.current)
-              setIsProductsOpen(true)
-              setIsServicesOpen(false)
-            }}
-            onMouseLeave={() => {
-              productsTimeoutRef.current = setTimeout(() => {
-                setIsProductsOpen(false)
-              }, 180)
-            }}
+          {/* About Us */}
+          <Link
+            to="/about"
+            className={`px-3 xl:px-3.5 py-1.5 rounded-full transition-colors whitespace-nowrap relative ${
+              isPathActive('/about')
+                ? 'text-[#FF2A36] font-bold bg-[#E50914]/10'
+                : 'text-white hover:text-[#FF2A36] hover:bg-white/5'
+            }`}
           >
-            <button
-              type="button"
-              onClick={() => {
-                setIsProductsOpen(!isProductsOpen)
-                setIsServicesOpen(false)
-              }}
-              className={`flex items-center space-x-1 px-3 xl:px-3.5 py-1.5 rounded-full transition-colors whitespace-nowrap cursor-pointer ${isProductsOpen ? 'text-[#FF2A36] bg-[#E50914]/10 font-bold' : 'text-white hover:text-[#FF2A36] hover:bg-white/5'
-                }`}
-            >
-              <span>Products</span>
-              <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isProductsOpen ? 'rotate-180 text-[#FF2A36]' : ''}`} />
-            </button>
-
-            {/* Products Dropdown Menu */}
-            <AnimatePresence>
-              {isProductsOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10, scale: 0.98 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: 10, scale: 0.98 }}
-                  transition={{ duration: 0.18, ease: 'easeOut' }}
-                  className="absolute top-full -left-12 lg:-left-20 mt-3 w-80 bg-[#121214] rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.9)] border border-white/10 z-50 text-left overflow-hidden p-3 before:absolute before:-top-4 before:inset-x-0 before:h-4 before:content-['']"
-                >
-                  <div className="px-3 py-1.5 text-[10px] font-mono font-bold tracking-wider uppercase text-[#FF2A36]">
-                    Featured Digital Solutions
-                  </div>
-                  <div className="space-y-1">
-                    {productItems.map((prod) => {
-                      const Icon = prod.icon
-                      return (
-                        <a
-                          key={prod.title}
-                          href={prod.href}
-                          onClick={() => setIsProductsOpen(false)}
-                          className="flex items-start space-x-2.5 p-2.5 rounded-xl hover:bg-[#E50914]/10 group transition-all"
-                        >
-                          <Icon className="w-4 h-4 text-slate-400 group-hover:text-[#FF2A36] shrink-0 mt-0.5" />
-                          <div>
-                            <span className="text-xs font-bold text-white group-hover:text-[#FF2A36] block">
-                              {prod.title}
-                            </span>
-                            <span className="text-[10px] text-slate-400 leading-tight block">
-                              {prod.desc}
-                            </span>
-                          </div>
-                        </a>
-                      )
-                    })}
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
+            <span>About Us</span>
+            {isPathActive('/about') && (
+              <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-[#E50914] rounded-full" />
+            )}
+          </Link>
 
           {/* Portfolio */}
-          <a
-            href="/#work"
-            className="px-3 xl:px-3.5 py-1.5 rounded-full text-white hover:text-[#FF2A36] hover:bg-white/5 transition-colors whitespace-nowrap"
+          <Link
+            to="/portfolio"
+            className={`px-3 xl:px-3.5 py-1.5 rounded-full transition-colors whitespace-nowrap relative ${
+              isPathActive('/portfolio')
+                ? 'text-[#FF2A36] font-bold bg-[#E50914]/10'
+                : 'text-white hover:text-[#FF2A36] hover:bg-white/5'
+            }`}
           >
-            Portfolio
-          </a>
+            <span>Portfolio</span>
+            {isPathActive('/portfolio') && (
+              <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-[#E50914] rounded-full" />
+            )}
+          </Link>
+
+          {/* Pricing */}
+          <Link
+            to="/pricing"
+            className={`px-3 xl:px-3.5 py-1.5 rounded-full transition-colors whitespace-nowrap relative ${
+              isPathActive('/pricing')
+                ? 'text-[#FF2A36] font-bold bg-[#E50914]/10'
+                : 'text-white hover:text-[#FF2A36] hover:bg-white/5'
+            }`}
+          >
+            <span>Pricing</span>
+            {isPathActive('/pricing') && (
+              <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-[#E50914] rounded-full" />
+            )}
+          </Link>
+
+          {/* FAQ */}
+          <Link
+            to="/faq"
+            className={`px-3 xl:px-3.5 py-1.5 rounded-full transition-colors whitespace-nowrap relative ${
+              isPathActive('/faq')
+                ? 'text-[#FF2A36] font-bold bg-[#E50914]/10'
+                : 'text-white hover:text-[#FF2A36] hover:bg-white/5'
+            }`}
+          >
+            <span>FAQ</span>
+            {isPathActive('/faq') && (
+              <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-[#E50914] rounded-full" />
+            )}
+          </Link>
 
           {/* Locations */}
           <Link
             to="/locations"
-            className="px-3 xl:px-3.5 py-1.5 rounded-full text-white hover:text-[#FF2A36] hover:bg-white/5 transition-colors whitespace-nowrap"
+            className={`px-3 xl:px-3.5 py-1.5 rounded-full transition-colors whitespace-nowrap relative ${
+              isPathActive('/locations')
+                ? 'text-[#FF2A36] font-bold bg-[#E50914]/10'
+                : 'text-white hover:text-[#FF2A36] hover:bg-white/5'
+            }`}
           >
-            Locations
+            <span>Locations</span>
+            {isPathActive('/locations') && (
+              <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-[#E50914] rounded-full" />
+            )}
           </Link>
 
           {/* Blog */}
           <Link
             to="/blog"
-            className="px-3 xl:px-3.5 py-1.5 rounded-full text-white hover:text-[#FF2A36] hover:bg-white/5 transition-colors whitespace-nowrap"
+            className={`px-3 xl:px-3.5 py-1.5 rounded-full transition-colors whitespace-nowrap relative ${
+              isPathActive('/blog')
+                ? 'text-[#FF2A36] font-bold bg-[#E50914]/10'
+                : 'text-white hover:text-[#FF2A36] hover:bg-white/5'
+            }`}
           >
-            Blog
+            <span>Blog</span>
+            {isPathActive('/blog') && (
+              <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-[#E50914] rounded-full" />
+            )}
           </Link>
 
-          {/* About Us */}
-          <a
-            href="/#why-us"
-            className="px-3 xl:px-3.5 py-1.5 rounded-full text-white hover:text-[#FF2A36] hover:bg-white/5 transition-colors whitespace-nowrap"
-          >
-            About Us
-          </a>
-
           {/* Contact */}
-          <a
-            href="#contact"
-            className="px-3 xl:px-3.5 py-1.5 rounded-full text-white hover:text-[#FF2A36] hover:bg-white/5 transition-colors whitespace-nowrap"
+          <Link
+            to="/contact"
+            className={`px-3 xl:px-3.5 py-1.5 rounded-full transition-colors whitespace-nowrap relative ${
+              isPathActive('/contact')
+                ? 'text-[#FF2A36] font-bold bg-[#E50914]/10'
+                : 'text-white hover:text-[#FF2A36] hover:bg-white/5'
+            }`}
           >
-            Contact
-          </a>
+            <span>Contact</span>
+            {isPathActive('/contact') && (
+              <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-[#E50914] rounded-full" />
+            )}
+          </Link>
         </div>
 
-        {/* Right Action: Get a Quote CTA Button (Crimson Red #E50914, desktop/tablet only; mobile has full CTA in menu drawer) */}
+        {/* Right Action: Get a Quote CTA Button (Crimson Red #E50914) */}
         <div className="flex items-center space-x-2 sm:space-x-2.5 flex-shrink-0">
           <div ref={ctaBtnRef} className="hidden sm:inline-block flex-shrink-0">
-            <a
-              href="#contact"
+            <Link
+              to="/contact"
               className="whitespace-nowrap inline-flex items-center space-x-1.5 px-5 py-2.5 rounded-full bg-[#E50914] hover:bg-[#CC0813] text-white text-xs sm:text-[13px] font-black transition-all shadow-[0_0_20px_rgba(229,9,20,0.45)] hover:shadow-[0_0_30px_rgba(229,9,20,0.65)] group flex-shrink-0 cursor-pointer"
             >
               <span className="whitespace-nowrap">Get a Quote</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform stroke-[2.5] flex-shrink-0" />
-            </a>
+            </Link>
           </div>
 
           {/* Mobile Hamburger Toggle */}
@@ -403,26 +414,27 @@ export default function Navbar() {
             className="lg:hidden pointer-events-auto mx-3 sm:mx-6 mt-2 p-5 bg-[#0B0B0C]/95 backdrop-blur-2xl rounded-3xl border border-white/10 shadow-2xl space-y-4 max-h-[85vh] overflow-y-auto"
           >
             <div className="space-y-1">
-              <span className="text-[10px] font-bold tracking-wider uppercase text-[#FF2A36] block px-2">Navigation</span>
-              <Link to="/" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 px-2 text-xs font-bold text-white hover:text-[#FF2A36]">Home</Link>
-              <Link to="/services" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 px-2 text-xs font-bold text-white hover:text-[#FF2A36]">Services & Solutions</Link>
-              <Link to="/locations" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 px-2 text-xs font-bold text-white hover:text-[#FF2A36]">Locations & Regional Hubs</Link>
-              <Link to="/blog" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 px-2 text-xs font-bold text-white hover:text-[#FF2A36]">Tech Blog & Guides</Link>
-              <a href="/#products" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 px-2 text-xs font-bold text-white hover:text-[#FF2A36]">Products</a>
-              <a href="/#work" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 px-2 text-xs font-bold text-white hover:text-[#FF2A36]">Portfolio</a>
-              <a href="/#why-us" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 px-2 text-xs font-bold text-white hover:text-[#FF2A36]">About Us</a>
-              <a href="#contact" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 px-2 text-xs font-bold text-white hover:text-[#FF2A36]">Contact</a>
+              <span className="text-[10px] font-bold tracking-wider uppercase text-[#FF2A36] block px-2 pb-1 border-b border-white/10">Navigation Menu</span>
+              <Link to="/" onClick={() => setIsMobileMenuOpen(false)} className={`block py-2.5 px-3 rounded-xl text-xs font-bold transition-colors ${isPathActive('/') ? 'bg-[#E50914]/15 text-[#FF2A36]' : 'text-white hover:text-[#FF2A36] hover:bg-white/5'}`}>Home</Link>
+              <Link to="/services" onClick={() => setIsMobileMenuOpen(false)} className={`block py-2.5 px-3 rounded-xl text-xs font-bold transition-colors ${isPathActive('/services') ? 'bg-[#E50914]/15 text-[#FF2A36]' : 'text-white hover:text-[#FF2A36] hover:bg-white/5'}`}>Services &amp; Solutions</Link>
+              <Link to="/about" onClick={() => setIsMobileMenuOpen(false)} className={`block py-2.5 px-3 rounded-xl text-xs font-bold transition-colors ${isPathActive('/about') ? 'bg-[#E50914]/15 text-[#FF2A36]' : 'text-white hover:text-[#FF2A36] hover:bg-white/5'}`}>About Us</Link>
+              <Link to="/portfolio" onClick={() => setIsMobileMenuOpen(false)} className={`block py-2.5 px-3 rounded-xl text-xs font-bold transition-colors ${isPathActive('/portfolio') ? 'bg-[#E50914]/15 text-[#FF2A36]' : 'text-white hover:text-[#FF2A36] hover:bg-white/5'}`}>Portfolio &amp; Projects</Link>
+              <Link to="/pricing" onClick={() => setIsMobileMenuOpen(false)} className={`block py-2.5 px-3 rounded-xl text-xs font-bold transition-colors ${isPathActive('/pricing') ? 'bg-[#E50914]/15 text-[#FF2A36]' : 'text-white hover:text-[#FF2A36] hover:bg-white/5'}`}>Pricing &amp; Packages</Link>
+              <Link to="/faq" onClick={() => setIsMobileMenuOpen(false)} className={`block py-2.5 px-3 rounded-xl text-xs font-bold transition-colors ${isPathActive('/faq') ? 'bg-[#E50914]/15 text-[#FF2A36]' : 'text-white hover:text-[#FF2A36] hover:bg-white/5'}`}>Frequently Asked Questions</Link>
+              <Link to="/locations" onClick={() => setIsMobileMenuOpen(false)} className={`block py-2.5 px-3 rounded-xl text-xs font-bold transition-colors ${isPathActive('/locations') ? 'bg-[#E50914]/15 text-[#FF2A36]' : 'text-white hover:text-[#FF2A36] hover:bg-white/5'}`}>Locations &amp; Hubs</Link>
+              <Link to="/blog" onClick={() => setIsMobileMenuOpen(false)} className={`block py-2.5 px-3 rounded-xl text-xs font-bold transition-colors ${isPathActive('/blog') ? 'bg-[#E50914]/15 text-[#FF2A36]' : 'text-white hover:text-[#FF2A36] hover:bg-white/5'}`}>Engineering Blog</Link>
+              <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)} className={`block py-2.5 px-3 rounded-xl text-xs font-bold transition-colors ${isPathActive('/contact') ? 'bg-[#E50914]/15 text-[#FF2A36]' : 'text-white hover:text-[#FF2A36] hover:bg-white/5'}`}>Contact Us</Link>
             </div>
 
             <div className="pt-2 border-t border-white/10">
-              <a
-                href="#contact"
+              <Link
+                to="/contact"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="w-full py-3 rounded-full bg-[#E50914] text-white text-xs font-black flex items-center justify-center space-x-1.5 shadow-[0_0_20px_rgba(229,9,20,0.45)]"
+                className="w-full py-3.5 rounded-full bg-[#E50914] text-white text-xs font-black flex items-center justify-center space-x-1.5 shadow-[0_0_20px_rgba(229,9,20,0.45)]"
               >
-                <span>Get a Quote</span>
+                <span>Get a Free Quote</span>
                 <ArrowRight className="w-3.5 h-3.5 stroke-[2.5]" />
-              </a>
+              </Link>
             </div>
           </motion.div>
         )}
