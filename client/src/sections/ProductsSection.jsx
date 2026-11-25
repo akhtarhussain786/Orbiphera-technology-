@@ -105,7 +105,19 @@ export default function ProductsSection() {
   const gridRef = useRef(null)
   const shouldReduceMotion = useReducedMotion()
 
-  const [products, setProducts] = useState(DEFAULT_PRODUCTS)
+  const [products, setProducts] = useState(() => {
+    try {
+      const cached = localStorage.getItem('orbiphera_products_showcase')
+      if (cached) {
+        const parsed = JSON.parse(cached)
+        if (Array.isArray(parsed?.products) && parsed.products.length > 0) {
+          const activeOnly = parsed.products.filter(p => p.isActive !== false)
+          if (activeOnly.length > 0) return activeOnly
+        }
+      }
+    } catch (_) {}
+    return DEFAULT_PRODUCTS
+  })
   const [title, setTitle] = useState('Our Products & Digital Solutions.')
   const [subtitle, setSubtitle] = useState('Production-ready enterprise software systems designed for rapid deployment, high data integrity, and intuitive day-to-day operations.')
   const [badgeText, setBadgeText] = useState('TURNKEY SOFTWARE SUITES')
@@ -116,12 +128,18 @@ export default function ProductsSection() {
   const API_URL = import.meta.env.VITE_API_URL || '/api'
   const SERVER_HOST = API_URL.replace('/api', '')
 
-  // Fetch dynamic products from Admin / Content API
+  // Fetch dynamic products from Admin / Content API with fallback
   useEffect(() => {
     let isMounted = true
     const fetchProducts = async () => {
       try {
-        const res = await axios.get(`${API_URL}/content/products_showcase`)
+        let res
+        try {
+          res = await axios.get(`${API_URL}/content/products_showcase`)
+        } catch {
+          res = await axios.get('/api/content.php?key=products_showcase')
+        }
+
         if (isMounted && res.data?.success && res.data.section) {
           const sec = res.data.section
           if (sec.title) setTitle(sec.title)
@@ -135,11 +153,27 @@ export default function ProductsSection() {
             const activeOnly = sec.data.products.filter(p => p.isActive !== false)
             if (activeOnly.length > 0) {
               setProducts(activeOnly)
+              try {
+                localStorage.setItem('orbiphera_products_showcase', JSON.stringify({
+                  sectionData: sec,
+                  products: sec.data.products
+                }))
+              } catch (_) {}
             }
           }
         }
       } catch {
-        // Fallback silently to default
+        // Fallback silently to local cached products
+        try {
+          const cached = localStorage.getItem('orbiphera_products_showcase')
+          if (cached && isMounted) {
+            const parsed = JSON.parse(cached)
+            if (Array.isArray(parsed?.products) && parsed.products.length > 0) {
+              const activeOnly = parsed.products.filter(p => p.isActive !== false)
+              if (activeOnly.length > 0) setProducts(activeOnly)
+            }
+          }
+        } catch (_) {}
       }
     }
 
@@ -176,8 +210,9 @@ export default function ProductsSection() {
 
   const formatImageUrl = (img) => {
     if (!img) return 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=480&fit=crop&q=80'
-    if (img.startsWith('http://') || img.startsWith('https://')) return img
-    return `${SERVER_HOST}${img}`
+    if (img.startsWith('http://') || img.startsWith('https://') || img.startsWith('data:image/')) return img
+    if (img.startsWith('/uploads/')) return img
+    return SERVER_HOST ? `${SERVER_HOST}${img}` : img
   }
 
   return (

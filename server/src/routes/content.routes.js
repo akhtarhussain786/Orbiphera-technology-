@@ -14,6 +14,7 @@ router.get('/:sectionKey', getContentSectionByKey)
 
 // Admin
 router.put('/admin/:sectionKey', protectAdmin, requireRole(['super_admin', 'admin', 'editor']), updateContentSection)
+router.post('/admin/:sectionKey', protectAdmin, requireRole(['super_admin', 'admin', 'editor']), updateContentSection)
 
 export default router
 

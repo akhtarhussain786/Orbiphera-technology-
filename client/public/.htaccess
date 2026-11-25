@@ -13,7 +13,16 @@
   RewriteRule ^api/admin/inquiries/([^/]+)/?$ api/inquiries.php [QSA,L]
   RewriteRule ^api/admin/inquiries/([^/]+)/status/?$ api/inquiries.php [QSA,L]
 
-  # 3. SPA Fallback: All other routes to index.html
+  # 3. Map API Media Uploads directly to PHP handler on Apache
+  RewriteRule ^api/admin/media/upload/?$ api/media_upload.php [QSA,L]
+  RewriteRule ^api/media/upload/?$ api/media_upload.php [QSA,L]
+
+  # 4. Map API Content & Products Showcase to PHP handler on Apache
+  RewriteRule ^api/content/admin/([^/]+)/?$ api/content.php?key=$1 [QSA,L]
+  RewriteRule ^api/content/([^/]+)/?$ api/content.php?key=$1 [QSA,L]
+  RewriteRule ^api/content/?$ api/content.php [QSA,L]
+
+  # 5. SPA Fallback: All other routes to index.html
   RewriteRule ^index\.html$ - [L]
   RewriteRule . /index.html [L]
 </IfModule>

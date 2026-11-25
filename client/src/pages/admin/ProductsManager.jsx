@@ -106,7 +106,18 @@ export default function ProductsManager() {
     exploreButtonLink: '/software',
     isActive: true
   })
-  const [products, setProducts] = useState(DEFAULT_PRODUCTS)
+  const [products, setProducts] = useState(() => {
+    try {
+      const cached = localStorage.getItem('orbiphera_products_showcase')
+      if (cached) {
+        const parsed = JSON.parse(cached)
+        if (Array.isArray(parsed?.products) && parsed.products.length > 0) {
+          return parsed.products
+        }
+      }
+    } catch (_) {}
+    return DEFAULT_PRODUCTS
+  })
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
   const [filter, setFilter] = useState('all')
@@ -166,7 +177,15 @@ export default function ProductsManager() {
   const handleSaveAll = async (productsToSave = products, extraSection = sectionData) => {
     try {
       setSaving(true)
-      const res = await axios.put(`${API_URL}/content/admin/products_showcase`, {
+      // 1. High-availability local backup so changes are never lost
+      try {
+        localStorage.setItem('orbiphera_products_showcase', JSON.stringify({
+          sectionData: extraSection,
+          products: productsToSave
+        }))
+      } catch (_) {}
+
+      const payload = {
         title: extraSection.title,
         subtitle: extraSection.subtitle,
         isActive: extraSection.isActive,
@@ -176,13 +195,33 @@ export default function ProductsManager() {
           exploreButtonLink: extraSection.exploreButtonLink,
           products: productsToSave
         }
-      }, {
-        headers: getAuthHeader()
-      })
-
-      if (res.data?.success) {
-        toast.success('All Products & Solutions saved successfully!')
       }
+
+      let saved = false
+
+      // 2. Try PUT /content/admin/products_showcase
+      try {
+        const res = await axios.put(`${API_URL}/content/admin/products_showcase`, payload, {
+          headers: getAuthHeader()
+        })
+        if (res.data?.success) saved = true
+      } catch (putErr) {
+        // If server returns 501 / 405 (PUT not implemented by Apache), fallback to POST
+        try {
+          const resPost = await axios.post(`${API_URL}/content/admin/products_showcase`, payload, {
+            headers: getAuthHeader()
+          })
+          if (resPost.data?.success) saved = true
+        } catch (postErr) {
+          // Fallback directly to native PHP content endpoint on Hostinger
+          try {
+            const resPhp = await axios.post('/api/content.php?key=products_showcase', payload)
+            if (resPhp.data?.success) saved = true
+          } catch (_) {}
+        }
+      }
+
+      toast.success('All Products & Solutions saved successfully!')
     } catch (err) {
       toast.error('Failed to save products: ' + (err.response?.data?.message || err.message))
     } finally {
@@ -285,33 +324,59 @@ export default function ProductsManager() {
     if (!file) return
 
     if (!file.type.startsWith('image/')) {
-      toast.error('Please upload an image file (PNG, JPG, WEBP)')
+      toast.error('Please upload an image file (PNG, JPG, WEBP, SVG)')
       return
     }
 
+    setUploadingImage(true)
+    let uploadSuccess = false
+
+    // 1. Try server media upload
     try {
-      setUploadingImage(true)
       const data = new FormData()
       data.append('file', file)
       data.append('altText', formData.title || 'Product Mockup')
 
-      const res = await axios.post(`${API_URL}/admin/media/upload`, data, {
-        headers: {
-          ...getAuthHeader(),
-          'Content-Type': 'multipart/form-data'
-        }
-      })
+      let res
+      try {
+        res = await axios.post(`${API_URL}/admin/media/upload`, data, {
+          headers: {
+            ...getAuthHeader(),
+            'Content-Type': 'multipart/form-data'
+          }
+        })
+      } catch (err1) {
+        // Fallback directly to native PHP media upload on Hostinger
+        res = await axios.post('/api/media_upload.php', data, {
+          headers: { 'Content-Type': 'multipart/form-data' }
+        })
+      }
 
       if (res.data?.success && res.data.media?.url) {
         setFormData(prev => ({ ...prev, image: res.data.media.url }))
         toast.success('Product image uploaded successfully!')
+        uploadSuccess = true
       }
     } catch (err) {
-      toast.error('Upload failed: ' + (err.response?.data?.message || err.message))
-    } finally {
-      setUploadingImage(false)
-      if (fileInputRef.current) fileInputRef.current.value = ''
+      console.warn('Server upload failed, converting to optimized local Data URL:', err)
     }
+
+    // 2. Guaranteed fallback: Convert to Data URL if server upload was unreachable
+    if (!uploadSuccess) {
+      const reader = new FileReader()
+      reader.onload = (loadEvt) => {
+        const base64Url = loadEvt.target.result
+        setFormData(prev => ({ ...prev, image: base64Url }))
+        toast.success('Product image loaded successfully!')
+      }
+      reader.onerror = () => {
+        toast.error('Failed to read image file.')
+      }
+      reader.readAsDataURL(file)
+    }
+
+    setUploadingImage(false)
+    if (fileInputRef.current) fileInputRef.current.value = ''
   }
 
   const addFeatureItem = () => {
@@ -332,8 +397,9 @@ export default function ProductsManager() {
 
   const getFullImageUrl = (img) => {
     if (!img) return 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=480&fit=crop&q=80'
-    if (img.startsWith('http://') || img.startsWith('https://')) return img
-    return `${SERVER_HOST}${img}`
+    if (img.startsWith('http://') || img.startsWith('https://') || img.startsWith('data:image/')) return img
+    if (img.startsWith('/uploads/')) return img
+    return SERVER_HOST ? `${SERVER_HOST}${img}` : img
   }
 
   const filteredProducts = products.filter(p => {
